@@ -1,0 +1,268 @@
+
+.comment-send-btn {
+    right: 20px;
+    bottom: 4px;
+    z-index: 99;
+}
+
+.action-item {
+    border-right: 1px solid #ccc;
+}
+
+.action-item:last-child {
+    border-right: 0;
+}
+
+.comment-like {
+    position: absolute;
+    right: 12px;
+    bottom: 25px;
+    box-shadow: 1px 2px 15px #ddd
+}
+
+.new-comment-border {
+    border-left: 2px solid #762cc3;
+}
+
+.btn-post-photo {
+
+    background: url(../img/icons.png);
+    background-position: 0px -1324px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 18px;
+    top: 8px;
+}
+
+.btn-post-emo {
+
+    background: url(../img/icons.png);
+    background-position: 0px -800px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 18px;
+    top: 8px;
+}
+
+.btn-post-compose {
+
+    background: url(../img/icons.png);
+    background-position: 0px -1493px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    left: 18px;
+    top: 8px;
+}
+
+.mentions-input-box .mentions {
+    position: absolute;
+    left: 1px;
+    right: auto;
+    top: 1px;
+    bottom: 0;
+    padding: 9px;
+    color: #fff;
+    overflow: hidden;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.emojionearea .emojionearea-editor {
+    text-align: left;
+    direction: ltr;
+    /*padding: 6px 24px 6px 12px;*/
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after {
+    width: 19px;
+    height: 10px;
+    background-position: -2px -100px;
+    top: -10px;
+    right: 20px
+}
+
+.griditem:nth-child(1) {
+    border-left: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(2) {
+    border-left: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(3) {
+    border-left: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(4) {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(5) {
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(6) {
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(7) {
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(8) {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.side-count {
+    width: 20px;
+    height: 20px;
+    background-color: #E91E63;
+    top: 15px;
+    right: 30%;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+}
+.chat-count {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #FFF;
+    font-weight: bold;
+    background-color: #E91E63;
+    top: 2px;
+    right: 10%;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    -webkit-animation: notification-bullet 0.5s 0.5s both 1;
+    animation: notification-bullet 0.5s 0.5s both 1;
+}
+
+@-webkit-keyframes notification-bullet {
+    0% {
+        opacity: 0;
+        top: 2px;
+    }
+    50% {
+        opacity: 0.5;
+        top: 30px;
+    }
+    100% {
+        opacity: 1;
+        top: 2px;
+    }
+}
+
+.skew-header {
+    /*background: rgb(122, 206, 122);*/
+    background-size: cover;
+    height: 450px;
+    transform: skew(-40deg) rotate(-2deg);
+    border-radius: 0 0 140px 370px;
+    overflow: hidden;
+    top: -40px;
+    position: relative;
+    border: 5px solid #5241b9;
+    border-bottom-width: 12px;
+    border-left-width: 12px;
+}
+
+
+.skew-header img {
+
+    background-size: cover;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    top: -50px;
+    left: 0;
+    transform: skew(40deg) rotate(2deg);
+    right: 0;
+}
+
+.square-box {
+    position: absolute;
+    width: 50rem;
+    z-index: 9;
+    margin: auto;
+    height: 40rem;
+    overflow: hidden;
+    transform: rotate(45deg);
+    bottom: 7rem;
+    left: 10rem;
+    border: 10px solid #5241b9;
+    border-radius: 40px;
+}
+
+.square-box:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+    /*background: url("../images/bg1.jpg") center center no-repeat;*/
+    background-size: cover;
+    transform: rotate(-45deg);
+    left: 0;
+}
+
+.square-content {
+    position: absolute;
+    top: 0;
+    left: -9rem;
+    padding-top: 6%;
+    bottom: 0;
+    right: 0;
+    transform: rotate(-45deg);
+    color: white;
+    text-align: center;
+    width: 85rem;
+}
+
+.card-collapse .card .card-header a[data-toggle=collapse] i {
+   float:right;
+}
+
+.header-text{
+    position:relative;
+}
+.header-text:after{
+    content:'';
+    background:#4448b5;
+    position:absolute;
+    width:205px;
+    height:8px;
+    top: 100%;
+    right: 26rem;
+}
+.header-text:before{
+    content: '';
+    position: absolute;
+    left: 13em;
+    top: 38%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid #4747b6;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    clear: both;
+}

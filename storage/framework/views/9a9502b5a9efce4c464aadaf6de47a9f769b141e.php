@@ -1,0 +1,71 @@
+<style>
+    .form-check .form-check-label {
+        padding-left: 0px;
+        padding-right: 35px;
+    }
+
+    .form-check .form-check-sign:after, .form-check .form-check-sign:before {
+        right: 0;
+        left: auto;
+    }
+</style>
+<div class="card">
+    <div class="card card-blog card-plain card-body">
+        <div class="text-center col-md-12  m-auto">
+            <div class="row">
+                <div class="col-md-3">
+                    <?php echo $__env->make('pages.setting.navigators', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                </div>
+                <div class="col-md-9">
+                    <div class="tab-content">
+                        <div class="tab-pane active show" id="link4">
+                            <div class="row">
+                                    <?php if(count($notifications) == 0): ?>
+                                        <div class="col-md-12">
+                                            <div class="text-center">
+                                                <img class="img-responsive" src="<?php echo e(asset('assets/img/empty-cart.png')); ?>"
+                                                     alt="">
+                                                <h3><?php echo e(__('profile.no_notifications')); ?></h3>
+                                            </div>
+                                        </div>
+                                    <?php endif; ?>
+                                    <?php $__currentLoopData = $notifications; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $notification): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?> 
+                                        <div class="col-md-12">
+                                            
+                                            <a <?php if(in_array($notification->type , ['ApprovedDrug','RejectDrug','UnApprovedDrugInsertion'])): ?> href="<?php echo e($notification->url); ?>" <?php endif; ?> >
+                                                <div class="media-area"> 
+                                                    <span class="float-right"><?php echo e($notification->notified_at); ?></span>
+                                                    <div class="media">
+                                                        <!--<a class="float-left" href="<?php echo e($notification->url); ?>">-->
+                                                        <!--    <div class="avatar">-->
+                                                        <!--        <img class="media-object img-raised"-->
+                                                        <!--             style="width: 50px;height: 50px;border-radius: 50%"-->
+                                                        <!--             src="<?php echo e(asset("assets/img/user_avatar.jpg")); ?>"-->
+                                                        <!--             alt="...">-->
+                                                        <!--    </div>-->
+                                                        <!--</a>-->
+                                                        <div class="media-body p-2 text-left">
+                                                            <h6 class="media-heading text-left mb-0 text-capitalize"> <?php echo e(app()->getLocale() == 'ar' ? $notification->title : $notification->title_en); ?>
+
+                                                                <label class="badge badge-info"><?php echo e($notification->type); ?></label>
+                                                            </h6>
+                                                            <span style="color: #722fc2;font-size: 13px;"><?php echo e($notification->created_at); ?></span>
+                                                            <br/>
+                                                            <small style="font-size: 12px;"
+                                                                   class="text-left text-muted"><?php echo e(app()->getLocale() == 'ar' ? $notification->description :  $notification->description_en); ?></small>
+                                                        </div>
+                                                    </div>
+                                                    <hr class="m-0">
+                                                </div>
+                                            </a>
+                                        </div>  
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2 @@
+Sl #,PharmaShare Code,Trade Name,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+9426,PS00009426,ZYNCOR-5 **,Tablets/Film-coated,28's (14's Blister x 2),20.64,25.5,Bisoprolol fumarate,5mg/Tablet,OMAN PHARMACEUTICAL PRODUCTS,251,690,,

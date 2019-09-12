@@ -1,0 +1,329 @@
+@import url("https://fonts.googleapis.com/earlyaccess/notokufiarabic.css");
+@font-face {
+    font-family: 'AraJozoor-Regular';
+    src: url('../fonts/AraJozoor-Regular.eot');
+    src: local('☺'), url('../fonts/AraJozoor-Regular.woff') format('woff'), url('../fonts/AraJozoor-Regular.ttf') format('truetype'), url('../fonts/AraJozoor-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, div, p, span, .form-control, button, textarea , .mapboxgl-ctrl-geocoder input[type='text']{
+    /*font-family: "Noto Kufi Arabic", Sans-Serif !important;*/
+    font-family: 'AraJozoor-Regular',Sans-Serif!important;
+}
+.direction {
+    direction: rtl !important;
+}
+
+.dropdown-menu:before {
+    left: auto;
+    right: 10px;
+}
+
+.form-group .input-group-text, .input-group .input-group-text {
+
+    padding: 10px 18px 10px 10px;
+}
+
+.form-group .form-control, .input-group .form-control {
+
+    padding: 5px 18px;
+}
+
+.comment-send-btn {
+    left: 20px;
+    bottom: 4px;
+    z-index: 99;
+}
+
+.action-item {
+    border-left: 1px solid #ccc;
+}
+
+.action-item:last-child {
+    border-left: 0;
+}
+
+.comment-like {
+    position: absolute;
+    left: 12px;
+    bottom: 25px;
+    box-shadow: 1px 2px 15px #ddd
+}
+
+.post-time {
+    direction: rtl;
+}
+
+.new-comment-border {
+    border-right: 2px solid #762cc3;
+}
+
+.btn-post-photo {
+
+    background: url(../img/icons.png);
+    background-position: 0px -1324px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 18px;
+    top: 8px;
+}
+
+.btn-post-emo {
+
+    background: url(../img/icons.png);
+    background-position: 0px -800px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 18px;
+    top: 8px;
+}
+
+.btn-post-compose {
+
+    background: url(../img/icons.png);
+    background-position: 0px -1493px;
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 18px;
+    top: 8px;
+}
+
+.progress-container .progress .progress-value {
+    top: 2px;
+    left: 0;
+    right: auto;
+}
+
+.mentions-input-box .mentions {
+    position: absolute;
+    left: auto;
+    right: 1px;
+    top: 1px;
+    bottom: 0;
+    padding: 9px;
+    color: #fff;
+    overflow: hidden;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.emojionearea .emojionearea-button {
+    left: 3px;
+    right: auto;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom {
+
+    left: -14px;
+    right: auto;
+}
+
+.emojionearea .emojionearea-picker .emojionearea-scroll-area .emojionearea-category-title {
+    /*display: none;*/
+}
+
+.emojionearea .emojionearea-picker .emojionearea-tones-panel .emojionearea-tones {
+    right: 171px;
+    left: auto;
+}
+
+.emojionearea .emojionearea-editor {
+    text-align: right;
+    direction: rtl;
+    /*padding: 6px 12px 6px 24px;*/
+    padding-top: 6px;
+}
+
+.emojionearea .emojionearea-picker.emojionearea-picker-position-bottom .emojionearea-wrapper:after {
+    width: 19px;
+    height: 10px;
+    background-position: -2px -100px;
+    top: -10px;
+    left: 20px
+}
+
+.griditem:nth-child(1) {
+    border-right: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(2) {
+    border-right: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(3) {
+    border-right: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(4) {
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.griditem:nth-child(5) {
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(6) {
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(7) {
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.griditem:nth-child(8) {
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.side-count {
+    width: 20px;
+    height: 20px;
+    background-color: #E91E63;
+    top: 15px;
+    right: 30%;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+}
+.chat-count {
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    color: #FFF;
+    font-weight: bold;
+    background-color: #E91E63;
+    top: 2px;
+    right: 10%;
+    border-radius: 50%;
+    text-align: center;
+    font-weight: bold;
+    position: absolute;
+    -webkit-animation: notification-bullet 0.5s 0.5s both 1;
+    animation: notification-bullet 0.5s 0.5s both 1;
+}
+
+@-webkit-keyframes notification-bullet {
+    0% {
+        opacity: 0;
+        top: 2px;
+    }
+    50% {
+        opacity: 0.5;
+        top: 30px;
+    }
+    100% {
+        opacity: 1;
+        top: 2px;
+    }
+}
+.skew-header {
+    /*background: rgb(122, 206, 122);*/
+    background-size: cover;
+    height: 450px;
+    transform: skew(-40deg) rotate(-2deg);
+    overflow: hidden;
+    top: -40px;
+    position: relative;
+    border: 5px solid #5241b9;
+    border-bottom-width: 12px;
+    border-left-width: 12px;
+    border-radius: 0 0 140px 370px;
+}
+
+
+.skew-header img {
+
+    background-size: cover;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 550px;
+    top: -50px;
+    left: 0;
+    transform: skew(40deg) rotate(2deg);
+    right: 0;
+}
+
+.square-box {
+    position: absolute;
+    width: 50rem;
+    z-index: 9;
+    margin: auto;
+    height: 40rem;
+    overflow: hidden;
+    transform: rotate(45deg);
+    bottom: 7rem;
+    left: 0;
+    border: 10px solid #5241b9;
+    border-radius: 40px;
+}
+
+.square-box:before {
+    content: "";
+    display: block;
+    padding-top: 100%;
+    /*background: url("../images/bg1.jpg") center center no-repeat;*/
+    background-size: cover;
+    transform: rotate(-45deg);
+    left: 0;
+}
+
+.square-content {
+    position: absolute;
+    top: 0;
+    right: -7rem;
+    padding-top: 21em;
+    bottom: 0;
+    left: 0;
+    transform: rotate(-45deg);
+    color: white;
+    text-align: center;
+    width: 81rem;
+}
+
+.card-collapse .card .card-header a[data-toggle=collapse] i {
+    float:left;
+}
+
+.header-text{
+    position:relative;
+}
+.header-text:after{
+    content:'';
+    background:#4448b5;
+    position:absolute;
+    width:205px;
+    height:8px;
+    top: 100%;
+    left: 26rem;
+}
+
+.header-text:before{
+    content: '';
+    position: absolute;
+    right: 13em;
+    top: 38%;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid #4747b6;
+    border-bottom: 10px solid transparent;
+    border-top: 10px solid transparent;
+    clear: both;
+}

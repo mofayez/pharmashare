@@ -1,0 +1,4 @@
+Sl #,PharmaShare Code,Trade Name,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+1131,3425343423,test,ts,11,11,11,11,11,11,11,11,,
+1132,5435343454,test2,ts,12,12,12,12,12,12,12,12,,
+,PS00000001,0.2% CIPROFLOXACIN in 0.9% W/V SODIUM CHLORIDE INJECTION USP,infusion/solution for,100ml Plastic Bag,Ciprofloxacin (as lactate),2mg/ml,QATAR PHARMA,22,22,22,,,

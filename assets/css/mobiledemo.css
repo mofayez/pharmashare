@@ -1,0 +1,17 @@
+ .intl-tel-input{
+     z-index: 9;
+     width: 100%
+ }
+.intl-tel-input .selected-flag .iti-flag{
+    left: 10px
+}
+.validation-error-label, .validation-valid-label{
+    margin-top: 0;
+}
+.intl-tel-input .country-list{
+     left: 0;
+    direction: ltr;
+}
+th{
+    font-weight: lighter!important;
+}

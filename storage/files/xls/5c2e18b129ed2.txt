@@ -1,0 +1,4 @@
+Sl #,PharmaShare,Code,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+9304,PS00009304,ZESTRIL 5mg,Tablets,28's Blister (Calendar Pack),Lisinopril (as dihydrate),5mg/Tablet,ASTRAZENECA UK LIMITED,120,80,120,120,80,5
+9305,PS00009305,ZETA 2%,Cream,15g Tube,Fusidic acid,20mg/g,TABUK PHARMACEUTICAL MANUFACTURING CO.,130,85,130,130,85,5
+9306,PS00009306,ZETA 2%,Ointment,15g Tube,Fusidic acid,20mg/g,TABUK PHARMACEUTICAL MANUFACTURING CO.,131,90,131,131,90,5

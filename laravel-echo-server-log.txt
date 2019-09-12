@@ -1,0 +1,188 @@
+[1m[22m
+[1mL A R A V E L  E C H O  S E R V E R[22m
+[1m[22m
+[36mversion 1.4.2[39m
+[36m[39m
+[33m⚠ Starting server in DEV mode...[39m
+[33m[39m
+[32m✔ [39m Running at localhost on port 50050
+[32m✔ [39m Channels are ready.
+[32m✔ [39m Listening for http events...
+[32m✔ [39m Listening for redis events...
+[36m[39m
+[36mServer ready![39m
+[36m[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-like[39m
+[36m[7:32:47 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-like[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-comment[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-created[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-like[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-comment[39m
+[36m[7:32:47 AM] - UM44_lbyuyxnkzEqAAAA joined channel: post-created[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-comment[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-created[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: privateChannel.10[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: privateOrderResponseChannel.10[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-like[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-comment[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: post-created[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: privateChannel.10[39m
+[36m[7:32:48 AM] - WJEJLstkeP1Nm32kAAAB joined channel: privateOrderResponseChannel.10[39m
+[36m[7:32:51 AM] - UM44_lbyuyxnkzEqAAAA left channel: post-like (transport close)[39m
+[36m[7:32:51 AM] - UM44_lbyuyxnkzEqAAAA left channel: post-comment (transport close)[39m
+[36m[7:32:51 AM] - UM44_lbyuyxnkzEqAAAA left channel: post-created (transport close)[39m
+[36m[7:32:51 AM] - WJEJLstkeP1Nm32kAAAB left channel: post-like (transport close)[39m
+[36m[7:32:51 AM] - WJEJLstkeP1Nm32kAAAB left channel: post-comment (transport close)[39m
+[36m[7:32:51 AM] - WJEJLstkeP1Nm32kAAAB left channel: post-created (transport close)[39m
+[36m[7:32:51 AM] - WJEJLstkeP1Nm32kAAAB left channel: privateChannel.10 (transport close)[39m
+[36m[7:32:51 AM] - WJEJLstkeP1Nm32kAAAB left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:32:51 AM] - LAIoYns5GHPW65vAAAAC joined channel: post-like[39m
+[36m[7:32:51 AM] - 3CmyTn12udx6GsE1AAAD joined channel: post-like[39m
+[36m[7:32:51 AM] - LAIoYns5GHPW65vAAAAC joined channel: post-comment[39m
+[36m[7:32:51 AM] - LAIoYns5GHPW65vAAAAC joined channel: post-created[39m
+[36m[7:32:51 AM] - LAIoYns5GHPW65vAAAAC joined channel: privateChannel.10[39m
+[36m[7:32:51 AM] - LAIoYns5GHPW65vAAAAC joined channel: privateOrderResponseChannel.10[39m
+[36m[7:32:52 AM] - 3CmyTn12udx6GsE1AAAD joined channel: post-comment[39m
+[36m[7:32:52 AM] - 3CmyTn12udx6GsE1AAAD joined channel: post-created[39m
+[36m[7:32:54 AM] - LAIoYns5GHPW65vAAAAC left channel: post-like (transport close)[39m
+[36m[7:32:54 AM] - LAIoYns5GHPW65vAAAAC left channel: post-comment (transport close)[39m
+[36m[7:32:54 AM] - LAIoYns5GHPW65vAAAAC left channel: post-created (transport close)[39m
+[36m[7:32:54 AM] - LAIoYns5GHPW65vAAAAC left channel: privateChannel.10 (transport close)[39m
+[36m[7:32:54 AM] - LAIoYns5GHPW65vAAAAC left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:32:54 AM] - 3CmyTn12udx6GsE1AAAD left channel: post-like (transport close)[39m
+[36m[7:32:54 AM] - 3CmyTn12udx6GsE1AAAD left channel: post-comment (transport close)[39m
+[36m[7:32:54 AM] - 3CmyTn12udx6GsE1AAAD left channel: post-created (transport close)[39m
+[36m[7:32:55 AM] - 6JhGBiamguzDB1dSAAAE joined channel: post-like[39m
+[36m[7:32:55 AM] - q2ALmg5qsFvR5dotAAAF joined channel: privateChannel.10[39m
+[36m[7:32:55 AM] - 6JhGBiamguzDB1dSAAAE joined channel: post-comment[39m
+[36m[7:32:55 AM] - 6JhGBiamguzDB1dSAAAE joined channel: post-created[39m
+[36m[7:32:55 AM] - 6JhGBiamguzDB1dSAAAE joined channel: privateChannel.10[39m
+[36m[7:32:55 AM] - 6JhGBiamguzDB1dSAAAE joined channel: privateOrderResponseChannel.10[39m
+[36m[7:33:38 AM] - FxjW-sRNshu53Ah_AAAG joined channel: privateChannel.3[39m
+[36mChannel: privateChannel.10[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36mChannel: privateChannel.3[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36mChannel: privateChannel.10[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36mChannel: privateChannel.3[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36mChannel: privateChannel.3[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36mChannel: privateChannel.10[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36m[7:35:00 AM] - 6JhGBiamguzDB1dSAAAE left channel: post-like (transport close)[39m
+[36m[7:35:00 AM] - 6JhGBiamguzDB1dSAAAE left channel: post-comment (transport close)[39m
+[36m[7:35:00 AM] - 6JhGBiamguzDB1dSAAAE left channel: post-created (transport close)[39m
+[36m[7:35:00 AM] - 6JhGBiamguzDB1dSAAAE left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:00 AM] - 6JhGBiamguzDB1dSAAAE left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:00 AM] - q2ALmg5qsFvR5dotAAAF left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:01 AM] - A7XPowPnSUvXEaKHAAAH joined channel: post-like[39m
+[36m[7:35:02 AM] - wBpeApu8R9zGJ8aZAAAI joined channel: post-like[39m
+[36m[7:35:02 AM] - A7XPowPnSUvXEaKHAAAH joined channel: post-comment[39m
+[36m[7:35:02 AM] - A7XPowPnSUvXEaKHAAAH joined channel: post-created[39m
+[36m[7:35:02 AM] - A7XPowPnSUvXEaKHAAAH joined channel: privateChannel.10[39m
+[36m[7:35:02 AM] - A7XPowPnSUvXEaKHAAAH joined channel: privateOrderResponseChannel.10[39m
+[36m[7:35:02 AM] - wBpeApu8R9zGJ8aZAAAI joined channel: post-comment[39m
+[36m[7:35:02 AM] - wBpeApu8R9zGJ8aZAAAI joined channel: post-created[39m
+[36m[7:35:13 AM] - A7XPowPnSUvXEaKHAAAH left channel: post-like (transport close)[39m
+[36m[7:35:13 AM] - A7XPowPnSUvXEaKHAAAH left channel: post-comment (transport close)[39m
+[36m[7:35:13 AM] - A7XPowPnSUvXEaKHAAAH left channel: post-created (transport close)[39m
+[36m[7:35:13 AM] - A7XPowPnSUvXEaKHAAAH left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:13 AM] - A7XPowPnSUvXEaKHAAAH left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:13 AM] - wBpeApu8R9zGJ8aZAAAI left channel: post-like (transport close)[39m
+[36m[7:35:13 AM] - wBpeApu8R9zGJ8aZAAAI left channel: post-comment (transport close)[39m
+[36m[7:35:13 AM] - wBpeApu8R9zGJ8aZAAAI left channel: post-created (transport close)[39m
+[36m[7:35:14 AM] - calk7hqDfnbx1n3hAAAJ joined channel: post-like[39m
+[36m[7:35:14 AM] - _RQ_q1kwwngw9rANAAAK joined channel: privateChannel.10[39m
+[36m[7:35:14 AM] - calk7hqDfnbx1n3hAAAJ joined channel: post-comment[39m
+[36m[7:35:14 AM] - calk7hqDfnbx1n3hAAAJ joined channel: post-created[39m
+[36m[7:35:14 AM] - calk7hqDfnbx1n3hAAAJ joined channel: privateChannel.10[39m
+[36m[7:35:14 AM] - calk7hqDfnbx1n3hAAAJ joined channel: privateOrderResponseChannel.10[39m
+[36mChannel: privateChannel.3[39m
+[36mEvent: App\Events\MessageEvent[39m
+[36m[7:35:29 AM] - FxjW-sRNshu53Ah_AAAG left channel: privateChannel.3 (transport close)[39m
+[36m[7:35:35 AM] - lYGjF6n3cJxzTokXAAAL joined channel: privateChannel.3[39m
+[36m[7:35:37 AM] - calk7hqDfnbx1n3hAAAJ left channel: post-like (transport close)[39m
+[36m[7:35:37 AM] - calk7hqDfnbx1n3hAAAJ left channel: post-comment (transport close)[39m
+[36m[7:35:37 AM] - calk7hqDfnbx1n3hAAAJ left channel: post-created (transport close)[39m
+[36m[7:35:37 AM] - calk7hqDfnbx1n3hAAAJ left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:37 AM] - calk7hqDfnbx1n3hAAAJ left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:37 AM] - _RQ_q1kwwngw9rANAAAK left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:39 AM] - 9bl2wG2fxQ_Vn-ISAAAM joined channel: post-like[39m
+[36m[7:35:39 AM] - UrZcPxW1YYna2pHXAAAN joined channel: privateChannel.10[39m
+[36m[7:35:39 AM] - 9bl2wG2fxQ_Vn-ISAAAM joined channel: post-comment[39m
+[36m[7:35:39 AM] - 9bl2wG2fxQ_Vn-ISAAAM joined channel: post-created[39m
+[36m[7:35:39 AM] - 9bl2wG2fxQ_Vn-ISAAAM joined channel: privateChannel.10[39m
+[36m[7:35:39 AM] - 9bl2wG2fxQ_Vn-ISAAAM joined channel: privateOrderResponseChannel.10[39m
+[36m[7:35:41 AM] - lYGjF6n3cJxzTokXAAAL left channel: privateChannel.3 (transport close)[39m
+[36m[7:35:46 AM] - 9bl2wG2fxQ_Vn-ISAAAM left channel: post-like (transport close)[39m
+[36m[7:35:46 AM] - 9bl2wG2fxQ_Vn-ISAAAM left channel: post-comment (transport close)[39m
+[36m[7:35:46 AM] - 9bl2wG2fxQ_Vn-ISAAAM left channel: post-created (transport close)[39m
+[36m[7:35:46 AM] - 9bl2wG2fxQ_Vn-ISAAAM left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:46 AM] - 9bl2wG2fxQ_Vn-ISAAAM left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:46 AM] - UrZcPxW1YYna2pHXAAAN left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:46 AM] - 8erJea-L8QuRrhsEAAAO joined channel: post-like[39m
+[36m[7:35:47 AM] - O_ouCWYw4i-XAzqnAAAP joined channel: post-like[39m
+[36m[7:35:47 AM] - 8erJea-L8QuRrhsEAAAO joined channel: post-comment[39m
+[36m[7:35:47 AM] - 8erJea-L8QuRrhsEAAAO joined channel: post-created[39m
+[36m[7:35:47 AM] - 8erJea-L8QuRrhsEAAAO joined channel: privateChannel.10[39m
+[36m[7:35:47 AM] - 8erJea-L8QuRrhsEAAAO joined channel: privateOrderResponseChannel.10[39m
+[36m[7:35:47 AM] - O_ouCWYw4i-XAzqnAAAP joined channel: post-comment[39m
+[36m[7:35:47 AM] - O_ouCWYw4i-XAzqnAAAP joined channel: post-created[39m
+[36m[7:35:52 AM] - 8erJea-L8QuRrhsEAAAO left channel: post-like (transport close)[39m
+[36m[7:35:52 AM] - 8erJea-L8QuRrhsEAAAO left channel: post-comment (transport close)[39m
+[36m[7:35:52 AM] - 8erJea-L8QuRrhsEAAAO left channel: post-created (transport close)[39m
+[36m[7:35:52 AM] - 8erJea-L8QuRrhsEAAAO left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:52 AM] - 8erJea-L8QuRrhsEAAAO left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:52 AM] - O_ouCWYw4i-XAzqnAAAP left channel: post-like (transport close)[39m
+[36m[7:35:52 AM] - O_ouCWYw4i-XAzqnAAAP left channel: post-comment (transport close)[39m
+[36m[7:35:52 AM] - O_ouCWYw4i-XAzqnAAAP left channel: post-created (transport close)[39m
+[36m[7:35:52 AM] - NgXNvjndNKP6bZ86AAAQ joined channel: privateChannel.10[39m
+[36m[7:35:53 AM] - WvyF1IiBGG4RDMcCAAAR joined channel: post-like[39m
+[36m[7:35:53 AM] - WvyF1IiBGG4RDMcCAAAR joined channel: post-comment[39m
+[36m[7:35:53 AM] - WvyF1IiBGG4RDMcCAAAR joined channel: post-created[39m
+[36m[7:35:53 AM] - WvyF1IiBGG4RDMcCAAAR joined channel: privateChannel.10[39m
+[36m[7:35:53 AM] - WvyF1IiBGG4RDMcCAAAR joined channel: privateOrderResponseChannel.10[39m
+[36m[7:35:59 AM] - NgXNvjndNKP6bZ86AAAQ left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:59 AM] - WvyF1IiBGG4RDMcCAAAR left channel: post-like (transport close)[39m
+[36m[7:35:59 AM] - WvyF1IiBGG4RDMcCAAAR left channel: post-comment (transport close)[39m
+[36m[7:35:59 AM] - WvyF1IiBGG4RDMcCAAAR left channel: post-created (transport close)[39m
+[36m[7:35:59 AM] - WvyF1IiBGG4RDMcCAAAR left channel: privateChannel.10 (transport close)[39m
+[36m[7:35:59 AM] - WvyF1IiBGG4RDMcCAAAR left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:35:59 AM] - mp3zVx3cf4oliOfUAAAS joined channel: post-like[39m
+[36m[7:35:59 AM] - TAofjAg9y18obX6XAAAT joined channel: privateChannel.10[39m
+[36m[7:35:59 AM] - mp3zVx3cf4oliOfUAAAS joined channel: post-comment[39m
+[36m[7:35:59 AM] - mp3zVx3cf4oliOfUAAAS joined channel: post-created[39m
+[36m[7:35:59 AM] - mp3zVx3cf4oliOfUAAAS joined channel: privateChannel.10[39m
+[36m[7:35:59 AM] - mp3zVx3cf4oliOfUAAAS joined channel: privateOrderResponseChannel.10[39m
+[36m[7:36:15 AM] - mp3zVx3cf4oliOfUAAAS left channel: post-like (transport close)[39m
+[36m[7:36:15 AM] - mp3zVx3cf4oliOfUAAAS left channel: post-comment (transport close)[39m
+[36m[7:36:15 AM] - mp3zVx3cf4oliOfUAAAS left channel: post-created (transport close)[39m
+[36m[7:36:15 AM] - mp3zVx3cf4oliOfUAAAS left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:15 AM] - mp3zVx3cf4oliOfUAAAS left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:36:15 AM] - TAofjAg9y18obX6XAAAT left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:16 AM] - OR2zxsnilMMoLzuzAAAU joined channel: post-like[39m
+[36m[7:36:16 AM] - -priEyGReHnslpD8AAAV joined channel: privateChannel.10[39m
+[36m[7:36:16 AM] - OR2zxsnilMMoLzuzAAAU joined channel: post-comment[39m
+[36m[7:36:16 AM] - OR2zxsnilMMoLzuzAAAU joined channel: post-created[39m
+[36m[7:36:16 AM] - OR2zxsnilMMoLzuzAAAU joined channel: privateChannel.10[39m
+[36m[7:36:16 AM] - OR2zxsnilMMoLzuzAAAU joined channel: privateOrderResponseChannel.10[39m
+[36m[7:36:37 AM] - OR2zxsnilMMoLzuzAAAU left channel: post-like (transport close)[39m
+[36m[7:36:37 AM] - OR2zxsnilMMoLzuzAAAU left channel: post-comment (transport close)[39m
+[36m[7:36:37 AM] - OR2zxsnilMMoLzuzAAAU left channel: post-created (transport close)[39m
+[36m[7:36:37 AM] - OR2zxsnilMMoLzuzAAAU left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:37 AM] - OR2zxsnilMMoLzuzAAAU left channel: privateOrderResponseChannel.10 (transport close)[39m
+[36m[7:36:37 AM] - -priEyGReHnslpD8AAAV left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:38 AM] - FWMUIP178SYlUzRMAAAW joined channel: post-like[39m
+[36m[7:36:38 AM] - znPcYatqinXYqSDAAAAX joined channel: privateChannel.10[39m
+[36m[7:36:38 AM] - FWMUIP178SYlUzRMAAAW joined channel: post-comment[39m
+[36m[7:36:38 AM] - FWMUIP178SYlUzRMAAAW joined channel: post-created[39m
+[36m[7:36:38 AM] - FWMUIP178SYlUzRMAAAW joined channel: privateChannel.10[39m
+[36m[7:36:38 AM] - FWMUIP178SYlUzRMAAAW joined channel: privateOrderResponseChannel.10[39m
+[36m[7:36:49 AM] - znPcYatqinXYqSDAAAAX left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:49 AM] - FWMUIP178SYlUzRMAAAW left channel: post-like (transport close)[39m
+[36m[7:36:49 AM] - FWMUIP178SYlUzRMAAAW left channel: post-comment (transport close)[39m
+[36m[7:36:49 AM] - FWMUIP178SYlUzRMAAAW left channel: post-created (transport close)[39m
+[36m[7:36:49 AM] - FWMUIP178SYlUzRMAAAW left channel: privateChannel.10 (transport close)[39m
+[36m[7:36:49 AM] - FWMUIP178SYlUzRMAAAW left channel: privateOrderResponseChannel.10 (transport close)[39m

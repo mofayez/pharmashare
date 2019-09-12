@@ -1,0 +1,4 @@
+Sl #,PharmaShare Code,Trade Name,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+9426,PS00009426,ZYNCOR-5 **,Tablets/Film-coated,28's (14's Blister x 2),20.64,25.50,Bisoprolol fumarate,5mg/Tablet,OMAN PHARMACEUTICAL PRODUCTS,251,690,,
+9427,PS00009427,ZYNEX 20,Capsules (Hard Gelatin),14's (7's Blister x 2),37.98,47.00,Esomeprazole (as magnesium dihydrate),20mg/Capsule,OMAN PHARMACEUTICAL PRODUCTS,252,695,,
+9428,PS00009428,ZYNEX 40,Capsules (Hard Gelatin),14's (7's Blister x 2),53.14,66.00,Esomeprazole (as magnesium dihydrate),40mg/Capsule,OMAN PHARMACEUTICAL PRODUCTS,253,700,,

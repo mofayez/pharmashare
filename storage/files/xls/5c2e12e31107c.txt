@@ -1,0 +1,7 @@
+Sl #,PharmaShare,Code,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+9304,PS00009304,ZESTRIL 5mg,Tablets,28's Blister (Calendar Pack),24.06,29.50,Lisinopril (as dihydrate),5mg/Tablet,ASTRAZENECA UK LIMITED,120,80,,
+9305,PS00009305,ZETA 2%,Cream,15g Tube,8.74,10.50,Fusidic acid,20mg/g,TABUK PHARMACEUTICAL MANUFACTURING CO.,130,85,,
+9306,PS00009306,ZETA 2%,Ointment,15g Tube,8.74,10.50,Fusidic acid,20mg/g,TABUK PHARMACEUTICAL MANUFACTURING CO.,131,90,,
+9307,PS00009307,ZETA-CORT,Cream,15g Collapsible Tube,7.68,9.50,"Betamethason (as valerate), Fusidic acid","1mg, 20mg/g",TABUK PHARMACEUTICAL MANUFACTURING CO.,132,95,,
+9308,PS00009308,ZETOP 10mg Ө,Tablets/Film-coated,10's Blister,12.66,15.50,Cetirizine HCl,10mg/Tablet,CADILA PHARMACEUTICALS LIMITED,133,100,,
+9309,PS00009309,ZETRON 200mg/5ml,Suspension/Powder for,15ml Plastic Bottle + 9ml Water (Plastic Ampoule) + 10ml Plastic Oral Syringe,11.90,14.50,Azithromycin (as dihydrate),200mg/5ml,TABUK PHARMACEUTICAL MANUFACTURING CO.,134,105,,

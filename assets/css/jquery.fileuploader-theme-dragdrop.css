@@ -1,0 +1,85 @@
+/* input */
+.fileuploader-theme-dragdrop .fileuploader-input {
+	display: block;
+	padding: 26px 0;
+	background: #fff;
+	border: 2px dashed #c2cdda;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.fileuploader-theme-dragdrop .fileuploader-input .fileuploader-main-icon {
+	display: block;
+	font-size: 56px;
+	margin: 0 auto;
+	margin-bottom: 26px;
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.fileuploader-theme-dragdrop .fileuploader-input h3 {
+	margin: 0;
+	margin-bottom: 8px;
+	padding: 0;
+	background: none;
+	border: none;
+	font-size: 18px;
+	font-weight: bold;
+	color: #5B5B7B;
+	white-space: normal;
+}
+.fileuploader-theme-dragdrop .fileuploader-input p {
+	margin: 0;
+	padding: 0;
+	color: #90a0bc;
+	margin-bottom: 12px;
+}
+
+/* dragging state */
+.fileuploader-theme-dragdrop .fileuploader-input .fileuploader-input-inner,
+.fileuploader-theme-dragdrop .fileuploader-input.fileuploader-dragging .fileuploader-main-icon {
+	-webkit-transition: all 0.2s ease;
+	transition: all 0.2s ease;
+}
+.fileuploader-theme-dragdrop .fileuploader-input.fileuploader-dragging .fileuploader-input-inner {
+	opacity: 0.6;
+}
+.fileuploader-theme-dragdrop .fileuploader-input.fileuploader-dragging .fileuploader-main-icon {
+	-webkit-transform: translateY(18px);
+	transform: translateY(18px);
+}
+.fileuploader-theme-dragdrop .fileuploader-input.fileuploader-dragging .fileuploader-input-button {
+	-webkit-transform: none;
+	transform: none;
+	opacity: 1;
+}
+
+.fileuploader-input .fileuploader-input-button, .fileuploader-popup .fileuploader-popup-content .fileuploader-popup-button.button-success{
+	background: #5042b8!important;
+	/*background: -moz-linear-gradient(135deg,#8c6259 0,#000000 100%)!important;*/
+	/*background: -webkit-linear-gradient(135deg,#8c6259 0,#000000 100%)!important;;*/
+	/*background: linear-gradient(135deg,#8c6259 0,#000000 100%)!important;;*/
+}
+.fileuploader-input .fileuploader-main-icon{
+	color: #5042b8!important;
+}
+.nav-tabs.nav-tabs-top > li.active > a:after {
+	background-color: #fda727;
+}
+
+
+.fileuploader-popup .fileuploader-popup-content ul li h5 {
+	margin: 4px 0 0;
+	color: #5b5b7b;
+	font-size: 14px;
+	font-weight: 700;
+	word-wrap: break-word;
+}
+.fileuploader-items .fileuploader-item{
+	position: relative;
+	margin: 0;
+	padding: 20px 16px;
+	border-bottom: 1px solid #ebeef1;
+	animation-duration: .6s;
+	width: 50%;
+	display: inline-block;
+}

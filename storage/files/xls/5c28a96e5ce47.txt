@@ -1,0 +1,10 @@
+Sl #,PharmaShare Code,Trade Name,Form,Pack Size,Active Ingredient,Strength,Manufacturer,Offered Price or Bonus,Minimum order Value or Quantity,Available Quantity in Packs,Store Remarks,foc quantity,foc discount
+1,PS00000001,0.2% CIPROFLOXACIN in 0.9% W/V SODIUM CHLORIDE INJECTION USP,Infusion/Solution for,100ml Plastic Bag,Ciprofloxacin (as lactate),2mg/ml,QATAR PHARMA,,,,,,
+2,PS00000002,0.225 % W/V SODIUM CHLORIDE INJECTION USP **,Infusion/Solution for,500ml Polypropylene Bottle,Sodium chloride,2.25mg/ml,MEDISAL PHARMACEUTICALS INDUSTRY LLC,,,,,,
+3,PS00000003,0.225% w/v SODIUM CHLORIDE INTRAVENOUS INFUSION BP,Infusion/Solution for,500ml Plastic Bottle,Sodium chloride,2.25mg/ml,QATAR PHARMA,,,,,,
+4,PS00000004,"0.45% SODIUM CHLORIDE INJECTION, USP [WELLPHARMA] **",Infusion/Solution for,500ml Bag,Sodium chloride,4.5mg/ml,WELLPHARMA MEDICAL SOLUTIONS LLC,,,,,,
+5,PS00000005,"0.45% SODIUM CHLORIDE INJECTION, USP [WELLPHARMA] **",Infusion/Solution for,1000ml Bag,Sodium chloride,4.5mg/ml,WELLPHARMA MEDICAL SOLUTIONS LLC,,,,,,
+6,PS00000006,"0.45% w/v SODIUM CHLORIDE INJECTION, USP [Medisal]",Injection/Solution for,500ml Polypropylene Bottle,Sodium chloride,2.25g/500ml,MEDISAL PHARMACEUTICALS INDUSTRY LLC,,,,,,
+7,sfse0000,test2,test2,50ml Plastic Bag,Sodium chloride,4.5mg/ml,QATAR PHARMA,,,,,,
+8,wre00000,test3,test3,100ml Plastic Bag,Sodium chloride,4.5mg/ml,QATAR PHARMA,,,,,,
+9,xyz000000020,test,test,500ml Plastic Bottle,Sodium chloride,4.5mg/ml,QATAR PHARMA,,,,,,
