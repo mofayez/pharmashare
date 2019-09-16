@@ -96,6 +96,7 @@ class FOCPoints
 
     public function getPharmaciesPoints(array $data)
     {
+
         $pharmacy_id = $data['pharmacy_id'] ?? null;
         $store_id = $data['store_id'] ?? null;
         $pharmacy_name = $data['pharmacy_name'] ?? null;
@@ -131,6 +132,12 @@ class FOCPoints
                 ->where('id', $pharmacy_id)
                 ->get(['id', 'username', 'firstname', 'lastname', 'email', 'prefix', 'phone', 'full_address'])
                 ->first();
+
+            $pharmacy->total_points = $pharmacy->points->where('transaction', 'in')->sum('total_points')
+                - $pharmacy->points->where('transaction', 'out')->sum('total_points');
+            $pharmacy->last_sale = $pharmacy->salesPharmacy->first() ?? null;
+            $pharmacy->sales_count = $pharmacy->salesPharmacy->count() ?? 0;
+            $pharmacy->makeHidden(['points', 'salesPharmacy']);
 
             return return_msg(true, 'ok', compact('pharmacy'));
         }
@@ -174,32 +181,6 @@ class FOCPoints
         return return_msg(true, 'ok', compact('pharmacies'));
     }
 
-
-    public function getPharmacyPoints(array $data)
-    {
-
-        $pharmacy_id = $data['pharmacy_id'];
-        $store_id = $data['store_id'];
-
-        $total_in_points_with_pharmacy = StorePharmacyPoints::where('pharmacy_id', $pharmacy_id)
-            ->where('store_id', $store_id)
-            ->where('transaction', 'in')
-            ->sum('total_points');
-
-        $total_out_points_with_pharmacy = StorePharmacyPoints::where('pharmacy_id', $pharmacy_id)
-            ->where('store_id', $store_id)
-            ->where('transaction', 'out')
-            ->sum('total_points');
-
-        $total_points_with_pharmacy = $total_in_points_with_pharmacy - $total_out_points_with_pharmacy;
-        if ($total_points_with_pharmacy < 0) {
-            $total_points_with_pharmacy = 0;
-        }
-
-        return return_msg(true, 'ok', compact('total_points_with_pharmacy'));
-
-    }
-
     public function getPointsPrice(array $data)
     {
 
@@ -239,6 +220,31 @@ class FOCPoints
         ]);
 
         return return_msg(true, 'ok');
+    }
+
+    public function getPharmacyPoints(array $data)
+    {
+
+        $pharmacy_id = $data['pharmacy_id'];
+        $store_id = $data['store_id'];
+
+        $total_in_points_with_pharmacy = StorePharmacyPoints::where('pharmacy_id', $pharmacy_id)
+            ->where('store_id', $store_id)
+            ->where('transaction', 'in')
+            ->sum('total_points');
+
+        $total_out_points_with_pharmacy = StorePharmacyPoints::where('pharmacy_id', $pharmacy_id)
+            ->where('store_id', $store_id)
+            ->where('transaction', 'out')
+            ->sum('total_points');
+
+        $total_points_with_pharmacy = $total_in_points_with_pharmacy - $total_out_points_with_pharmacy;
+        if ($total_points_with_pharmacy < 0) {
+            $total_points_with_pharmacy = 0;
+        }
+
+        return return_msg(true, 'ok', compact('total_points_with_pharmacy'));
+
     }
 
 }
