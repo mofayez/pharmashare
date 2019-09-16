@@ -411,7 +411,8 @@
                 <ul class="nav nav-tabs justify-content-center" role="tablist">
                     <li class="nav-item">
                         <a class="nav-link active show" data-toggle="tab" href="#home" role="tab" aria-selected="false">
-                            {{__('store.edit_product')}}
+                            <?php echo e(__('store.edit_product')); ?>
+
                             <i class="now-ui-icons shopping_bag-16"></i>
                         </a>
                     </li>
@@ -423,122 +424,128 @@
                 <div class="tab-content text-center">
                     <div class="tab-pane active show" id="home" role="tabpanel">
 
-                        {{Form::open([
+                        <?php echo e(Form::open([
                             'id'=>'form',
                             'method'=>'post',
                             'route'=>['postEditDrugStore',$drug_store->id],
-                        ])}}
+                        ])); ?>
+
 
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-left m-0 text_purple_gradient">
-                                    {{__('store.main_info')}}
+                                    <?php echo e(__('store.main_info')); ?>
+
                                 </h3>
                                 <hr class="mt-0">
                             </div>
                             <div class="col-md-4 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.bar_code')}} </label>
+                                    <label><?php echo e(__('store.bar_code')); ?> </label>
                                     <input type="text" class="form-control"
-                                           value="{{$drug_store->drug->pharmashare_code}}" name="pharmashare_code"
+                                           value="<?php echo e($drug_store->drug->pharmashare_code); ?>" name="pharmashare_code"
                                            disabled>
                                 </div>
                             </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
-                                    <label> {{__('store.product_category')}}   </label>
+                                    <label> <?php echo e(__('store.product_category')); ?>   </label>
                                     <input type="text" class="form-control"
-                                           value="{{$drug_store->drug->drugCategory->title}}"
+                                           value="<?php echo e($drug_store->drug->drugCategory->title); ?>"
                                            name="form" disabled>
                                 </div>
                             </div>
                             <div class="col-md-4 text-left">
                                 <div class="form-group">
-                                    <label> {{__('store.product_name')}}   </label>
-                                    <input type="text" class="form-control" value="{{$drug_store->drug->trade_name}}"
+                                    <label> <?php echo e(__('store.product_name')); ?>   </label>
+                                    <input type="text" class="form-control" value="<?php echo e($drug_store->drug->trade_name); ?>"
                                            name="trade_name" disabled>
                                 </div>
                             </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.packet_size')}}</label>
-                                    <input type="text" class="form-control" value="{{$drug_store->drug->pack_size}}"
+                                    <label><?php echo e(__('store.packet_size')); ?></label>
+                                    <input type="text" class="form-control" value="<?php echo e($drug_store->drug->pack_size); ?>"
                                            name="pack_size" disabled>
                                 </div>
                             </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.origin')}}   </label>
+                                    <label><?php echo e(__('store.origin')); ?>   </label>
                                     <input type="text" class="form-control"
-                                           value="{{$drug_store->drug->active_ingredient}}" name="active_ingredient"
+                                           value="<?php echo e($drug_store->drug->active_ingredient); ?>" name="active_ingredient"
                                            disabled>
                                 </div>
                             </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.strength')}} </label>
-                                    <input type="text" class="form-control" value="{{$drug_store->drug->strength}}"
+                                    <label><?php echo e(__('store.strength')); ?> </label>
+                                    <input type="text" class="form-control" value="<?php echo e($drug_store->drug->strength); ?>"
                                            name="strength" disabled>
                                 </div>
                             </div>
                             <div class="col-md-2 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.manufacturer')}} </label>
-                                    <input type="text" class="form-control" value="{{$drug_store->drug->manufacturer}}"
+                                    <label><?php echo e(__('store.manufacturer')); ?> </label>
+                                    <input type="text" class="form-control" value="<?php echo e($drug_store->drug->manufacturer); ?>"
                                            name="manufacturer" disabled>
                                 </div>
                             </div>
                             <div class="col-12"></div>
                             <div class="col-md-2 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.amount')}} </label>
+                                    <label><?php echo e(__('store.amount')); ?> </label>
                                     <input type="text" class="form-control" name="available_quantity_in_packs"
-                                           value="{{$drug_store->available_quantity_in_packs}}">
+                                           value="<?php echo e($drug_store->available_quantity_in_packs); ?>">
                                 </div>
-                                @if($errors->has('available_quantity_in_packs'))
+                                <?php if($errors->has('available_quantity_in_packs')): ?>
                                     <span class="text-danger">
-                                        {{$errors->first('available_quantity_in_packs')}}
+                                        <?php echo e($errors->first('available_quantity_in_packs')); ?>
+
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-2 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.cost')}} </label>
+                                    <label><?php echo e(__('store.cost')); ?> </label>
                                     <input type="text" class="form-control" name="offered_price_or_bonus"
-                                           value="{{$drug_store->offered_price_or_bonus}}">
+                                           value="<?php echo e($drug_store->offered_price_or_bonus); ?>">
                                 </div>
-                                @if($errors->has('offered_price_or_bonus'))
+                                <?php if($errors->has('offered_price_or_bonus')): ?>
                                     <span class="text-danger">
-                                        {{$errors->first('offered_price_or_bonus')}}
+                                        <?php echo e($errors->first('offered_price_or_bonus')); ?>
+
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-2 text-left">
                                 <div class="form-group">
-                                    <label>  {{__('store.min_amount')}}   </label>
+                                    <label>  <?php echo e(__('store.min_amount')); ?>   </label>
                                     <input type="text" class="form-control" name="minimum_order_value_or_quantity"
-                                           value="{{$drug_store->minimum_order_value_or_quantity}}">
+                                           value="<?php echo e($drug_store->minimum_order_value_or_quantity); ?>">
                                 </div>
-                                @if($errors->has('minimum_order_value_or_quantity'))
+                                <?php if($errors->has('minimum_order_value_or_quantity')): ?>
                                     <span class="text-danger">
-                                        {{$errors->first('minimum_order_value_or_quantity')}}
+                                        <?php echo e($errors->first('minimum_order_value_or_quantity')); ?>
+
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-6 text-left">
                                 <div class="form-group">
-                                    <label>{{__('store.notes')}} </label>
+                                    <label><?php echo e(__('store.notes')); ?> </label>
                                     <input type="text" class="form-control" name="store_remarks"
-                                           value="{{$drug_store->store_remarks}}">
+                                           value="<?php echo e($drug_store->store_remarks); ?>">
                                 </div>
-                                @if($errors->has('store_remarks'))
+                                <?php if($errors->has('store_remarks')): ?>
                                     <span class="text-danger">
-                                        {{$errors->first('store_remarks')}}
+                                        <?php echo e($errors->first('store_remarks')); ?>
+
                                     </span>
-                                @endif
+                                <?php endif; ?>
                             </div>
                             <div class="col-md-12">
-                                <h3 class="text-left m-0 text_purple_gradient">{{__('store.discount_info')}}</h3>
+                                <h3 class="text-left m-0 text_purple_gradient"><?php echo e(__('store.discount_info')); ?></h3>
                                 <div class="table-scroll">
                                     <table class="table" id="discount_table">
                                         <thead>
@@ -548,10 +555,10 @@
                                                     <i class="fas fa-plus"></i>
                                                 </button>
                                             </td>
-                                            <td>{{__('store.amount_request')}}</td>
-                                            <td>{{__('store.edit_product')}}</td>
-                                            <td>{{__('store.points')}}</td>
-                                            <td>{{__('store.active')}}</td>
+                                            <td><?php echo e(__('store.amount_request')); ?></td>
+                                            <td><?php echo e(__('store.edit_product')); ?></td>
+                                            <td><?php echo e(__('store.points')); ?></td>
+                                            <td><?php echo e(__('store.active')); ?></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -559,7 +566,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($drug_store->FOC as $k => $foc)
+                                        <?php $__currentLoopData = $drug_store->FOC; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td>
                                                     <button type="button" class="btn btn-danger removerow">
@@ -567,22 +574,22 @@
                                                     </button>
                                                 </td>
                                                 <td>
-                                                    <input name="foc_quantity[{{$k}}]" class="form-control text-center"
-                                                           type="number" value="{{$foc->foc_quantity}}">
+                                                    <input name="foc_quantity[<?php echo e($k); ?>]" class="form-control text-center"
+                                                           type="number" value="<?php echo e($foc->foc_quantity); ?>">
                                                 </td>
                                                 <td>
-                                                    <input name="foc_discount[{{$k}}]" class="form-control text-center"
-                                                           type="number" value="{{$foc->foc_discount}}">
+                                                    <input name="foc_discount[<?php echo e($k); ?>]" class="form-control text-center"
+                                                           type="number" value="<?php echo e($foc->foc_discount); ?>">
                                                 </td>
                                                 <td>
-                                                    <input name="reward_points[{{$k}}]" class="form-control text-center"
-                                                           type="number" value="{{$foc->reward_points}}">
+                                                    <input name="reward_points[<?php echo e($k); ?>]" class="form-control text-center"
+                                                           type="number" value="<?php echo e($foc->reward_points); ?>">
                                                 </td>
                                                 <td>
-                                                    <select name="is_activated[{{$k}}]"
+                                                    <select name="is_activated[<?php echo e($k); ?>]"
                                                             class="form-control text-center">
-                                                        <option @if($foc->is_activated) selected @endif value="1">Yes</option>
-                                                        <option  @if(!$foc->is_activated) selected @endif  value="0">No</option>
+                                                        <option <?php if($foc->is_activated): ?> selected <?php endif; ?> value="1">Yes</option>
+                                                        <option  <?php if(!$foc->is_activated): ?> selected <?php endif; ?>  value="0">No</option>
                                                     </select>
                                                 </td>
 
@@ -592,19 +599,21 @@
                                                 <td></td>
                                                 <td></td>
                                             </tr>
-                                        @endforeach
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                             <div class="text-center col-md-12  m-auto">
                                 <button class="btn btn-main">
-                                    {{__('store.update')}}
+                                    <?php echo e(__('store.update')); ?>
+
                                 </button>
                             </div>
                         </div>
 
-                        {{Form::close()}}
+                        <?php echo e(Form::close()); ?>
+
                     </div>
                     <div class="tab-pane" id="profile" role="tabpanel">
                         <input type="file" name="files">

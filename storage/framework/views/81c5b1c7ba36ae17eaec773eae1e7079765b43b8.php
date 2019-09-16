@@ -1,15 +1,18 @@
-@extends("layouts.master")
-@section("styles")
+<?php $__env->startSection("styles"); ?>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     <link href="https://innostudio.de/fileuploader/documentation/dist/font/font-fileuploader.css" media="all"
           rel="stylesheet">
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'>
-    {{Html::style('assets/css/jquery.fileuploader.min.css')}}
-    {{Html::style('assets/css/jquery.fileuploader2.min.css')}}
-    {{Html::style('assets/css/jquery.fileuploader-theme-dragdrop.css')}}
+    <?php echo e(Html::style('assets/css/jquery.fileuploader.min.css')); ?>
 
-    {{Html::style('assets/css/iziToast.min.css')}}
+    <?php echo e(Html::style('assets/css/jquery.fileuploader2.min.css')); ?>
+
+    <?php echo e(Html::style('assets/css/jquery.fileuploader-theme-dragdrop.css')); ?>
+
+
+    <?php echo e(Html::style('assets/css/iziToast.min.css')); ?>
+
     <style>
         .section {
             padding: 10px 0;
@@ -26,31 +29,35 @@
             max-width: 15% !important;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section("body")
+<?php $__env->startSection("body"); ?>
 
     <body class="profile-page">
     <div class="loading-overlay">
         <div class="loading-overlay-icon"></div>
     </div>
-    @include("includes.navbar")
+    <?php echo $__env->make("includes.navbar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="wrapper">
-        @include("pages.profile.edit-store.templates.top_header")
-        @include("pages.profile.edit-store.templates.center_content")
+        <?php echo $__env->make("pages.profile.edit-store.templates.top_header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.profile.edit-store.templates.center_content", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
 
     </body>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section("scripts")
+<?php $__env->startSection("scripts"); ?>
 
-    {{Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")}}
-    {{Html::script("assets/js/emojionearea.min.js")}}
-    {{Html::script("assets/js/iziToast.min.js")}}
-    {{Html::script('assets/js/jquery.fileuploader.min.js')}}
+    <?php echo e(Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")); ?>
+
+    <?php echo e(Html::script("assets/js/emojionearea.min.js")); ?>
+
+    <?php echo e(Html::script("assets/js/iziToast.min.js")); ?>
+
+    <?php echo e(Html::script('assets/js/jquery.fileuploader.min.js')); ?>
+
     <script>
         $(document).ready(function () {
 
@@ -70,7 +77,7 @@
                 table2.row(tr).remove().draw();
             });
 
-            let counter = {{count($drug_store->FOC) ?? 0}};
+            let counter = <?php echo e(count($drug_store->FOC) ?? 0); ?>;
             $('#add_button').click(function (e) {
                 e.preventDefault();
                 table2.row.add([
@@ -108,9 +115,9 @@
                     '</div>',
                 theme: 'dragdrop',
                 upload: {
-                    {{--url: "{{route('UploadImagesAjax',['account'=> app('request')->account , 'id'=> app('request')->id])}}",--}}
+                    
                     data: {
-                        '_token': '{{csrf_token()}}'
+                        '_token': '<?php echo e(csrf_token()); ?>'
                     },
                     type: 'POST',
                     enctype: 'multipart/form-data',
@@ -176,10 +183,10 @@
                     onComplete: null,
                 },
                 onRemove: function (item) {
-                    {{--$.post("{{route('RemoveImagesAjax',['account'=> app('request')->account , 'id'=> app('request')->id])}}", {--}}
-                    {{--file: item.name,--}}
-                    {{--_token:'{{csrf_token()}}'--}}
-                    {{--});--}}
+                    
+                    
+                    
+                    
                 },
                 captions: {
                     feedback: 'قم بالضغط او سحب الملف',
@@ -199,9 +206,9 @@
             $('.loading-overlay').fadeOut();
         });
 
-        @if(session()->has('success'))
+        <?php if(session()->has('success')): ?>
         $.growl({
-            message: `<b> {{session()->get('success')}} </b>`
+            message: `<b> <?php echo e(session()->get('success')); ?> </b>`
         }, {
             type: 'success',
             allow_dismiss: !1,
@@ -221,6 +228,7 @@
                 y: 30
             }
         });
-        @endif
+        <?php endif; ?>
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

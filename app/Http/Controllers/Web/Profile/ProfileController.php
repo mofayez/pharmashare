@@ -226,7 +226,7 @@ class ProfileController extends Controller
         $request['foc_discount'] = $foc_discount_arr;
         $request['pharmashare_code'] = $pharmashare_code;
 
-        // return $request->all();
+//         return $request->all();
         $request['user_id'] = auth()->user()->id;
         $response = $this->drug_ctrl->saveDrug($request);
         if (!$response['status']) {
@@ -420,9 +420,8 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $request->request->add(['user_id' => $user->id]);
+        return back();
         $response = $this->foc->createFOC($request);
-
-        return $response;
     }
 
     public function submitFavourite(Request $request)
