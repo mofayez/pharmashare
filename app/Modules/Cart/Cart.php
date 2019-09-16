@@ -34,11 +34,12 @@ class Cart
      */
     public function add($product, $quantity = 1)
     {
+
         if ($this->has($product)) {
             $quantity = $this->get($product)['quantity'] + $quantity;
         }
 
-        return $this->update($product, $quantity);
+        return $this->update($product, compact('quantity'));
     }
 
     /**
@@ -72,11 +73,13 @@ class Cart
      * @param $quantity
      * @return bool
      */
-    public function update($product, $quantity)
+    public function update($product, $data)
     {
         $product_date = [];
 
-        if (!$product->hasStock($quantity) || !$product->outOfStock()) {
+        $quantity = $data['quantity'];
+        $foc_id = $data['foc_id'] ?? null;
+        if (!$product->hasStock($data) || !$product->outOfStock()) {
 
 //            return false;
             $product->out_of_stock = true;
@@ -91,6 +94,7 @@ class Cart
         $this->storage->set($product->id, [
             'product_id' => (int)$product->id,
             'quantity' => (int)$quantity,
+            'foc_id' => $foc_id,
             'out_of_stock' => $product->out_of_stock,
         ]);
 
@@ -163,6 +167,7 @@ class Cart
 
         foreach ($products as $product) {
             $product->quantity = $this->get($product)['quantity'];
+            $product->foc_id = $this->get($product)['foc_id'];
             $product->cost = $this->computeProductCost($product);
 
             if (!$product->hasStock($product->quantity)) {
@@ -184,6 +189,12 @@ class Cart
 //        ];
     }
 
+    public function computeProductCost($product)
+    {
+
+        return $product->quantity * $product->offered_price_or_bonus;
+    }
+
     /**
      * Check if the items in the basket are still in stock.
      */
@@ -191,11 +202,10 @@ class Cart
     {
         foreach ($this->all()['items'] as $item) {
             if (!$item->hasStock($item->quantity)) {
-                $this->update($item, $item->stock);
+                $this->update($item, ['quantity' => $item->stock]);
             }
         }
     }
-
 
     public function outOfStockItems()
     {
@@ -220,13 +230,6 @@ class Cart
         }
 
         return $items;
-    }
-
-
-    public function computeProductCost($product)
-    {
-
-        return $product->quantity * $product->offered_price_or_bonus;
     }
 
 } // end of Cart class

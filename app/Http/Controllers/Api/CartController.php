@@ -107,7 +107,7 @@ class CartController extends Controller
                 continue;
             }
 
-            $this->cart->update($drug_store, $item['quantity']);
+            $this->cart->update($drug_store, $item);
         }
 
         return return_msg(true, 'ok');
@@ -153,6 +153,13 @@ class CartController extends Controller
         $cart = $this->cart->all();
 
         $cart_items = $this->assignOrdersToStore($cart);
+
+        foreach ($cart_items as $cart_item) {
+            foreach ($cart_item['items'] as $item) {
+
+                $item->foc_categorized = $item->foc->groupBy('foc_on');
+            }
+        }
 
         return return_msg(true, 'ok', compact('cart_items'));
     } // end of validateAddToCart request
@@ -236,11 +243,19 @@ class CartController extends Controller
             foreach ($cart_item['items'] as $inner_key => $item) {
 
                 $item_price = $this->calculateItemPrice($item);
-
                 $cart_item['items'][$inner_key]['price'] = $item_price;
                 $total_store_cost += $item_price;
             }
             $cart_items[$key]['total_store_cost'] = $total_store_cost;
+        }
+
+        foreach ($cart_items as $cart_item) {
+
+            foreach ($cart_item['items'] ?? [] as $item) {
+
+                $item->foc_selected = $item->foc->where('foc_quantity', '>=', $item->quantity)->first();
+
+            }
         }
 
         session()->put('cart_before_save', $cart_items);

@@ -186,6 +186,7 @@ class ProfileController extends Controller
         $this->user->getUserImagePath($user);
 
         $response = $this->drug_ctrl->allDrugsFilteredStore($request, $user->id);
+
         $all_drugs = [];
         if ($response['status']) {
 
@@ -361,7 +362,6 @@ class ProfileController extends Controller
     public function getDrugsData(Request $request)
     {
         $response = $this->utility->getDrugsFromModel($request); 
-        return $response;
         return $response['data']['drugs'] ?? [];
     }
 

@@ -63,6 +63,7 @@ class SaleController extends Controller
     public function placeOrder(Request $request)
     {
 
+
         $validation = $this->validatePlaceOrderRequest($request);
         if ($validation->fails()) {
 
@@ -71,7 +72,8 @@ class SaleController extends Controller
                 'out_of_stock_items' => [],
                 'validation_errors' => $validation->getMessageBag()->getMessages()
             ]);
-        } // end if 
+        } // end if
+
         $make_order_response = $this->pharmacy->makeOrder($request->all());
         
         if (!$make_order_response['status']) {

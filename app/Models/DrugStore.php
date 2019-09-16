@@ -98,7 +98,7 @@ class DrugStore extends Model
     public function getFOCAttribute()
     {
 
-        return $this->foc()->get();
+        return $this->foc()->orderBy('foc_quantity')->get();
     }
 
 } // end of DrugStore model class

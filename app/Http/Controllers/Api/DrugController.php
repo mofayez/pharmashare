@@ -114,6 +114,7 @@ class DrugController extends Controller
             'trade_name' => 'required',
             'strength' => 'nullable',
             'manufacturer' => 'required',
+            'category' => 'required'
         ]);
     }
 
@@ -135,6 +136,25 @@ class DrugController extends Controller
     {
 
         return $this->drug->deleteMasterDrugById($id);
+    }
+
+
+    public function deleteMultipleDrugs(Request $request)
+    {
+
+        $validation = validator($request->all(), [
+            'ids' => 'required|array',
+            'ids.*' => 'exists:drugs,id'
+        ]);
+
+        if ($validation->fails()) {
+
+            return return_msg(false, 'validation errors', [
+                'validation_errors' => $validation->getMessageBag()->getMessages()
+            ]);
+        }
+
+        return $this->drug->deleteMultipleDrugs($request->ids);
     }
 
     public function findMasterDrug(int $drug_id)
@@ -425,8 +445,8 @@ class DrugController extends Controller
      * @return array|null
      */
     public function allDrugsFilteredStore(Request $request, $user_id = null)
-    { 
-        $drugs = $this->drug->allByFilterStore($request->all(), $user_id); 
+    {
+        $drugs = $this->drug->allByFilterStore($request->all(), $user_id);
 
         return return_msg(true, 'ok', compact('drugs'));
     }

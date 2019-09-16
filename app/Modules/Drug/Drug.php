@@ -8,8 +8,8 @@ use App\Http\Controllers\Api\NotificationController;
 use App\Models\Drug as DrugModel;
 use App\Models\DrugStore as DrugStoreModel;
 use App\Models\DrugStoreFavourites;
-use App\Models\UnApprovedDrug as UnApprovedDrugModel;
 use App\Models\PackageUserDetail;
+use App\Models\UnApprovedDrug as UnApprovedDrugModel;
 use Illuminate\Support\Facades\DB;
 
 class Drug
@@ -162,21 +162,6 @@ class Drug
         return $drugs;
     }
 
-    /**
-     * retrieve all drugs
-     *
-     * @return DrugModel[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
-     */
-    public function all()
-    {
-
-        $drugs = $this->drugModel
-            ->with(['drugCategory'])
-            ->paginate(100);
-
-        return $drugs;
-    }
-
     public function allWithoutPaginate()
     {
 
@@ -189,6 +174,40 @@ class Drug
 
     public function filterAdminDrugs(&$drugs, $filters)
     {
+
+        if ($sort_by = $filters['sort_by'] ?? null) {
+
+            switch ($sort_by) {
+
+                case 'price':
+                    $drugs = $drugs->sortBy('pharmacy_price_aed');
+                    break;
+                case 'pharmashare_code':
+                    $drugs = $drugs->sortBy('pharmashare_code');
+                    break;
+                case 'trade_name':
+                    $drugs = $drugs->sortBy('trade_name');
+                    break;
+                case 'form':
+                    $drugs = $drugs->sortBy('form');
+                    break;
+                case 'pack_size':
+                    $drugs = $drugs->sortBy('pack_size');
+                    break;
+                case 'strength':
+                    $drugs = $drugs->sortBy('strength');
+                    break;
+                case 'active_ingredient':
+                    $drugs = $drugs->sortBy('active_ingredient');
+                    break;
+                case 'manufacturer':
+                    $drugs = $drugs->sortBy('manufacturer');
+                    break;
+                default:
+            }
+
+        } // end if
+
 
         if ($filters['active_ingredient'] ?? null && $filters['active_ingredient'] == 0) {
 
@@ -274,6 +293,21 @@ class Drug
     }
 
     /**
+     * retrieve all drugs
+     *
+     * @return DrugModel[]|\Illuminate\Database\Eloquent\Builder[]|\Illuminate\Database\Eloquent\Collection
+     */
+    public function all()
+    {
+
+        $drugs = $this->drugModel
+            ->with(['drugCategory'])
+            ->paginate(100);
+
+        return $drugs;
+    }
+
+    /**
      * get all drugs bu filter STORE
      *
      * @param array $filters
@@ -284,9 +318,9 @@ class Drug
     {
 
         $drugs = $this->allStore($user_id, $filters);
-        
-        // $this->filterDrugs($drugs, $filters);
-        
+
+        $this->filterDrugs($drugs, $filters);
+
         return $drugs;
     }
 
@@ -298,25 +332,25 @@ class Drug
      */
     public function allStore($user_id = null, $filters = [])
     {
- 
-        
+
+
         if ($user_id) {
 
             $_drugs = $this->drugStoreModel
                 ->has('packageUserDetail')
                 ->where('user_id', $user_id)
                 ->where('is_activate', 1);
-            $_drugs = $this->drugsWhereFilters($_drugs , $filters); 
-                // ->with(['storeUser.role', 'drug.drugCategory'])
-                // ->get();
+            $_drugs = $this->drugsWhereFilters($_drugs, $filters);
+            // ->with(['storeUser.role', 'drug.drugCategory'])
+            // ->get();
 
             $__drugs = $this->drugStoreModel
                 ->doesntHave('packageUserDetail')
                 ->where('user_id', $user_id)
                 ->where('is_activate', 1);
-            $__drugs = $this->drugsWhereFilters($__drugs , $filters);
-                // ->with(['storeUser.role', 'drug.drugCategory'])
-                // ->get();
+            $__drugs = $this->drugsWhereFilters($__drugs, $filters);
+            // ->with(['storeUser.role', 'drug.drugCategory'])
+            // ->get();
 
 
         } else {
@@ -324,21 +358,21 @@ class Drug
             $_drugs = $this->drugStoreModel
                 ->has('packageUserDetail')
                 ->where('is_activate', 1);
-            $_drugs = $this->drugsWhereFilters($_drugs , $filters);
-                // ->with(['storeUser.role', 'drug.drugCategory'])
-                // ->get();
+            $_drugs = $this->drugsWhereFilters($_drugs, $filters);
+            // ->with(['storeUser.role', 'drug.drugCategory'])
+            // ->get();
 
             $__drugs = $this->drugStoreModel
                 ->doesntHave('packageUserDetail')
                 ->where('is_activate', 1);
-            $__drugs = $this->drugsWhereFilters($__drugs , $filters);
-                // ->with(['storeUser.role', 'drug.drugCategory'])
-                // ->get();
+            $__drugs = $this->drugsWhereFilters($__drugs, $filters);
+            // ->with(['storeUser.role', 'drug.drugCategory'])
+            // ->get();
         }
-        
+
         $_drugs = $_drugs->get();
         $__drugs = $__drugs->get();
-        
+
         $_drugs = $_drugs->shuffle();
 
         $drugs = collect(array_merge($_drugs->values()->all(), $__drugs->values()->all()));
@@ -357,69 +391,130 @@ class Drug
         return $drugs;
     }
 
-    protected function drugsWhereFilters($bulider , $filters){
-        
-             $bb =  $bulider->with(['storeUser.role', 'drug.drugCategory'])
-            ->whereHas('drug', function($item) use ($filters){
-                            if ($filters['active_ingredient'] ?? null) {
-                                $item->whereRaw('MATCH (
+    protected function drugsWhereFilters($bulider, $filters)
+    {
+
+        $bb = $bulider->with(['storeUser.role', 'drug.drugCategory'])
+            ->whereHas('drug', function ($item) use ($filters) {
+                if ($filters['active_ingredient'] ?? null) {
+                    $item->whereRaw('MATCH (
                                     pharmashare_code,trade_name,form,pack_size,active_ingredient,strength,manufacturer
-                                ) AGAINST (? IN BOOLEAN MODE)' , array("+".$filters['active_ingredient']."*"));
+                                ) AGAINST (? IN BOOLEAN MODE)', array("+" . $filters['active_ingredient'] . "*"));
 
 //                                $item->orWhere('active_ingredient','LIKE','%'.strtolower(trim($filters['active_ingredient'])).'%');
 
-                            }
-                            if ($filters['strength'] ?? null) {
-                                $item->whereRaw('MATCH (
+                }
+                if ($filters['strength'] ?? null) {
+                    $item->whereRaw('MATCH (
                                     pharmashare_code,trade_name,form,pack_size,active_ingredient,strength,manufacturer
-                                ) AGAINST (? IN BOOLEAN MODE) ' , array("+".$filters['strength']."*"));
+                                ) AGAINST (? IN BOOLEAN MODE) ', array("+" . $filters['strength'] . "*"));
 //                                $item->orWhere('strength','LIKE','%'.strtolower(trim($filters['strength'])).'%');
-                            } // endif
+                } // endif
 
-                            if ($filters['manufacturer'] ?? null) {
+                if ($filters['manufacturer'] ?? null) {
 
-                                $item->whereRaw('MATCH (
+                    $item->whereRaw('MATCH (
                                     pharmashare_code,trade_name,form,pack_size,active_ingredient,strength,manufacturer
-                                ) AGAINST (? IN BOOLEAN MODE)' , array("+".$filters['manufacturer']."*"));
+                                ) AGAINST (? IN BOOLEAN MODE)', array("+" . $filters['manufacturer'] . "*"));
 
 //                                $item->orWhere('manufacturer','LIKE','%'.strtolower(trim($filters['manufacturer'])).'%');
 
-                            } // endif
+                } // endif
 
-                            if ($filters['drug_name'] ?? null) {
-                                $item->whereRaw('MATCH (
+                if ($filters['drug_name'] ?? null) {
+                    $item->whereRaw('MATCH (
                                     pharmashare_code,trade_name,form,pack_size,active_ingredient,strength,manufacturer
-                                ) AGAINST (? IN BOOLEAN MODE)' , array("+".$filters['drug_name']."*"));
+                                ) AGAINST (? IN BOOLEAN MODE)', array("+" . $filters['drug_name'] . "*"));
 
 //                                $item->orWhere('trade_name','LIKE','%'.strtolower(trim($filters['drug_name'])).'%');
 
-                            } // endif
+                } // endif
 //
-                            if ($filters['query'] ?? null) {
-                                $search_query = $filters['query'];
+                if ($filters['query'] ?? null) {
+                    $search_query = $filters['query'];
 
-                                $item->whereRaw('MATCH (
+                    $item->whereRaw('MATCH (
                                     pharmashare_code,trade_name,form,pack_size,active_ingredient,strength,manufacturer
-                                ) AGAINST (? IN BOOLEAN MODE)' , array("+".$search_query."*"));
+                                ) AGAINST (? IN BOOLEAN MODE)', array("+" . $search_query . "*"));
 
-                            } // end if          
+                } // end if
 
-                    });
+            });
 
-                          if ($filters['is_featured'] ?? null) {
-                                //  is_featured
-                              $bb->whereHas('packageUserDetail');
-                          } // end if
+        if ($filters['is_featured'] ?? null) {
+            //  is_featured
+            $bb->whereHas('packageUserDetail');
+        } // end if
 
-                            if ($filters['foc'] ?? null) {
-                                //  foc
-                                $bb->whereHas('foc');
-                            } // end if
+        if ($filters['foc'] ?? null) {
+            //  foc
+            $bb->whereHas('foc');
+        } // end if
+
+        if ($category_id = $filters['drug_category_id'] ?? null) {
+            //  foc
+            $bb->whereHas('drug', function ($query) use ($category_id) {
+                $query->where('drug_category_id', $category_id);
+            });
+        } // end if
         return $bb;
     }
 
     public function filterDrugs(&$drugs, $filters)
     {
+
+        if ($sort_by = $filters['sort_by'] ?? null) {
+
+            switch ($sort_by) {
+
+                case 'offered_price_or_bonus':
+                    $drugs = $drugs->sortBy('offered_price_or_bonus');
+                    break;
+                case 'available_quantity_in_packs':
+                    $drugs = $drugs->sortBy('available_quantity_in_packs');
+                    break;
+                case 'minimum_order_value_or_quantity':
+                    $drugs = $drugs->sortBy('minimum_order_value_or_quantity');
+                    break;
+                case 'pharmashare_code':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->pharmashare_code;
+                    });
+                    break;
+                case 'trade_name':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->trade_name;
+                    });
+                    break;
+                case 'form':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->form;
+                    });
+                    break;
+                case 'pack_size':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->pack_size;
+                    });
+                    break;
+                case 'active_ingredient':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->active_ingredient;
+                    });
+                    break;
+                case 'strength':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->strength;
+                    });
+                    break;
+                case 'manufacturer':
+                    $drugs = $drugs->sortBy(function ($item) {
+                        return $item->drug->manufacturer;
+                    });
+                    break;
+                default:
+            }
+
+        } // end if
 
         if ($filters['min_price'] ?? null && $filters['max_price'] ?? null) {
 
@@ -428,7 +523,7 @@ class Drug
                 ->where('offered_price_or_bonus', '<=', $filters['max_price']);
         } // end if
 
-        if ($filters['drug_category_id'] ?? null) {
+        if ($filters['drug_category_id'] ?? 0) {
 
             $drugs = $drugs->filter(function ($drug) use ($filters) {
 
@@ -440,7 +535,7 @@ class Drug
             });
         } // end if
 
-        if ($filters['active_ingredient'] ?? null && $filters['active_ingredient'] == 0) {
+        if ($filters['active_ingredient'] ?? 0 && $filters['active_ingredient'] == 0) {
 
             $drugs = $drugs->filter(function ($drug) use ($filters) {
 
@@ -452,7 +547,7 @@ class Drug
             });
         } // end if
 
-        if ($filters['strength'] ?? null && $filters['strength'] == 0) {
+        if ($filters['strength'] ?? 0 && $filters['strength'] == 0) {
 
             $drugs = $drugs->filter(function ($drug) use ($filters) {
 
@@ -464,7 +559,7 @@ class Drug
             });
         } // end if
 
-        if ($filters['manufacturer'] ?? null && $filters['manufacturer'] == 0) {
+        if ($filters['manufacturer'] ?? 0 && $filters['manufacturer'] == 0) {
 
             $drugs = $drugs->filter(function ($drug) use ($filters) {
 
@@ -476,7 +571,7 @@ class Drug
             });
         } // end if
 
-        if ($filters['drug_name'] ?? null) {
+        if ($filters['drug_name'] ?? 0) {
 
             $drug_name = $filters['drug_name'];
 
@@ -499,47 +594,42 @@ class Drug
             });
         } // end if
 
-
-        if ($filters['radius'] ?? null) {
-            //  radius
-            $radius = $filters['radius'];
+        $radius = $filters['radius'] ?? 0;
+        if ($radius) {
 
             $drugs = $drugs->filter(function ($drug) use ($radius) {
                 $lat1 = $drug->storeUser->location->lat ?? null;
                 $lng1 = $drug->storeUser->location->lng ?? null;
                 $lat2 = auth()->user()->location->lat ?? null;
                 $lng2 = auth()->user()->location->lng ?? null;
-                $distance = $this->distance($lat1 , $lng1 , $lat2 , $lng2); 
-                
-                return (($lat1 && $lng1) && ($lat2 && $lng2) && $this->distance($lat1 , $lng1 , $lat2 , $lng2)) < $radius;
+                $distance = $this->distance($lat1, $lng1, $lat2, $lng2);
+
+                return (($lat1 && $lng1) && ($lat2 && $lng2) && $this->distance($lat1, $lng1, $lat2, $lng2)) < $radius;
 
             });
         } // end if
 
 
-        if ($filters['is_featured'] ?? null) {
+        if ($filters['is_featured'] ?? 0) {
             //  is_featured
-            $drugs = $drugs->filter(function ($drug) use ($radius) { 
+            $drugs = $drugs->filter(function ($drug) use ($radius) {
                 return $drug->isFeatured ?? false;
 
             });
         } // end if
-        
-// dd($filters['foc']);
-        // if ($filters['foc'] ?? null) {
-            //  foc
-            $drugs = $drugs->filter(function ($drug) use ($radius) {
-                dd($drug->FOC);
-                if(count($drug->FOC ?? []) > 0){
-                    return true;
-                } else {
-                    return false;
-                }
-            });
+
+        $drugs = $drugs->filter(function ($drug) use ($radius) {
+
+            if (count($drug->FOC ?? []) > 0) {
+                return true;
+            } else {
+                return false;
+            }
+        });
         // } // end if
 
- 
-        if ($filters['query'] ?? null) {
+
+        if ($filters['query'] ?? 0) {
 
             $search_query = $filters['query'];
 
@@ -622,10 +712,13 @@ class Drug
         $data['store_remarks'] = $data['store_remarks'] ?? null;
         $data['pharmacy_price_aed'] = $data['pharmacy_price_aed'] ?? 0;
         $data['public_price_aed'] = $data['public_price_aed'] ?? 0;
+        $data['user_id'] = auth()->user()->id ?? 0;
 
         if (isset($data['foc_quantity']) && isset($data['foc_discount'])) {
             $data['foc_quantity'] = $data['foc_quantity'] ?? 0;
             $data['foc_discount'] = $data['foc_discount'] ?? 0;
+            $data['foc_on'] = $data['foc_on'] ?? null;
+            $data['reward_points'] = $data['reward_points'] ?? 0;
         }
     }
 
@@ -671,6 +764,28 @@ class Drug
     }
 
     /**
+     * delete drug from database - multi delete
+     *
+     * @param array $ids
+     * @return null
+     */
+    public function deleteMultipleDrugs(array $ids)
+    {
+
+        try {
+
+            $this->drugModel->whereIn('id', $ids)->delete(); // search and delete drug
+
+        } catch (\Exception $exception) {
+
+//            return null;
+            return $exception->getMessage();
+        }
+
+        return return_msg(true, 'ok');
+    }
+
+    /**
      * update drug
      *
      * @param array $data
@@ -700,16 +815,17 @@ class Drug
     public function checkCategoryExistence(array &$data)
     {
 
-        $data['form'] = strtolower(trim($data['form']));
-        $drug_category = $this->drugCategory->findByName($data['form'] ?? '');
+        $data['category'] = strtolower(trim($data['category']));
+        $drug_category = $this->drugCategory->findByName($data['category'] ?? '');
         if (!$drug_category) {
-            $drug_category = $this->drugCategory->saveDrugCategory(['title' => $data['form']]);
+            $drug_category = $this->drugCategory->saveDrugCategory(['title' => $data['category']]);
         }
 
         $data['drug_category_id'] = (int)$drug_category->id;
 
         return $data;
     }
+
 
     /**
      * update drug store
@@ -727,21 +843,21 @@ class Drug
             return null;
         } // end if
 
-//        $this->checkCategoryExistence($data); // check category existence
+        $this->checkCategoryExistence($data); // check category existence
         $drug->update($data); // save new data into database
-        $this->saveDrugDiscount($drug, $data);
+        $this->saveDrugDiscount($data, $drug);
 
         return $drug;
     }
 
-    protected function saveDrugDiscount($drugStore, $data)
+    protected function saveDrugDiscount($data, $drugStore = null)
     {
 
 //        dd(!$this->checkIfFOCDataIsNotNull($data));
         // do nothing if there is no foc
         if (!$this->checkIfFOCDataIsNotNull($data)) {
 
-            $this->foc->deleteFOCs($drugStore, $data);
+            $this->foc->deleteFOCs($drugStore);
             return;
         }
 
@@ -751,16 +867,19 @@ class Drug
 
             $data = $this->prepareFocData($data);
 
-            $this->foc->saveFocs($drugStore, $data);
+            $this->foc->saveFocs($data, $drugStore);
 
             return;
         }
 
         // save one record id not array
-        $this->foc->saveOneFoc($drugStore, [
+        return $this->foc->saveOneFoc([
             'foc_quantity' => $data['foc_quantity'],
-            'foc_discount' => $data['foc_discount']
-        ]);
+            'foc_discount' => $data['foc_discount'],
+            'user_id' => $data['user_id'] ?? null,
+            'reward_points' => $data['reward_points'] ?? 0,
+            'drug_store_id' => $data['drug_store_id'] ?? null
+        ], $drugStore);
     }
 
     protected function checkIfFOCDataIsNotNull($data)
@@ -783,7 +902,10 @@ class Drug
 
             $foc_data[] = [
                 'foc_quantity' => $foc_quantity,
-                'foc_discount' => $data['foc_discount'][$key]
+                'foc_discount' => $data['foc_discount'][$key],
+                'user_id' => $data['user_id'][$key] ?? null,
+                'reward_points' => $data['reward_points'][$key] ?? 0,
+                'drug_store_id' => $data['drug_store_id'][$key] ?? null
             ];
         }
 
@@ -950,7 +1072,7 @@ class Drug
             $this->alterDrugPrice($drug_store, $data['offered_price_or_bonus'] ?? 0);
 
             // 5. save drug discounts
-            $this->saveDrugDiscount($drug_store, $data);
+            $this->saveDrugDiscount($data, $drug_store = null);
 
         } catch (\Exception $exception) {
             dd($exception->getMessage());
@@ -1120,7 +1242,7 @@ class Drug
             'title_en' => 'Approved Drug',
             'type' => 'ApprovedDrug',
             'description' => $un_approved_drug->pharmashare_code . 'تمت الموافقه على الدواء الحامل كود رقم ',
-            'description_en' =>'The drug carrying the number has been Accepted'. $un_approved_drug->pharmashare_code,
+            'description_en' => 'The drug carrying the number has been Accepted' . $un_approved_drug->pharmashare_code,
             'user_id' => $un_approved_drug->user_store_id
         ];
 
@@ -1129,25 +1251,6 @@ class Drug
 
 
         event(new ApprovedDrugEvent($notification_data));
-    }
-
-    public function fireDrugRejectEvent($un_approved_drug)
-    {
-
-        $notification_data = [
-            'notifiable_id' => $un_approved_drug->user_store_id,
-            'notifiable_type' => 'App\\Models\\DrugStore',
-            'title' => 'تم رفض الدواء',
-            'title_en' => 'Reject Drug',
-            'type' => 'RejectDrug',
-            'description' => $un_approved_drug->pharmashare_code . 'تم رفض الدواء الحامل كود رقم ',
-            'description_en' =>'The drug carrying the number has been rejected'. $un_approved_drug->pharmashare_code,
-            'user_id' => $un_approved_drug->user_store_id
-        ];
-
-        $this->notificationsController->saveNotification($notification_data);
-
-        event(new RejectDrugEvent($notification_data));
     }
 
     public function rejectUnapprovedDrug(array $data)
@@ -1166,6 +1269,25 @@ class Drug
         }
 
         return return_msg(true, 'ok');
+    }
+
+    public function fireDrugRejectEvent($un_approved_drug)
+    {
+
+        $notification_data = [
+            'notifiable_id' => $un_approved_drug->user_store_id,
+            'notifiable_type' => 'App\\Models\\DrugStore',
+            'title' => 'تم رفض الدواء',
+            'title_en' => 'Reject Drug',
+            'type' => 'RejectDrug',
+            'description' => $un_approved_drug->pharmashare_code . 'تم رفض الدواء الحامل كود رقم ',
+            'description_en' => 'The drug carrying the number has been rejected' . $un_approved_drug->pharmashare_code,
+            'user_id' => $un_approved_drug->user_store_id
+        ];
+
+        $this->notificationsController->saveNotification($notification_data);
+
+        event(new RejectDrugEvent($notification_data));
     }
 
     /**
@@ -1215,6 +1337,7 @@ class Drug
 //            return $exception->getMessage();
         }
     }
+
 
     /**
      * delete drug from database STORE

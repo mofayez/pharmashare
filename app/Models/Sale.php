@@ -21,6 +21,8 @@ class Sale extends Model
     ];
 
 
+    protected $hidden = ['updated_at'];
+
     public function status()
     {
 

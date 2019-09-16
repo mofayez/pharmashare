@@ -26,7 +26,16 @@ class FOCController extends Controller
         $request_data = $request->all();
         unset($request);
 
-        $validation = $this->validateCreateFOCRequest($request_data);
+        $request_data['drugs_store_id'] = $request_data['drugs_store_id'] ?? null;
+
+        if (isset($request_data['foc_quantity']) && is_array($request_data['foc_quantity'])) {
+
+            $validation = $this->validateCreateMultiFOCRequest($request_data);
+        } else {
+
+            $validation = $this->validateCreateFOCRequest($request_data);
+        }
+
         if ($validation->fails()) {
 
             return return_msg(false, 'validation errors', [
@@ -36,6 +45,39 @@ class FOCController extends Controller
         }
 
         return $this->foc->saveFOCByDrugStoreId($request_data);
+    }
+
+
+    public function createFocGeneral(Request $request)
+    {
+
+        $validation = $this->validateCreateFOCRequest($request->all());
+
+        if ($validation->fails()) {
+
+            return return_msg(false, 'validation errors', [
+                'validation_errors' => $validation->getMessageBag()->getMessages(),
+                'drug_store_not_found' => false
+            ]);
+        }
+
+        return $this->foc->createFoc($request->all());
+    }
+
+
+    public function activateDeactivateFOC(Request $request)
+    {
+
+        $validation = $this->activateDeactivateFOCRequest($request->all());
+
+        if ($validation->fails()) {
+
+            return return_msg(false, 'validation errors', [
+                'validation_errors' => $validation->getMessageBag()->getMessages(),
+            ]);
+        }
+
+        return $this->foc->activateDeactivateFOC($request->all());
     }
 
 
@@ -57,23 +99,10 @@ class FOCController extends Controller
 
             return return_msg(false, 'validation errors', [
                 'validation_errors' => $validation->getMessageBag()->getMessages(),
-                'drug_store_not_found' => false,
-                'foc_not_found' => false,
             ]);
         }
 
-
-        $response = $this->findFOC($request_data['id']);
-        if (!$response['status']) {
-            return return_msg(false, 'Not Found!', [
-                'validation_errors' => $validation->getMessageBag()->getMessages(),
-                'drug_store_not_found' => false,
-                'foc_not_found' => true,
-            ]);
-        }
-        unset($response);
-
-        return $this->foc->saveFOCByDrugStoreId($request_data);
+        return $this->foc->updateOneFOC($request_data);
     }
 
 
@@ -95,9 +124,36 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'drug_store_id' => 'required',
+            'drug_store_id' => 'nullable',
             'foc_quantity' => 'required|numeric',
-            'foc_discount' => 'required|numeric'
+            'foc_discount' => 'required|numeric',
+            'user_id' => 'required',
+            'reward_points' => 'required|numeric',
+            'foc_on' => 'required|in:all,drug_store',
+        ]);
+    }
+
+
+    protected function activateDeactivateFOCRequest($request_data)
+    {
+
+        return validator($request_data, [
+            'foc_id' => 'required|exists:foc,id',
+            'activated' => 'required|in:0,1'
+        ]);
+    }
+
+
+    protected function validateCreateMultiFOCRequest($request_data)
+    {
+
+        return validator($request_data, [
+            'drug_store_id.*' => 'nullable',
+            'foc_quantity.*' => 'required|numeric',
+            'foc_discount.*' => 'required|numeric',
+            'user_id' => 'required',
+            'reward_points.*' => 'required|numeric',
+            'foc_on' => 'required|in:all,drug_store',
         ]);
     }
 
@@ -106,10 +162,13 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'id' => 'required',
-            'drug_store_id' => 'required',
+            'id' => 'required|exists:foc,id',
+            'drug_store_id' => 'nullable',
             'foc_quantity' => 'required|numeric',
-            'foc_discount' => 'required|numeric'
+            'foc_discount' => 'required|numeric',
+            'user_id' => 'required',
+            'reward_points' => 'required|numeric',
+            'foc_on' => 'required|in:all,drug_store',
         ]);
     }
 

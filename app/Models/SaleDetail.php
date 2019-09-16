@@ -16,7 +16,7 @@ class SaleDetail extends Model
     /**
      * @var array $fillable
      */
-    protected $fillable = ['sale_id', 'drug_store_id', 'cost', 'quantity'];
+    protected $fillable = ['sale_id', 'drug_store_id', 'cost', 'quantity', 'foc_id'];
 
 
     public function sale()
@@ -31,6 +31,13 @@ class SaleDetail extends Model
 
         return $this->belongsTo(DrugStore::class, 'drug_store_id')->withTrashed();
     } // end of pharmacy function
+
+
+    public function foc()
+    {
+
+        return $this->belongsTo(FOC::class, 'foc_id');
+    }
 
 
 } // end of Role Model class

@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Web\Store;
 use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\SaleController;
-use App\Models\AdsControl;
-use Illuminate\Http\Request;
-use App\Modules\User\User as UserModule;
 use App\Http\Controllers\Controller;
+use App\Models\AdsControl;
+use App\Modules\User\User as UserModule;
+use Illuminate\Http\Request;
 
 class ShoppingController extends Controller
 {
@@ -45,19 +45,21 @@ class ShoppingController extends Controller
     {
         $drug_store_ids = (array)$request->drug_store_id;
         $quantities = (array)$request->count;
+        $focs = (array)$request->focs ?? [];
         $cart_data = [];
         foreach ($drug_store_ids as $k => $id) {
             $cart_data [] = [
                 'drug_store_id' => $id,
                 'quantity' => $quantities[$k],
+                'foc_id' => $focs[$k] ?? null,
             ];
         }
 
 
-        $response = $this->cart->updateCart($cart_data); 
+        $response = $this->cart->updateCart($cart_data);
+
         if ($response['status']) {
-             
-            
+
             session()->put('cart_submit', true);
             return $response;
         }
@@ -94,7 +96,7 @@ class ShoppingController extends Controller
 
     public function viewShipping()
     {
-        
+
         if (session()->has('cart_submit')) {
             if (!session()->get('cart_submit')) {
 
@@ -121,7 +123,7 @@ class ShoppingController extends Controller
             $second_ratio = $response2['data']['second_ratio'];
         }
 
-        return view('pages.shopping.shipping.index', compact('page_title', 'user', 'all_users', 'all_payments','allowed_ads','second_ratio','first_ratio'));
+        return view('pages.shopping.shipping.index', compact('page_title', 'user', 'all_users', 'all_payments', 'allowed_ads', 'second_ratio', 'first_ratio'));
 
     }
 
@@ -162,7 +164,6 @@ class ShoppingController extends Controller
             return back();
         }
 
-
         $page_title = "viewShipping";
         $user = auth()->user();
         $this->user->getUserImagePath($user);
@@ -180,14 +181,16 @@ class ShoppingController extends Controller
             $second_ratio = $response2['data']['second_ratio'];
         }
 
-        return view('pages.shopping.checkout.index', compact('page_title', 'user', 'all_users', 'cart_before_save','allowed_ads','second_ratio','first_ratio'));
+        return view('pages.shopping.checkout.index', compact(
+            'page_title', 'user', 'all_users', 'cart_before_save',
+            'allowed_ads', 'second_ratio', 'first_ratio'
+        ));
 
     }
 
     public function submitCheckout(Request $request)
     {
         $request['pharmacy_id'] = auth()->user()->id;
-        // dd($request->all());
         return $this->sale->placeOrder($request);
     }
 }

@@ -24,7 +24,8 @@ Route::group([
  * app routes
  */
 Route::group([
-    'middleware' => ['LanguageMiddleware', 'HttpsProtocol'],
+//    'middleware' => ['LanguageMiddleware', 'HttpsProtocol'],
+    'middleware' => ['LanguageMiddleware'],
     'prefix' => 'store',
     'namespace' => 'Web'
 ], function () {

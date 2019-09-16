@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLikesTable extends Migration
+class CreateStorePointsPackagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateLikesTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table) {
+        Schema::create('store_points_packages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('likeable_id')->unsigned();
-            $table->string('likeable_type')->nullable();
-            $table->integer('user_id')->unsigned();
-            $table->integer('reaction_id')->unsigned();
+            $table->integer('store_id')->unsigned();
+            $table->integer('points')->unsigned();
+            $table->integer('price')->unsigned();
+
+
+            $table->foreign('store_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ class CreateLikesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('likes');
+        Schema::dropIfExists('store_points_packages');
     }
 }

@@ -9,8 +9,9 @@ class FOC extends Model
 
     protected $table = 'foc';
 
-    protected $fillable = ['drug_store_id', 'foc_quantity', 'foc_discount'];
+    protected $fillable = ['is_activated', 'foc_on', 'drug_store_id', 'foc_quantity', 'foc_discount', 'user_id', 'reward_points'];
 
+    protected $hidden = ['created_at', 'updated_at'];
 
     public function drugStore()
     {

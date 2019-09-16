@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Web\Admin;
 use App\Http\Controllers\Api\DrugController;
 use App\Http\Controllers\Api\DrugStoreController;
 use App\Http\Controllers\Api\PostController as PsController;
-use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\SaleController;
-use App\Models\Post;
-use Illuminate\Http\Request;
-use App\Modules\User\User as UserModule;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Modules\User\User as UserModule;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class AdminController extends Controller
@@ -221,6 +221,7 @@ class AdminController extends Controller
 
     public function getAdminAllProductView(Request $request)
     {
+
         $page_title = "products";
         $user = auth()->user();
         $this->user->getUserImagePath($user);
@@ -229,6 +230,8 @@ class AdminController extends Controller
 
         $drugs = [];
         $response = $this->drug_ctrl->allDrugsFiltered($request);
+
+
         if ($response['status']) {
             $drugs = $response['data']['drugs'];
         }

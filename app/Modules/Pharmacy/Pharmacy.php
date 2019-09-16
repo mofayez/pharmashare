@@ -3,15 +3,18 @@
 namespace App\Modules\Pharmacy;
 
 
-use App\Http\Controllers\Api\NotificationController;
 use App\Events\NewOrder;
+use App\Http\Controllers\Api\NotificationController;
 use App\Models\BlockedStore;
+use App\Models\FOC;
 use App\Models\Sale as SaleModule;
 use App\Models\SaleDetail;
 use App\Models\Status;
+use App\Models\StorePharmacyPoints;
 use App\Models\StoreRating;
 use App\Modules\Cart\Cart;
 use App\Modules\Drug\Drug;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class Pharmacy
@@ -48,10 +51,10 @@ class Pharmacy
      * @var StoreRating
      */
     private $storeRating;
-    
+
     /**
-    * @var NotificationController
-    */
+     * @var NotificationController
+     */
     private $notificationsController;
 
 
@@ -74,7 +77,7 @@ class Pharmacy
     {
         $pharmacy_id = $data['pharmacy_id'];
         $out_of_stock_items = $this->cart->outOfStockItems();
-        
+
         if (count($out_of_stock_items) > 0) {
 
             return return_msg(false, 'out of stock items', [
@@ -86,7 +89,7 @@ class Pharmacy
         }
 
         $cart_before_save = session()->get('cart_before_save');
-         
+
         $un_permitted_orders = [];
         foreach ($cart_before_save as $item) {
 
@@ -96,8 +99,8 @@ class Pharmacy
                     'min_order_price' => $permitted_store_limit
                 ];
             }
-        } 
-        
+        }
+
         if (count($un_permitted_orders) > 0) {
 
             return return_msg(false, 'unpermitted cost', [
@@ -109,12 +112,12 @@ class Pharmacy
         }
 
         $cart_items = session()->pull('cart_before_save') ?? [];
-        
+
         if (count($cart_items) === 0) {
 
             return return_msg(false);
         }
-        
+
         DB::beginTransaction();
         try {
 
@@ -131,13 +134,13 @@ class Pharmacy
                     'shipment' => $cart_item['shipment'],
                     'status_id' => $this->getStatus('order')->id,
                 ]);
-                
+
                 $data = [
-                    'id'=>$cart_item['store']->id,
-                    'title'=>'طلب جديد',
-                    'description'=>'تم اضافة طلب جديد'
-                    ];
-                    
+                    'id' => $cart_item['store']->id,
+                    'title' => 'طلب جديد',
+                    'description' => 'تم اضافة طلب جديد'
+                ];
+
                 $notification_data = [
                     'notifiable_id' => $cart_item['store']->id,
                     'admin_role_id' => 1,
@@ -145,14 +148,14 @@ class Pharmacy
                     'title' => 'طلب جديد',
                     'title_en' => 'New Order',
                     'type' => 'NewOrder',
-                    'description' => 'تم اضافة طلب جديد' ,
-                    'description_en' => 'New Order Added' 
+                    'description' => 'تم اضافة طلب جديد',
+                    'description_en' => 'New Order Added'
                 ];
-                
+
                 $this->notificationsController->saveNotification($notification_data);
-                
+
                 event(new NewOrder($data));
-                
+
                 $this->storeSaleDetailsIntoDB($sale, $cart_item['items']);
             }
         } catch (\Exception $exception) {
@@ -164,7 +167,7 @@ class Pharmacy
 
         $this->cart->clear();
 
-        return return_msg(true, 'ok',compact('sale'));
+        return return_msg(true, 'ok', compact('sale'));
     }
 
     /**
@@ -210,24 +213,42 @@ class Pharmacy
     protected function storeSaleDetailsIntoDB($sale, $items)
     {
         $sale_details = [];
+        $store_pharmacy_points = [];
+
         foreach ($items as $item) {
             $sale_details[] = new SaleDetail([
                 'drug_store_id' => $item['id'],
                 'cost' => $item['price'],
-                'quantity' => $item['quantity']
+                'quantity' => $item['quantity'],
+                'foc_id' => $item['foc_selected']->id ?? null,
             ]);
+
+            if (!$item['foc_selected']) continue;
+
+            $store_pharmacy_points[] = [
+                'store_id' => $sale->store_id,
+                'pharmacy_id' => $sale->pharmacy_id,
+                'total_points' => $item['foc_selected']->reward_points,
+                'created_at' => Carbon::now()
+            ];
         } // end foreach
 
         $sale->details()->saveMany($sale_details);
+
+        if (count($store_pharmacy_points) > 0) {
+
+            StorePharmacyPoints::insert($store_pharmacy_points);
+        }
+
     } // end of storeSaleDetailsIntoDB
 
 
     public function orders(array $data)
     {
 
-        $orders = $this->pharmacyPurchases($data) 
+        $orders = $this->pharmacyPurchases($data)
             ->where('status_id', $this->getStatus('order')->id);
-        
+
         return $orders;
     }
 
@@ -250,6 +271,14 @@ class Pharmacy
         return $sales;
     }
 
+        protected function appendBlockedStoreStatus(&$sale)
+    {
+        $store = $sale->store;
+        $pharmacy = $sale->pharmacy;
+
+        $sale->store->blocked = in_array($store->id, $pharmacy->blockedStoresIds());
+    } // end of getStatus function
+
     public function purchased(array $data)
     {
 
@@ -259,15 +288,14 @@ class Pharmacy
         return $orders;
     } // end of getStatus function
 
-    public function rejected(array $data)
+public function rejected(array $data)
     {
 
         $rejected = $this->pharmacyPurchases($data)
             ->where('status_id', $this->getStatus('rejected')->id);
 
         return $rejected;
-    } // end of getStatus function
-
+    }
 
     public function blockStore(array $data)
     {
@@ -279,7 +307,6 @@ class Pharmacy
 
         return $blocked;
     }
-
 
     public function unBlockPharmacy(array $data)
     {
@@ -298,7 +325,6 @@ class Pharmacy
         return true;
     }
 
-
     public function rateStore(array $data)
     {
 
@@ -308,13 +334,5 @@ class Pharmacy
         );
 
         return return_msg(true, 'ok', compact('rating'));
-    }
-
-    protected function appendBlockedStoreStatus(&$sale)
-    {
-        $store = $sale->store;
-        $pharmacy = $sale->pharmacy;
-
-        $sale->store->blocked = in_array($store->id, $pharmacy->blockedStoresIds());
     }
 }

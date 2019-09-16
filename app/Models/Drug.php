@@ -25,6 +25,8 @@ class Drug extends Model
 
     protected $dates = ['deleted_at'];
 
+    protected $appends = ['added_by'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -43,5 +45,32 @@ class Drug extends Model
 
         return $this->hasMany(DrugStore::class, 'drug_id');
     } // end of drugStores function
+
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function getAddedByAttribute()
+    {
+
+        $user = $this->user;
+
+        if (!$user) {
+
+            return null;
+        };
+
+        return [
+            'id' => $user->id,
+            'username' => $user->username,
+            'firstname' => $user->firstname,
+            'email' => $user->email,
+            'role' => $user->role->title ?? null
+        ];
+    }
+
 
 } // end of Drug model class

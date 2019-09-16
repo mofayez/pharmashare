@@ -30,7 +30,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'updated_at'
     ];
 
 
@@ -180,6 +180,13 @@ class User extends Authenticatable
     public function drug_store()
     { 
         return $this->hasMany(DrugStore::class,'user_id');
+    }
+
+
+    public function points()
+    {
+
+        return $this->hasMany(StorePharmacyPoints::class, 'pharmacy_id');
     }
 
 
