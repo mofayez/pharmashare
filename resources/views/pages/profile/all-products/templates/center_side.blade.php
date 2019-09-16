@@ -45,11 +45,15 @@
                         </form>
                     </div>
                 </div>
-                    <div class="col-md-2" style="position: absolute;right: 0;top: 0;">
-                        <a href="{{route('getAddProductView')}}" class="btn btn-main">
-                           {{app()->getLocale() == 'ar' ? 'اضافة منتج' : 'Add Product' }}
-                        </a>
-                    </div>
+                <div class="col-md-4 text-center"
+                     style="position: absolute;{{app()->getLocale() == 'ar' ? 'left' : 'right' }}: 0;top: 0;">
+                    <a href="{{route('getAddProductView')}}" class="btn btn-main">
+                        {{app()->getLocale() == 'ar' ? 'اضافة منتج' : 'Add Product' }}
+                    </a>
+                    <a href="{{route('getAddPointsView')}}" class="btn btn-danger">
+                        {{app()->getLocale() == 'ar' ? 'خصم على جميع المنتجات' : 'Discount All Over Products' }}
+                    </a>
+                </div>
                 <div class="col-md-12 table-scroll">
                     <table class="table table-bordered">
                         <thead>

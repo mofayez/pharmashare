@@ -173,6 +173,8 @@ Route::group([
         Route::post('/submit-favourites', 'ProfileController@submitFavourite')->name('submitFavourite');
         Route::delete('/delete-favourites', 'ProfileController@deleteFavourite')->name('deleteFavourite');
 
+        Route::get('/add-points', 'ProfileController@getAddPointsView')->name('getAddPointsView')->middleware('can:add-product');
+        Route::post('/add-points', 'ProfileController@handleAddPoints')->name('handleAddPoints');
         Route::get('/add-product', 'ProfileController@getAddProductView')->name('getAddProductView')->middleware('can:add-product');
         Route::post('/add-product', 'ProfileController@addPostNewProduct')->name('addPostNewProduct');
         Route::post('/add-products-sheet', 'ProfileController@addPostProductSheet')->name('addPostProductSheet');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web\Profile;
 use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\DrugController;
 use App\Http\Controllers\Api\DrugStoreController;
+use App\Http\Controllers\Api\FOCController;
 use App\Http\Controllers\Api\PharmacyController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\UserController;
@@ -25,6 +26,7 @@ class ProfileController extends Controller
     private $sale;
     private $utility;
     private $ads;
+    private $foc;
 
     public function __construct()
     {
@@ -36,6 +38,7 @@ class ProfileController extends Controller
         $this->pharmacy = new PharmacyController();
         $this->utility = new UtilityController();
         $this->ads = new AdsController();
+        $this->foc = new FOCController();
 
     }
 
@@ -82,7 +85,7 @@ class ProfileController extends Controller
         if ($response['status']) {
             $orders = $response['data']['orders'];
         }
-        
+
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $itemCollection = collect($orders);
         $perPage = 20;
@@ -193,17 +196,17 @@ class ProfileController extends Controller
             $all_drugs = $response['data']['drugs'];
         }
         $all_users = $this->user->all();
-        
-        
+
+
         $all_drugs = $all_drugs->values();
 
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $itemCollection = collect($all_drugs);
-        $perPage = $request->get('limit') ?? 50; 
+        $perPage = $request->get('limit') ?? 50;
         $currentPageItems = $itemCollection->slice(($currentPage * $perPage) - $perPage, $perPage)->all();
         $all_drugs = new LengthAwarePaginator($currentPageItems, count($itemCollection), $perPage);
         $all_drugs->setPath($request->url());
-        
+
         return view('pages.profile.all-products.index', compact('page_title', 'user', 'all_users', 'all_drugs'));
 
     }
@@ -212,7 +215,7 @@ class ProfileController extends Controller
     {
         $foc_quantity_arr = $request->foc_quantity ?? [];
         $foc_discount_arr = $request->foc_discount ?? [];
-        $pharmashare_code  = $request->pharmashare_code ?? bin2hex(random_bytes(10));
+        $pharmashare_code = $request->pharmashare_code ?? bin2hex(random_bytes(10));
         foreach ($foc_quantity_arr as $k => $item) {
             if ($item == 0) {
                 unset($foc_quantity_arr[$k]);
@@ -222,7 +225,7 @@ class ProfileController extends Controller
         $request['foc_quantity'] = $foc_quantity_arr;
         $request['foc_discount'] = $foc_discount_arr;
         $request['pharmashare_code'] = $pharmashare_code;
-        
+
         // return $request->all();
         $request['user_id'] = auth()->user()->id;
         $response = $this->drug_ctrl->saveDrug($request);
@@ -353,24 +356,25 @@ class ProfileController extends Controller
         $all_users = $this->user->all();
         $request->request->add(['store_id' => $user->id]);
         $favourites = $this->drug_ctrl->getStoreFavouritesIds($request);
-         
 
-        return view('pages.profile.add-to-favourites.index', compact('page_title', 'user', 'all_users', 'favourites','drugs','drugs_count'));
+
+        return view('pages.profile.add-to-favourites.index', compact('page_title', 'user', 'all_users', 'favourites', 'drugs', 'drugs_count'));
 
     }
 
     public function getDrugsData(Request $request)
     {
-        $response = $this->utility->getDrugsFromModel($request); 
+        $response = $this->utility->getDrugsFromModel($request);
         return $response['data']['drugs'] ?? [];
     }
 
-    public function getDrugsFromModel (Request $request){
-        
+    public function getDrugsFromModel(Request $request)
+    {
+
         return $this->utility->getDrugsFromModel($request);
     }
-    
-    
+
+
     public function allDrugsFiltered(Request $request)
     {
         return $this->drug_ctrl->allDrugsFiltered($request);
@@ -397,6 +401,30 @@ class ProfileController extends Controller
 
     }
 
+    public function getAddPointsView(Request $request)
+    {
+
+        $page_title = "Sales";
+        $user = auth()->user();
+        $this->user->getUserImagePath($user);
+
+        $all_users = $this->user->all();
+        $request->request->add(['store_id' => $user->id]);
+        $favourites = $this->drug_ctrl->getStoreFavourites($request->all());
+//        return ;
+        return view('pages.points.all.index', compact('page_title', 'user', 'all_users', 'favourites'));
+
+    }
+
+    public function handleAddPoints(Request $request)
+    {
+        $user = auth()->user();
+        $request->request->add(['user_id' => $user->id]);
+        $response = $this->foc->createFOC($request);
+
+        return $response;
+    }
+
     public function submitFavourite(Request $request)
     {
 
@@ -408,8 +436,8 @@ class ProfileController extends Controller
         $response = $this->drug_ctrl->saveDrug($request);
         if (!$response['status']) {
             return $response;
-        } 
-        if(!$request->fav_id){
+        }
+        if (!$request->fav_id) {
             return $response;
         }
         $request->request->replace(['id' => $request->fav_id]);
