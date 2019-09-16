@@ -37,8 +37,8 @@ Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
 
     Route::post('create', 'PointsController@create');
     Route::post('update', 'PointsController@update');
-    Route::get('pharmacies-point', 'PointsController@getPharmaciesPoints');
-    Route::get('pharmacies-point-admin', 'PointsController@getPharmaciesPointsForAdmin');
+    Route::get('pharmacies-points', 'PointsController@getPharmaciesPoints');
+    Route::get('pharmacies-points-admin', 'PointsController@getPharmaciesPointsForAdmin');
 
 
     Route::get('pharmacy-points', 'PointsController@getPharmacyPoints');
