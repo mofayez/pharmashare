@@ -264,6 +264,7 @@ class DrugController extends Controller
             'available_quantity_in_packs' => 'required|numeric',
             'minimum_order_value_or_quantity' => 'required|numeric',
             'store_remarks' => 'nullable|string|min:2|max:200',
+            'user_id' => 'required|exists:users,id'
         ]);
     }
 

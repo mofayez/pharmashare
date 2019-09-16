@@ -98,7 +98,13 @@ class DrugStore extends Model
     public function getFOCAttribute()
     {
 
-        return $this->foc()->orderBy('foc_quantity')->get();
+        $foc = $this->foc()->orderBy('foc_quantity')->where('foc_on', 'drug_store')->get();
+        if (count($foc) === 0) {
+
+            return FOC::where('user_id', $this->user_id)->where('foc_on', 'all')->orderBy('foc_quantity')->get();
+        }
+
+        return collect([]);
     }
 
 } // end of DrugStore model class

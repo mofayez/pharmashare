@@ -231,6 +231,10 @@ class FOC
 
     public function deleteFOCs($drug_store)
     {
+
+        if (count($drug_store->foc) === 0) {
+            return;
+        }
         $drug_store->foc()->delete();
     }
 

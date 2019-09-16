@@ -523,6 +523,7 @@ class Drug
                 ->where('offered_price_or_bonus', '<=', $filters['max_price']);
         } // end if
 
+
         if ($filters['drug_category_id'] ?? 0) {
 
             $drugs = $drugs->filter(function ($drug) use ($filters) {
@@ -612,20 +613,20 @@ class Drug
 
         if ($filters['is_featured'] ?? 0) {
             //  is_featured
-            $drugs = $drugs->filter(function ($drug) use ($radius) {
+            $drugs = $drugs->filter(function ($drug) {
                 return $drug->isFeatured ?? false;
 
             });
         } // end if
 
-        $drugs = $drugs->filter(function ($drug) use ($radius) {
-
-            if (count($drug->FOC ?? []) > 0) {
-                return true;
-            } else {
-                return false;
-            }
-        });
+//        $drugs = $drugs->filter(function ($drug) {
+//
+//            if (count($drug->FOC ?? []) > 0) {
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        });
         // } // end if
 
 
@@ -712,14 +713,14 @@ class Drug
         $data['store_remarks'] = $data['store_remarks'] ?? null;
         $data['pharmacy_price_aed'] = $data['pharmacy_price_aed'] ?? 0;
         $data['public_price_aed'] = $data['public_price_aed'] ?? 0;
-        $data['user_id'] = auth()->user()->id ?? 0;
+        $data['user_id'] = $data['user_id'] ?? auth()->user()->id ?? null;
 
-        if (isset($data['foc_quantity']) && isset($data['foc_discount'])) {
-            $data['foc_quantity'] = $data['foc_quantity'] ?? 0;
-            $data['foc_discount'] = $data['foc_discount'] ?? 0;
-            $data['foc_on'] = $data['foc_on'] ?? null;
-            $data['reward_points'] = $data['reward_points'] ?? 0;
-        }
+//        if (isset($data['foc_quantity']) && isset($data['foc_discount'])) {
+//            $data['foc_quantity'] = $data['foc_quantity'] ?? 0;
+//            $data['foc_discount'] = $data['foc_discount'] ?? 0;
+//            $data['foc_on'] = $data['foc_on'] ?? null;
+//            $data['reward_points'] = $data['reward_points'] ?? 0;
+//        }
     }
 
     public function findMasterDrug(int $drug_id)
@@ -862,17 +863,14 @@ class Drug
 //        dd(!$this->checkIfFOCDataIsNotNull($data));
         // do nothing if there is no foc
         if (!$this->checkIfFOCDataIsNotNull($data)) {
-
             $this->foc->deleteFOCs($drugStore);
             return;
         }
-
 
         // save many if type is array
         if (gettype($data['foc_quantity']) === 'array' && gettype($data['foc_discount']) === 'array') {
 
             $data = $this->prepareFocData($data);
-
             $this->foc->saveFocs($data, $drugStore);
 
             return;
@@ -911,7 +909,7 @@ class Drug
                 'foc_discount' => $data['foc_discount'][$key],
                 'user_id' => $data['user_id'][$key] ?? null,
                 'reward_points' => $data['reward_points'][$key] ?? 0,
-                'drug_store_id' => $data['drug_store_id'][$key] ?? null
+                'drug_store_id' => $data['drug_store_id'] ?? null
             ];
         }
 
@@ -1064,6 +1062,8 @@ class Drug
                     'store_remarks' => $data['store_remarks'] ?? ''
                 ]);
 
+            $data['drug_store_id'] = $drug_store->id;
+
             // 2. save in store details table
             $drug_store->details()->create([
                 'drug_store_id' => $drug_store->id,
@@ -1078,7 +1078,7 @@ class Drug
             $this->alterDrugPrice($drug_store, $data['offered_price_or_bonus'] ?? 0);
 
             // 5. save drug discounts
-            $this->saveDrugDiscount($data, $drug_store = null);
+            $this->saveDrugDiscount($data, $drug_store);
 
         } catch (\Exception $exception) {
             dd($exception->getMessage());
