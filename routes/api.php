@@ -50,4 +50,4 @@ Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
 Route::delete('delete-multi-drugs', 'Api\\DrugController@deleteMultipleDrugs');
 
 
-Route::post('create-drug', 'Api\\DrugController@saveAdminMasterDrugs');
+Route::post('create-drug', 'Api\\DrugController@saveDrug');

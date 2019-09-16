@@ -124,12 +124,12 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'drug_store_id' => 'required',
+            'drug_store_id' => 'nullable',
             'foc_quantity' => 'required|numeric',
             'foc_discount' => 'required|numeric',
             'user_id' => 'required',
             'reward_points' => 'required|numeric',
-            'foc_on' => 'nullable|in:all,drug_store',
+            'foc_on' => 'required|in:all,drug_store',
         ]);
     }
 
@@ -148,12 +148,12 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'drug_store_id.*' => 'required',
+            'drug_store_id.*' => 'nullable',
             'foc_quantity.*' => 'required|numeric',
             'foc_discount.*' => 'required|numeric',
             'user_id' => 'required',
             'reward_points.*' => 'required|numeric',
-            'foc_on' => 'nullable|in:all,drug_store',
+            'foc_on' => 'required|in:all,drug_store',
         ]);
     }
 
@@ -162,13 +162,13 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'id' => 'required|exists:foc,id',
+            'id' => 'nullable|exists:foc,id',
             'drug_store_id' => 'required',
             'foc_quantity' => 'required|numeric',
             'foc_discount' => 'required|numeric',
             'user_id' => 'required',
             'reward_points' => 'required|numeric',
-            'foc_on' => 'null|in:all,drug_store',
+            'foc_on' => 'required|in:all,drug_store',
         ]);
     }
 
