@@ -102,6 +102,8 @@
                       </button>`,
                     `<input name="foc_quantity[${counter}]" class="form-control text-center" type="number" value="0">`,
                     `<input name="foc_discount[${counter}]" class="form-control text-center" type="number" value="0">`,
+                    `<input name="reward_points[${counter}]" class="form-control text-center" type="number" value="0">`,
+                    `<select name="is_activated[${counter}]" class="form-control text-center"><option value="1">Yes</option><option value="0">No</option></select>`,
                     ``,
                     ``,
                     ``,

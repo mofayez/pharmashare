@@ -27,14 +27,6 @@ class FOC
         if ($drugStore) {
 
             $drugStore->foc()->delete();
-
-            if (count($foc_data) === 0) {
-                return return_msg(true, 'ok, deleted');
-            }
-
-            $drugStore->foc()->createMany($foc_data);
-
-            return return_msg(true, 'ok');
         }
 
         $this->focModel->insert($this->prepareBunchFocData($foc_data));
@@ -50,23 +42,28 @@ class FOC
         foreach ($request_data['foc_quantity'] as $key => $foc_quantity) {
 
             $focs[] = [
-                'id' => $request_data['id'][$key] ?? null,
-                'drug_store_id' => $request_data['drug_store_id'][$key] ?? null,
+//                'id' => $request_data['id'][$key] ?? null,
+                'drug_store_id' => $request_data['drug_store_id'] ?? null,
                 'foc_quantity' => $foc_quantity,
                 'foc_discount' => $request_data['foc_discount'][$key] ?? 0,
                 'reward_points' => $request_data['reward_points'][$key] ?? 0,
                 'user_id' => $request_data['user_id'] ?? null,
-                'foc_on' => $request_data['foc_on'],
+                'foc_on' => $request_data['foc_on'][$key] ?? 'drug_store',
             ];
         }
-
         return $focs;
     }
 
     public function createFoc($foc_data)
     {
 
-        $this->focModel->create($foc_data);
+        if (gettype($foc_data['foc_quantity']) === 'array') {
+
+            $this->focModel->insert($this->prepareBunchFocData($foc_data));
+        } else {
+
+            $this->focModel->create($foc_data);
+        }
         return return_msg(true, 'ok');
     }
 

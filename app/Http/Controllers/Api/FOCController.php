@@ -29,7 +29,6 @@ class FOCController extends Controller
         $request_data['drugs_store_id'] = $request_data['drugs_store_id'] ?? null;
 
         if (isset($request_data['foc_quantity']) && is_array($request_data['foc_quantity'])) {
-
             $validation = $this->validateCreateMultiFOCRequest($request_data);
         } else {
 
@@ -51,7 +50,16 @@ class FOCController extends Controller
     public function createFocGeneral(Request $request)
     {
 
-        $validation = $this->validateCreateFOCRequest($request->all());
+
+        $request_data = $request->all();
+        $request_data['drugs_store_id'] = $request_data['drugs_store_id'] ?? null;
+
+        if (isset($request_data['foc_quantity']) && is_array($request_data['foc_quantity'])) {
+            $validation = $this->validateCreateMultiFOCRequest($request_data);
+        } else {
+            $validation = $this->validateCreateFOCRequest($request_data);
+        }
+
 
         if ($validation->fails()) {
 
@@ -61,7 +69,7 @@ class FOCController extends Controller
             ]);
         }
 
-        return $this->foc->createFoc($request->all());
+        return $this->foc->createFoc($request_data);
     }
 
 
@@ -124,7 +132,7 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'drug_store_id' => 'nullable',
+            'drug_store_id' => 'required_if:foc_on,drug_store',
             'foc_quantity' => 'required|numeric',
             'foc_discount' => 'required|numeric',
             'user_id' => 'required',
@@ -148,12 +156,17 @@ class FOCController extends Controller
     {
 
         return validator($request_data, [
-            'drug_store_id.*' => 'nullable',
+            'drug_store_id.*' => 'required_if:foc_on.*,drug_store',
             'foc_quantity.*' => 'required|numeric',
             'foc_discount.*' => 'required|numeric',
             'user_id' => 'required',
             'reward_points.*' => 'required|numeric',
-            'foc_on' => 'required|in:all,drug_store',
+            'foc_on.*' => 'required|in:all,drug_store',
+            'drug_store_id' => 'array|required_if:foc_on,drug_store',
+            'foc_quantity' => 'array|required',
+            'foc_discount' => 'array|required',
+            'reward_points' => 'array|required',
+            'foc_on' => 'array|required',
         ]);
     }
 
@@ -163,7 +176,7 @@ class FOCController extends Controller
 
         return validator($request_data, [
             'id' => 'nullable|exists:foc,id',
-            'drug_store_id' => 'required',
+            'drug_store_id' => 'required_if:foc_on,drug_store',
             'foc_quantity' => 'required|numeric',
             'foc_discount' => 'required|numeric',
             'user_id' => 'required',

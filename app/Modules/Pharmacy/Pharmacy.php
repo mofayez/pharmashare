@@ -6,7 +6,6 @@ namespace App\Modules\Pharmacy;
 use App\Events\NewOrder;
 use App\Http\Controllers\Api\NotificationController;
 use App\Models\BlockedStore;
-use App\Models\FOC;
 use App\Models\Sale as SaleModule;
 use App\Models\SaleDetail;
 use App\Models\Status;
@@ -271,7 +270,7 @@ class Pharmacy
         return $sales;
     }
 
-        protected function appendBlockedStoreStatus(&$sale)
+    protected function appendBlockedStoreStatus(&$sale)
     {
         $store = $sale->store;
         $pharmacy = $sale->pharmacy;
@@ -288,7 +287,7 @@ class Pharmacy
         return $orders;
     } // end of getStatus function
 
-public function rejected(array $data)
+    public function rejected(array $data)
     {
 
         $rejected = $this->pharmacyPurchases($data)

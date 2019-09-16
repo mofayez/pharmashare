@@ -603,7 +603,7 @@ class Drug
                 $lng1 = $drug->storeUser->location->lng ?? null;
                 $lat2 = auth()->user()->location->lat ?? null;
                 $lng2 = auth()->user()->location->lng ?? null;
-                $distance = $this->distance($lat1, $lng1, $lat2, $lng2);
+//                $distance = $this->distance($lat1, $lng1, $lat2, $lng2);
 
                 return (($lat1 && $lng1) && ($lat2 && $lng2) && $this->distance($lat1, $lng1, $lat2, $lng2)) < $radius;
 
@@ -863,14 +863,14 @@ class Drug
 //        dd(!$this->checkIfFOCDataIsNotNull($data));
         // do nothing if there is no foc
         if (!$this->checkIfFOCDataIsNotNull($data)) {
+
             $this->foc->deleteFOCs($drugStore);
             return;
         }
 
         // save many if type is array
         if (gettype($data['foc_quantity']) === 'array' && gettype($data['foc_discount']) === 'array') {
-
-            $data = $this->prepareFocData($data);
+//            $data = $this->prepareFocData($data);
             $this->foc->saveFocs($data, $drugStore);
 
             return;
@@ -907,7 +907,7 @@ class Drug
             $foc_data[] = [
                 'foc_quantity' => $foc_quantity,
                 'foc_discount' => $data['foc_discount'][$key],
-                'user_id' => $data['user_id'][$key] ?? null,
+                'user_id' => $data['user_id'][$key] ?? auth()->user()->id ?? null,
                 'reward_points' => $data['reward_points'][$key] ?? 0,
                 'drug_store_id' => $data['drug_store_id'] ?? null
             ];
@@ -985,7 +985,6 @@ class Drug
 
             return $response;
         } // end if
-
 
         $drug = $this->addNewDrugStore($drug, $data); // id drug exist, append new store and alter main amount
 

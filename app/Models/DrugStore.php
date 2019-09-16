@@ -75,36 +75,45 @@ class DrugStore extends Model
         return $this->hasOne(PackageUserDetail::class, 'drug_store_id');
     }
 
-    public function isFeatured()
-    {
-
-        return $this->packageUserDetail !== null;
-    }
-
-
     public function getIsFeaturedAttribute()
     {
 
         return $this->isFeatured();
     }
 
-
-    public function foc()
+    public function isFeatured()
     {
 
-        return $this->hasMany(FOC::class, 'drug_store_id');
+        return $this->packageUserDetail !== null;
     }
 
     public function getFOCAttribute()
     {
 
-        $foc = $this->foc()->orderBy('foc_quantity')->where('foc_on', 'drug_store')->get();
+
+        $foc = $this->foc()
+            ->orderBy('foc_quantity')
+            ->where('foc_on', 'drug_store')
+            ->where('is_activated', 1)
+            ->get();
+
+
         if (count($foc) === 0) {
 
-            return FOC::where('user_id', $this->user_id)->where('foc_on', 'all')->orderBy('foc_quantity')->get();
+            return FOC::orderBy('foc_quantity')
+                ->where('user_id', $this->user_id)
+                ->where('foc_on', 'all')
+                ->where('is_activated', 1)
+                ->get();
         }
 
-        return collect([]);
+        return $foc;
+    }
+
+    public function foc()
+    {
+
+        return $this->hasMany(FOC::class, 'drug_store_id');
     }
 
 } // end of DrugStore model class

@@ -126,15 +126,21 @@ class FOCPoints
                             ->whereDate('created_at', '<=', $to_date);
                     }
                 })
-                ->whereHas('salesPharmacy', function ($query) use ($store_id) {
-                    $query->where('store_id', $store_id)->orderBy('created_at', 'desc');
-                })
+//                ->whereHas('salesPharmacy', function ($query) use ($store_id) {
+//                    $query->where('store_id', $store_id)->orderBy('created_at', 'desc');
+//                })
                 ->where('id', $pharmacy_id)
                 ->get(['id', 'username', 'firstname', 'lastname', 'email', 'prefix', 'phone', 'full_address'])
                 ->first();
 
+            if (!$pharmacy) {
+                return return_msg(true, 'ok');
+            }
+
+
             $pharmacy->total_points = $pharmacy->points->where('transaction', 'in')->sum('total_points')
                 - $pharmacy->points->where('transaction', 'out')->sum('total_points');
+
             $pharmacy->last_sale = $pharmacy->salesPharmacy->first() ?? null;
             $pharmacy->sales_count = $pharmacy->salesPharmacy->count() ?? 0;
             $pharmacy->makeHidden(['points', 'salesPharmacy']);

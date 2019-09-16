@@ -253,7 +253,7 @@ class CartController extends Controller
 
             foreach ($cart_item['items'] ?? [] as $item) {
 
-                $item->foc_selected = $item->foc->where('foc_quantity', '>=', $item->quantity)->first();
+                $item->foc_selected = $item->foc->where('foc_quantity', '<=', $item->quantity)->first();
 
             }
         }

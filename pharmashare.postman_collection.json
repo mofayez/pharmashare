@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "e08bce26-520e-4b51-92a0-e2e15fbe350a",
+		"name": "pharmashare",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pharmacy points",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/points/pharmacy-points?store_id=3&pharmacy_id=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"points",
+						"pharmacy-points"
+					],
+					"query": [
+						{
+							"key": "store_id",
+							"value": "3"
+						},
+						{
+							"key": "pharmacy_id",
+							"value": "8"
+						}
+					]
+				},
+				"description": "get pharmacy points with store"
+			},
+			"response": []
+		},
+		{
+			"name": "points price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/points/points-price?store_id=3&total_points_with_pharmacy=9975",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"points",
+						"points-price"
+					],
+					"query": [
+						{
+							"key": "store_id",
+							"value": "3"
+						},
+						{
+							"key": "total_points_with_pharmacy",
+							"value": "9975"
+						}
+					]
+				},
+				"description": "get points suitable packages "
+			},
+			"response": []
+		},
+		{
+			"name": "redeem points",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/points/redeem-points?points_package_id=4&pharmacy_id=8&store_id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"points",
+						"redeem-points"
+					],
+					"query": [
+						{
+							"key": "points_package_id",
+							"value": "4"
+						},
+						{
+							"key": "pharmacy_id",
+							"value": "8"
+						},
+						{
+							"key": "store_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pharmacies points",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/points/pharmacies-point?pharmacy_id=8&store_id=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"points",
+						"pharmacies-point"
+					],
+					"query": [
+						{
+							"key": "pharmacy_id",
+							"value": "8"
+						},
+						{
+							"key": "store_id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pharmacies points - admin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/points/pharmacies-points-admin?pharmacy_id=8",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"points",
+						"pharmacies-points-admin"
+					],
+					"query": [
+						{
+							"key": "pharmacy_id",
+							"value": "8"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create drug store",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/create-drug?pharmashare_code=fayez796&trade_name=fayez796&manufacturer=fayez796&category=fayez796&pack_size=454&offered_price_or_bonus=25&available_quantity_in_packs=55&minimum_order_value_or_quantity=10&user_id=3&foc_quantity[0]=20&foc_discount[0]=10&reward_points[0]=200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"create-drug"
+					],
+					"query": [
+						{
+							"key": "pharmashare_code",
+							"value": "fayez796"
+						},
+						{
+							"key": "trade_name",
+							"value": "fayez796"
+						},
+						{
+							"key": "manufacturer",
+							"value": "fayez796"
+						},
+						{
+							"key": "category",
+							"value": "fayez796"
+						},
+						{
+							"key": "pack_size",
+							"value": "454"
+						},
+						{
+							"key": "offered_price_or_bonus",
+							"value": "25"
+						},
+						{
+							"key": "available_quantity_in_packs",
+							"value": "55"
+						},
+						{
+							"key": "minimum_order_value_or_quantity",
+							"value": "10"
+						},
+						{
+							"key": "user_id",
+							"value": "3"
+						},
+						{
+							"key": "foc_quantity[0]",
+							"value": "20"
+						},
+						{
+							"key": "foc_discount[0]",
+							"value": "10"
+						},
+						{
+							"key": "reward_points[0]",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "activate deactivate FOC",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/foc/activate-deactivate?foc_id=36&activated=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"foc",
+						"activate-deactivate"
+					],
+					"query": [
+						{
+							"key": "foc_id",
+							"value": "36"
+						},
+						{
+							"key": "activated",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create foc",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/fayez/pharmashare/api/foc/create?foc_on[0]=all&user_id=3&foc_quantity[0]=5&foc_discount[0]=10&reward_points[0]=50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"fayez",
+						"pharmashare",
+						"api",
+						"foc",
+						"create"
+					],
+					"query": [
+						{
+							"key": "foc_on[0]",
+							"value": "all"
+						},
+						{
+							"key": "user_id",
+							"value": "3"
+						},
+						{
+							"key": "foc_quantity[0]",
+							"value": "5"
+						},
+						{
+							"key": "foc_discount[0]",
+							"value": "10"
+						},
+						{
+							"key": "reward_points[0]",
+							"value": "50"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
