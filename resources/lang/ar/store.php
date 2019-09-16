@@ -52,6 +52,8 @@ return [
     'current_amount' => 'الكمية الحالية',
     'required_amount' => 'الكمية المطلوبة',
     'name_first' => 'اختر من القائمة  ',
+    'points' => 'نقاط',
+    'active' => 'نشط',
     '' => '',
     '' => '',
     '' => '',
