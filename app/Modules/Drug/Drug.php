@@ -815,6 +815,12 @@ class Drug
     public function checkCategoryExistence(array &$data)
     {
 
+        $data['category'] = $data['category'] ?? null;
+
+        if (!$data['category']) {
+            return;
+        }
+
         $data['category'] = strtolower(trim($data['category']));
         $drug_category = $this->drugCategory->findByName($data['category'] ?? '');
         if (!$drug_category) {
