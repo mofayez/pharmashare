@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\PaymentType;
-use App\Models\StoreSettings;
 use App\Modules\Cart\Cart;
 use App\Modules\Drug\Drug;
 use App\Modules\Drug\FOC;
+use App\Modules\Drug\FOCPoints;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -185,10 +185,16 @@ class CartController extends Controller
                 $total_store_cost += $this->calculateItemPrice($item);
             }
 
+            $total_points_with_pharmacy = (new FOCPoints())->getPharmacyPoints([
+                'store_id' => $store_id,
+                'pharmacy_id' => auth()->user()->id
+            ])['data']['total_points_with_pharmacy'];
+
             $orders[] = [
                 'store' => $store,
                 'items' => $items,
-                'total_store_cost' => $total_store_cost
+                'total_store_cost' => $total_store_cost,
+                'total_points_with_pharmacy' => $total_points_with_pharmacy
             ];
         }
         return $orders;
