@@ -108,7 +108,17 @@
                                     <span class="text-danger"><?php echo e($errors->first('trade_name')); ?></span>
                                 <?php endif; ?>
                             </div>
-                            <div class="col-md-4 text-left"></div>
+                            <div class="col-md-4 text-left">
+                                <div class="form-group">
+                                    <label><?php echo e(__('store.product_category')); ?>  </label>
+                                    <input type="text" class="form-control"
+                                           autocomplete="off" name="category"
+                                           value="<?php echo e(old('category')); ?>">
+                                </div>
+                                <?php if($errors->has('category')): ?>
+                                    <span class="text-danger"><?php echo e($errors->first('category')); ?></span>
+                                <?php endif; ?>
+                            </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
                                     <label><?php echo e(__('store.packet_size')); ?>   </label>
@@ -224,8 +234,8 @@
                                             </td>
                                             <td><?php echo e(__('store.amount_request')); ?></td>
                                             <td><?php echo e(__('store.discount_calc')); ?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php echo e(__('store.points')); ?></td>
+                                            <td><?php echo e(__('store.active')); ?></td>
                                             <td></td>
                                             <td></td>
                                         </tr>

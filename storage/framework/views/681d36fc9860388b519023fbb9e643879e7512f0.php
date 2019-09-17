@@ -46,12 +46,17 @@
                         </form>
                     </div>
                 </div>
-                    <div class="col-md-2" style="position: absolute;right: 0;top: 0;">
-                        <a href="<?php echo e(route('getAddProductView')); ?>" class="btn btn-main">
-                           <?php echo e(app()->getLocale() == 'ar' ? 'اضافة منتج' : 'Add Product'); ?>
+                <div class="col-md-4 text-center"
+                     style="position: absolute;<?php echo e(app()->getLocale() == 'ar' ? 'left' : 'right'); ?>: 0;top: 0;">
+                    <a href="<?php echo e(route('getAddProductView')); ?>" class="btn btn-main">
+                        <?php echo e(app()->getLocale() == 'ar' ? 'اضافة منتج' : 'Add Product'); ?>
 
-                        </a>
-                    </div>
+                    </a>
+                    <a href="<?php echo e(route('getAddPointsView')); ?>" class="btn btn-danger">
+                        <?php echo e(app()->getLocale() == 'ar' ? 'خصم على جميع المنتجات' : 'Discount All Over Products'); ?>
+
+                    </a>
+                </div>
                 <div class="col-md-12 table-scroll">
                     <table class="table table-bordered">
                         <thead>

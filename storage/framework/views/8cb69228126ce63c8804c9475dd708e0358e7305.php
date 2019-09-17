@@ -556,7 +556,9 @@
                                                 </button>
                                             </td>
                                             <td><?php echo e(__('store.amount_request')); ?></td>
-                                            <td><?php echo e(__('store.edit_product')); ?></td>
+                                            <td><?php echo e(__('store.discount_calc')); ?></td>
+                                            <td><?php echo e(__('store.points')); ?></td>
+                                            <td><?php echo e(__('store.active')); ?></td>
                                             <td></td>
                                             <td></td>
                                             <td></td>
@@ -564,7 +566,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $__currentLoopData = $drug_store->FOC; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $drug_store->all_foc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td>
                                                     <button type="button" class="btn btn-danger removerow">
@@ -578,6 +580,17 @@
                                                 <td>
                                                     <input name="foc_discount[<?php echo e($k); ?>]" class="form-control text-center"
                                                            type="number" value="<?php echo e($foc->foc_discount); ?>">
+                                                </td>
+                                                <td>
+                                                    <input name="reward_points[<?php echo e($k); ?>]" class="form-control text-center"
+                                                           type="number" value="<?php echo e($foc->reward_points); ?>">
+                                                </td>
+                                                <td>
+                                                    <select name="is_activated[<?php echo e($k); ?>]"
+                                                            class="form-control text-center">
+                                                        <option <?php if($foc->is_activated): ?> selected <?php endif; ?> value="1">Yes</option>
+                                                        <option  <?php if(!$foc->is_activated): ?> selected <?php endif; ?>  value="0">No</option>
+                                                    </select>
                                                 </td>
 
 
