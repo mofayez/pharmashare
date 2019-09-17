@@ -60,6 +60,7 @@ class FOC
 
         if (gettype($foc_data['foc_quantity']) === 'array') {
 
+            $this->focModel->where('user_id', $foc_data['user_id'])->whereNull('drug_store_id')->delete();
             $this->focModel->insert($this->prepareBunchFocData($foc_data));
         } else {
 

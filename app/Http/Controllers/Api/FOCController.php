@@ -50,7 +50,6 @@ class FOCController extends Controller
     public function createFocGeneral(Request $request)
     {
 
-
         $request_data = $request->all();
         $request_data['drugs_store_id'] = $request_data['drugs_store_id'] ?? null;
 
