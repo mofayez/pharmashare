@@ -11,8 +11,8 @@
                              <thead>
                                 <tr>
                                     <th></th>
-                                    <th>الكمية</th>
-                                    <th>الخصم</th>
+                                    <th><?php echo e(__('store.amount')); ?></th>
+                                    <th><?php echo e(__('store.discount')); ?></th>
                                 </tr>
                              </thead>
                              <tbody id="discounts_table">

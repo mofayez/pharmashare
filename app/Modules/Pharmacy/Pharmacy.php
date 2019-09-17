@@ -228,6 +228,7 @@ class Pharmacy
                 'store_id' => $sale->store_id,
                 'pharmacy_id' => $sale->pharmacy_id,
                 'total_points' => $item['foc_selected']->reward_points,
+                'sale_id' => $sale->id,
                 'created_at' => Carbon::now()
             ];
         } // end foreach

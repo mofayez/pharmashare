@@ -29,6 +29,7 @@ class FOC
             $drugStore->foc()->delete();
         }
 
+        $foc_data['drug_store_id'] = $drugStore->id ?? null;
         $this->focModel->insert($this->prepareBunchFocData($foc_data));
 
         return return_msg(true, 'ok');
@@ -52,6 +53,7 @@ class FOC
                 'is_activated' => $request_data['all-store-foc'][$key] ?? 0,
             ];
         }
+
         return $focs;
     }
 
@@ -60,6 +62,7 @@ class FOC
 
         if (gettype($foc_data['foc_quantity']) === 'array') {
 
+            $this->focModel->where('user_id', $foc_data['user_id'])->whereNull('drug_store_id')->delete();
             $this->focModel->insert($this->prepareBunchFocData($foc_data));
         } else {
 

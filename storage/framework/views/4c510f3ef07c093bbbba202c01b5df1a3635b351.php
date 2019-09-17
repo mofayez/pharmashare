@@ -40,6 +40,10 @@
                         <div class="col-md-12 text-right">
                             <label class=" float-left"><?php echo e(__('pharmacy.rate')); ?> </label>
                             <input type="checkbox" class="bootstrap-switch" data-column="8" checked/>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <label class=" float-left"><?php echo e(__('pharmacy.product_category')); ?> </label>
+                            <input type="checkbox" class="bootstrap-switch" data-column="9" checked/>
                             <hr>
                         </div>
                         <div class="col-md-12 text-left">
@@ -53,7 +57,7 @@
                         <div class="col-md-12 text-left">
                             <label><?php echo e(__('pharmacy.location_avg')); ?>
 
-                                (<span id="locationupto"></span>)  <?php echo e(__('pharmacy.km')); ?>
+                                (<span id="locationupto"></span>) <?php echo e(__('pharmacy.km')); ?>
 
                             </label>
                             <div id="sliderLocation" class="slider slider-info"></div>
@@ -73,7 +77,8 @@
                         </div>
                         <div class="col-md-12 text-left">
                             <label><?php echo e(__('pharmacy.manufacturer')); ?></label>
-                            <select class="selectpicker" name="manufacturer" data-style="btn btn-main btn-round btn-block"
+                            <select class="selectpicker" name="manufacturer"
+                                    data-style="btn btn-main btn-round btn-block"
                                     dir="ltr"
                                     data-size="7" name="manufacturer">
                                 <option value="0">All</option>
@@ -116,10 +121,10 @@
                             <select class="selectpicker" data-style="btn btn-main btn-round btn-block"
                                     data-size="8" name="is_featured" dir="ltr">
                                 <?php if(app()->getLocale() == 'ar'): ?>
-                                    <option value="0">  الكل  </option>
-                                    <option value="1">اعلان ممول  </option>
+                                    <option value="0"> الكل</option>
+                                    <option value="1">اعلان ممول</option>
                                 <?php else: ?>
-                                    <option value="0">  All </option>
+                                    <option value="0"> All</option>
                                     <option value="1">Is Featured</option>
                                 <?php endif; ?>
                             </select>
@@ -128,13 +133,39 @@
                         <div class="col-md-12 text-left">
                             <label>  <?php echo e(app()->getLocale() == 'ar' ? 'بها خصومات' : 'Has Discount'); ?> </label>
                             <select class="selectpicker" data-style="btn btn-main btn-round btn-block"
-                                    data-size="7" name="foc" dir="ltr"> 
+                                    data-size="7" name="foc" dir="ltr">
                                 <?php if(app()->getLocale() == 'ar'): ?>
-                                    <option value="0">   الكل  </option>
-                                    <option value="1">بها خصومات  </option>
+                                    <option value="0"> الكل</option>
+                                    <option value="1">بها خصومات</option>
                                 <?php else: ?>
                                     <option value="0">All</option>
                                     <option value="1">Has Discount</option>
+                                <?php endif; ?>
+                            </select>
+                            <hr>
+                        </div>
+                        <div class="col-md-12 text-left">
+                            <label>  <?php echo e(app()->getLocale() == 'ar' ? 'ترتيب بواسطة  ' : 'SortBy'); ?> </label>
+                            <select class="selectpicker" data-style="btn btn-main btn-round btn-block"
+                                    data-size="7" name="sort_by" dir="ltr">
+                                <?php if(app()->getLocale() == 'ar'): ?>
+                                    <option value=""> الكل</option>
+                                    <option value="price">السعر</option>
+                                    <option value="bounce">الخصومات</option>
+                                    <option value="reward_points">نقاط المكافئة</option>
+                                    <option value="store">المتجر</option>
+                                    <option value="active_ingredient">المادة الفعالة</option>
+                                    <option value="brand">البراند</option>
+                                    <option value="manufacturer">المصنع</option>
+                                <?php else: ?>
+                                    <option value="">All</option>
+                                    <option value="price">Price</option>
+                                    <option value="bounce">Bounce</option>
+                                    <option value="reward_points">Reward Points</option>
+                                    <option value="store">Store</option>
+                                    <option value="active_ingredient">Store</option>
+                                    <option value="brand">Brand</option>
+                                    <option value="manufacturer">Manufacturer</option>
                                 <?php endif; ?>
                             </select>
                             <hr>
