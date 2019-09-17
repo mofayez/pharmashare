@@ -187,6 +187,9 @@
                     ${item.foc_quantity}
                             <?php echo e(__('pharmacy.or_more')); ?>
 
+                    <span class="text-danger">
+                        + ${item.reward_points}
+                        <?php echo e(__('store.points')); ?> </span>
                     </td>
                     <td>${item.foc_discount}
                             <i class="now-ui-icons media-2_sound-waves text-danger"> %</i>

@@ -22,6 +22,7 @@
                             <th><?php echo e(__('pharmacy.strength')); ?></th>
                             <th><?php echo e(__('pharmacy.packet_size')); ?></th>
                             <th><?php echo e(__('pharmacy.rate')); ?></th>
+                            <th><?php echo e(__('pharmacy.product_category')); ?></th>
                         </tr>
                         </thead>
                         <tbody>

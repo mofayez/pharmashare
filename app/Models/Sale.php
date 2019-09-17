@@ -21,6 +21,9 @@ class Sale extends Model
     ];
 
 
+    protected $appends = ['reward_points'];
+
+
     protected $hidden = ['updated_at'];
 
     public function status()
@@ -54,6 +57,22 @@ class Sale extends Model
     {
 
         return $this->belongsTo(PaymentType::class, 'payment_type_id');
+    }
+
+
+    public function points()
+    {
+
+        return $this->hasMany(StorePharmacyPoints::class, 'sale_id');
+    }
+
+    public function getRewardPointsAttribute()
+    {
+
+        return [
+            'in' => $this->points->where('transaction', 'in')->sum('total_points'),
+            'out' => $this->points->where('transaction', 'out')->sum('total_points')
+        ];
     }
 
 } // end of Role Model class

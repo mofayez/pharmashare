@@ -1,7 +1,7 @@
 <?php $__env->startSection("styles"); ?>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'> 
+    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'>
 
     <?php echo e(Html::style('assets/css/iziToast.min.css')); ?>
 
@@ -24,80 +24,83 @@
 
             min-height: 100px !important;
         }
+
         .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
             color: #fff !important;
             border: 1px solid #979797;
-            background: linear-gradient(to right, #3e4bb3, #7929c4) !important; 
+            background: linear-gradient(to right, #3e4bb3, #7929c4) !important;
         }
-        .dataTables_wrapper .dataTables_paginate .paginate_button{
-            border-radius:30px;
+
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
+            border-radius: 30px;
         }
-/**
- * Tooltip Styles
- */
 
-/* Add this attribute to the element that needs a tooltip */
-[data-tooltip] {
-  position: relative;
-  z-index: 2;
-  cursor: pointer;
-}
+        /**
+         * Tooltip Styles
+         */
 
-/* Hide the tooltip content by default */
-[data-tooltip]:before,
-[data-tooltip]:after {
-  visibility: hidden;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
-  opacity: 0;
-  pointer-events: none;
-}
+        /* Add this attribute to the element that needs a tooltip */
+        [data-tooltip] {
+            position: relative;
+            z-index: 2;
+            cursor: pointer;
+        }
 
-/* Position tooltip above the element */
-[data-tooltip]:before {
-  position: absolute;
-  bottom: 150%;
-  left: 20%;
-  margin-bottom: 5px;
-  margin-left: -80px;
-  padding: 7px;
-  width: 160px;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  background-color: #000;
-  background-color: hsla(0, 0%, 20%, 0.9);
-  color: #fff;
-  content: attr(data-tooltip);
-  text-align: center;
-  font-size: 14px;
-  line-height: 1.2;
-}
+        /* Hide the tooltip content by default */
+        [data-tooltip]:before,
+        [data-tooltip]:after {
+            visibility: hidden;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+            opacity: 0;
+            pointer-events: none;
+        }
 
-/* Triangle hack to make tooltip look like a speech bubble */
-[data-tooltip]:after {
-  position: absolute;
-  bottom: 150%;
-  left: 20%;
-  margin-left: -5px;
-  width: 0;
-  border-top: 5px solid #000;
-  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
-  border-right: 5px solid transparent;
-  border-left: 5px solid transparent;
-  content: " ";
-  font-size: 0;
-  line-height: 0;
-}
+        /* Position tooltip above the element */
+        [data-tooltip]:before {
+            position: absolute;
+            bottom: 150%;
+            left: 20%;
+            margin-bottom: 5px;
+            margin-left: -80px;
+            padding: 7px;
+            width: 160px;
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            background-color: #000;
+            background-color: hsla(0, 0%, 20%, 0.9);
+            color: #fff;
+            content: attr(data-tooltip);
+            text-align: center;
+            font-size: 14px;
+            line-height: 1.2;
+        }
 
-/* Show tooltip content on hover */
-[data-tooltip]:hover:before,
-[data-tooltip]:hover:after {
-  visibility: visible;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
-  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
-  opacity: 1;
-}
+        /* Triangle hack to make tooltip look like a speech bubble */
+        [data-tooltip]:after {
+            position: absolute;
+            bottom: 150%;
+            left: 20%;
+            margin-left: -5px;
+            width: 0;
+            border-top: 5px solid #000;
+            border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+            border-right: 5px solid transparent;
+            border-left: 5px solid transparent;
+            content: " ";
+            font-size: 0;
+            line-height: 0;
+        }
+
+        /* Show tooltip content on hover */
+        [data-tooltip]:hover:before,
+        [data-tooltip]:hover:after {
+            visibility: visible;
+            -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+            filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+            opacity: 1;
+        }
     </style>
 <?php $__env->stopSection(); ?>
 
@@ -256,7 +259,7 @@
             "responsive": false,
             "columnDefs": [
                 {
-                    "targets": [5, 6, 7, 8],
+                    "targets": [5, 6, 7, 8, 9],
                     "visible": true
                 },
                 {
@@ -346,7 +349,8 @@
                 strength: $('select[name="strength"]').val(),
                 payment_type: $('select[name="payment_type"]').val(),
                 is_featured: $('select[name="is_featured"]').val(),
-                foc: $('select[name="foc"]').val()
+                foc: $('select[name="foc"]').val(),
+                sort_by: $('select[name="sort_by"]').val()
             };
 
             $.ajax({
@@ -363,8 +367,7 @@
                             if ($.inArray(item.id, added_to_cart) != -1) {
                                 is_disabled = true;
                             }
-
-                            console.log(item.isFeatured)
+                            console.log(item.FOC)
                             table.row.add([
                                 `<button class="btn ${item.available_quantity_in_packs == 0 ? "btn-danger" : ' btn-main'} add-to-cart p-2 pl-3 pr-3" ${is_disabled ? disabled = "disabled" : ''} data-item-id="${item.id}" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Processing" ${item.available_quantity_in_packs == 0 ? disabled = "disabled" : ''} data-available-quantity="${item.available_quantity_in_packs}">
                                     <i class="now-ui-icons shopping_basket"></i>
@@ -376,7 +379,7 @@
                                 `<h6  class="m-0 p-0" style="text-align: left">
                                     ${item.offered_price_or_bonus ? item.offered_price_or_bonus : '0'}
                                     <span>dir</span>
-                                    <small class="btn-danger btn-simple p-1 mr-1 ml-1 ${item.FOC.length > 0 ? '' : 'd-none'}"  data-tooltip="${item.FOC.length > 0 ? ('when you buy amount: ' + item.FOC[0].foc_quantity + ' discount will be: ' + item.FOC[0].foc_discount) : '' }" style="font-size: 10px;top: 5px;position: relative;">   <?php echo e(__('pharmacy.discount')); ?>    </small>
+                                    <small class="btn-danger btn-simple p-1 mr-1 ml-1 ${item.FOC.length > 0 ? '' : 'd-none'}"  data-tooltip="${item.FOC.length > 0 ? ('when you buy amount: ' + item.FOC[0].foc_quantity + ' | discount will be: ' + item.FOC[0].foc_discount + ' + ( ' + item.FOC[0].reward_points + ' Points ) ') : ''}" style="font-size: 10px;top: 5px;position: relative;">   <?php echo e(__('pharmacy.discount')); ?>    </small>
 
                                 </h6>`,
                                 `${item.drug.manufacturer}`,
@@ -385,6 +388,7 @@
                                 `${item.drug.strength ? item.drug.strength : '-'} `,
                                 `${item.drug.pack_size ? item.drug.pack_size : '-'} `,
                                 `-`,
+                                `${item.drug.drug_category ? item.drug.drug_category.title : '-'} `,
                             ]).draw(false);
                         });
 
@@ -400,9 +404,9 @@
                 }
             });
         }
-        
-        $('input[name="drug_name"]').on('keypress',function(e) {
-            if(e.which == 13) {
+
+        $('input[name="drug_name"]').on('keypress', function (e) {
+            if (e.which == 13) {
                 updateTable()
             }
         });

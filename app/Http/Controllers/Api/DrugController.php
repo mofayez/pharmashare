@@ -327,7 +327,7 @@ class DrugController extends Controller
     {
 
         // validate request
-        $validation = $this->validateDrugStoreRequest($request);
+        $validation = $this->validateUpdateDrugStoreRequest($request);
         if ($validation->fails()) {
 
             return return_msg(false, 'validation errors', [
@@ -345,6 +345,17 @@ class DrugController extends Controller
     protected function validateDrugStoreRequest(Request $request)
     {
         return validator($request->all(), [
+            'offered_price_or_bonus' => 'required|numeric',
+            'available_quantity_in_packs' => 'required|numeric',
+            'minimum_order_value_or_quantity' => 'required|numeric',
+            'store_remarks' => 'nullable|string|min:2|max:200',
+        ]);
+    }
+
+    protected function validateUpdateDrugStoreRequest(Request $request)
+    {
+        return validator($request->all(), [
+            'id' => 'required',
             'offered_price_or_bonus' => 'required|numeric',
             'available_quantity_in_packs' => 'required|numeric',
             'minimum_order_value_or_quantity' => 'required|numeric',

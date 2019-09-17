@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 17, 2019 at 11:06 AM
+-- Generation Time: Sep 17, 2019 at 11:46 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -9780,8 +9780,8 @@ INSERT INTO `drug_stores` (`id`, `drug_id`, `user_id`, `price`, `offered_price_o
 (24, 9449, 3, NULL, 20, 5, 122, NULL, 1, NULL, '2019-06-12 19:50:50', '2019-06-12 19:50:50'),
 (25, 47, 3, NULL, 2, 100, 5, '', 1, NULL, '2019-06-19 20:09:40', '2019-06-19 20:09:40'),
 (26, 9450, 3, NULL, 20, 50, 10, NULL, 1, NULL, '2019-09-15 06:00:17', '2019-09-15 06:00:17'),
-(39, 9453, 3, NULL, 25, 110, 10, '', 1, NULL, '2019-09-16 12:11:03', '2019-09-16 12:14:17'),
-(40, 20, 3, NULL, 55, 55, 55, '', 1, NULL, '2019-09-16 12:54:56', '2019-09-16 12:54:56');
+(39, 9453, 3, NULL, 25, 165, 10, '', 1, NULL, '2019-09-16 12:11:03', '2019-09-17 07:26:43'),
+(40, 20, 3, NULL, 25, 50, 10, '', 1, NULL, '2019-09-16 12:54:56', '2019-09-17 07:29:18');
 
 -- --------------------------------------------------------
 
@@ -9828,7 +9828,8 @@ INSERT INTO `drug_store_details` (`id`, `drug_store_id`, `amount`, `expiration_d
 (60, 5, 50, NULL, 50, NULL, '2019-09-16 13:05:45', '2019-09-16 13:05:45'),
 (61, 5, 50, NULL, 50, NULL, '2019-09-16 13:06:20', '2019-09-16 13:06:20'),
 (64, 5, 50, NULL, 50, NULL, '2019-09-16 13:38:34', '2019-09-16 13:38:34'),
-(66, 5, 1, NULL, 10, NULL, '2019-09-16 13:40:08', '2019-09-16 13:40:08');
+(66, 5, 1, NULL, 10, NULL, '2019-09-16 13:40:08', '2019-09-16 13:40:08'),
+(67, 39, 55, NULL, 25, NULL, '2019-09-17 07:26:43', '2019-09-17 07:26:43');
 
 -- --------------------------------------------------------
 
@@ -9900,9 +9901,12 @@ INSERT INTO `foc` (`id`, `is_activated`, `foc_on`, `drug_store_id`, `foc_quantit
 (36, 1, 'drug_store', 4, 10, 10, 3, 5, NULL, '2019-09-16 13:06:45'),
 (37, 0, 'drug_store', 4, 10, 20, 3, 10, NULL, NULL),
 (38, 0, 'drug_store', 5, 100, 10, 3, 5, NULL, NULL),
-(39, 0, 'all', NULL, 5, 10, 3, 0, NULL, NULL),
-(40, 0, 'all', NULL, 5, 10, 3, 50, '2019-09-16 14:03:38', '2019-09-16 14:03:38'),
-(41, 0, 'all', NULL, 5, 10, 3, 50, NULL, NULL);
+(43, 0, 'all', NULL, 5, 10, 3, 50, NULL, NULL),
+(44, 0, 'drug_store', 39, 20, 10, 3, 200, NULL, NULL),
+(45, 0, 'drug_store', NULL, 20, 10, 3, 200, NULL, NULL),
+(46, 0, 'drug_store', NULL, 20, 10, 3, 200, NULL, NULL),
+(47, 0, 'drug_store', NULL, 20, 10, 3, 200, NULL, NULL),
+(51, 0, 'drug_store', 40, 30, 10, 3, 200, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -9963,8 +9967,8 @@ CREATE TABLE `image_ads` (
 --
 
 INSERT INTO `image_ads` (`id`, `created_by_admin`, `approved`, `paid_at`, `show_queue`, `open`, `image_ad_type_id`, `image_package_id`, `user_id`, `valid_until`, `link`, `original_image`, `scaled_image`, `second_image`, `second_image_ratio`, `third_image`, `third_image_ratio`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, NULL, 2442, 1, 1, 1, 1, '2019-02-25', 'http://localhost/pharma-share/store/getAddImageOffers', 'https://s3.amazonaws.com/pharmashare-files/imgs/oNB4DCsmdoRjsZiCTvCOZdTcfJsFpSamRUMDwCIQ.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/3wcUiAnzj0GRspHbn4BGpFpnAyGvitsTvijHdRiE.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/9mAp9oWNvtNEEqmQieBcGlzT0NfVsepa1teIG0dw.png', '1/2', 'https://s3.amazonaws.com/pharmashare-files/imgs/iNegKDwwJvvzBc3UfcNmB1nMPci7ftYqFoE6947T.png', '16/9', '2019-02-20 05:25:11', '2019-09-17 06:53:53'),
-(3, 1, 1, NULL, 718, 1, 1, 1, 1, '2019-06-18', 'http://pharmashare.ae/store/getAddImageOffers', 'https://s3.amazonaws.com/pharmashare-files/imgs/QiFqjPvxV9BgT7Gh6wzUNV7iIzRs34OD8lxo0jtu.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/yH185HSEuCBMBDRkdS1pZNsECLalm7szSf5fvLzC.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/lhcDee6G89JSLTEyvvw10poMQvSBZody3Bln6w00.png', '1/2', 'https://s3.amazonaws.com/pharmashare-files/imgs/evYtVnb0Q5cHgKncKTii3tHnrqkDFfz0QmHMiVok.png', '16/9', '2019-06-13 10:50:23', '2019-09-17 06:53:53');
+(1, 1, 1, NULL, 2454, 1, 1, 1, 1, '2019-02-25', 'http://localhost/pharma-share/store/getAddImageOffers', 'https://s3.amazonaws.com/pharmashare-files/imgs/oNB4DCsmdoRjsZiCTvCOZdTcfJsFpSamRUMDwCIQ.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/3wcUiAnzj0GRspHbn4BGpFpnAyGvitsTvijHdRiE.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/9mAp9oWNvtNEEqmQieBcGlzT0NfVsepa1teIG0dw.png', '1/2', 'https://s3.amazonaws.com/pharmashare-files/imgs/iNegKDwwJvvzBc3UfcNmB1nMPci7ftYqFoE6947T.png', '16/9', '2019-02-20 05:25:11', '2019-09-17 07:44:13'),
+(3, 1, 1, NULL, 730, 1, 1, 1, 1, '2019-06-18', 'http://pharmashare.ae/store/getAddImageOffers', 'https://s3.amazonaws.com/pharmashare-files/imgs/QiFqjPvxV9BgT7Gh6wzUNV7iIzRs34OD8lxo0jtu.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/yH185HSEuCBMBDRkdS1pZNsECLalm7szSf5fvLzC.png', 'https://s3.amazonaws.com/pharmashare-files/imgs/lhcDee6G89JSLTEyvvw10poMQvSBZody3Bln6w00.png', '1/2', 'https://s3.amazonaws.com/pharmashare-files/imgs/evYtVnb0Q5cHgKncKTii3tHnrqkDFfz0QmHMiVok.png', '16/9', '2019-06-13 10:50:23', '2019-09-17 07:44:13');
 
 -- --------------------------------------------------------
 
@@ -10344,7 +10348,9 @@ INSERT INTO `notifications` (`id`, `notifiable_id`, `notifiable_type`, `read`, `
 (181, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-16 06:53:21', '2019-09-16 06:53:21'),
 (183, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-16 08:56:17', '2019-09-16 08:56:17'),
 (184, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-17 06:45:46', '2019-09-17 06:45:46'),
-(185, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-17 06:53:50', '2019-09-17 06:53:50');
+(185, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-17 06:53:50', '2019-09-17 06:53:50'),
+(186, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-17 07:42:53', '2019-09-17 07:42:53'),
+(187, 3, 'App\\Models\\User', 0, 'NewOrder', 'طلب جديد', 'New Order', 'تم اضافة طلب جديد', 'New Order Added', NULL, NULL, '2019-09-17 07:44:04', '2019-09-17 07:44:04');
 
 -- --------------------------------------------------------
 
@@ -10640,7 +10646,9 @@ INSERT INTO `sales` (`id`, `store_id`, `pharmacy_id`, `total_cost`, `sale_number
 (11, 3, 8, 10, '5d7f4d8101fd1', 1, 'with', 1, '2019-09-16 06:53:21', '2019-09-16 06:53:21'),
 (13, 3, 8, 90, '5d7f6a51a156b', 1, 'with', 1, '2019-09-16 08:56:17', '2019-09-16 08:56:17'),
 (14, 3, 8, 102, '5d809d3aa002d', 1, 'with', 1, '2019-09-17 06:45:46', '2019-09-17 06:45:46'),
-(15, 3, 8, 135, '5d809f1ee8020', 1, 'with', 1, '2019-09-17 06:53:50', '2019-09-17 06:53:50');
+(15, 3, 8, 135, '5d809f1ee8020', 1, 'with', 1, '2019-09-17 06:53:50', '2019-09-17 06:53:50'),
+(16, 3, 8, 180, '5d80aa9d024c1', 1, 'with', 1, '2019-09-17 07:42:53', '2019-09-17 07:42:53'),
+(17, 3, 8, 135, '5d80aae45dc67', 1, 'with', 1, '2019-09-17 07:44:04', '2019-09-17 07:44:04');
 
 -- --------------------------------------------------------
 
@@ -10678,7 +10686,9 @@ INSERT INTO `sale_details` (`id`, `sale_id`, `drug_store_id`, `cost`, `quantity`
 (12, 13, 4, 90, 10, 28, 0, '2019-09-16 08:56:18', '2019-09-16 08:56:18'),
 (13, 14, 3, 12, 1, NULL, 0, '2019-09-17 06:45:47', '2019-09-17 06:45:47'),
 (14, 14, 4, 90, 10, NULL, 0, '2019-09-17 06:45:47', '2019-09-17 06:45:47'),
-(15, 15, 4, 135, 15, NULL, 10, '2019-09-17 06:53:51', '2019-09-17 06:53:51');
+(15, 15, 4, 135, 15, NULL, 10, '2019-09-17 06:53:51', '2019-09-17 06:53:51'),
+(16, 16, 4, 180, 20, NULL, 10, '2019-09-17 07:42:54', '2019-09-17 07:42:54'),
+(17, 17, 4, 135, 15, NULL, 10, '2019-09-17 07:44:05', '2019-09-17 07:44:05');
 
 -- --------------------------------------------------------
 
@@ -10858,6 +10868,7 @@ CREATE TABLE `store_pharmacy_points` (
   `pharmacy_id` int(10) UNSIGNED NOT NULL,
   `total_points` int(10) UNSIGNED NOT NULL,
   `transaction` enum('in','out') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'in',
+  `sale_id` int(11) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -10866,16 +10877,18 @@ CREATE TABLE `store_pharmacy_points` (
 -- Dumping data for table `store_pharmacy_points`
 --
 
-INSERT INTO `store_pharmacy_points` (`id`, `store_id`, `pharmacy_id`, `total_points`, `transaction`, `created_at`, `updated_at`) VALUES
-(1, 3, 8, 55, 'in', '2019-09-13 22:00:00', NULL),
-(2, 3, 8, 2, 'in', '2019-09-13 22:00:00', NULL),
-(3, 3, 8, 1000, 'in', '2019-09-16 06:53:22', NULL),
-(4, 3, 8, 10, 'out', '2019-09-16 07:37:01', '2019-09-16 07:37:01'),
-(5, 3, 8, 100, 'out', '2019-09-16 08:09:08', '2019-09-16 08:09:08'),
-(6, 3, 8, 100, 'out', '2019-09-16 08:10:02', '2019-09-16 08:10:02'),
-(7, 3, 8, 20, 'in', '2019-09-16 08:56:18', NULL),
-(8, 3, 8, 5, 'in', '2019-09-17 06:45:47', NULL),
-(9, 3, 8, 5, 'in', '2019-09-17 06:53:51', NULL);
+INSERT INTO `store_pharmacy_points` (`id`, `store_id`, `pharmacy_id`, `total_points`, `transaction`, `sale_id`, `created_at`, `updated_at`) VALUES
+(1, 3, 8, 55, 'in', NULL, '2019-09-13 22:00:00', NULL),
+(2, 3, 8, 2, 'in', NULL, '2019-09-13 22:00:00', NULL),
+(3, 3, 8, 1000, 'in', NULL, '2019-09-16 06:53:22', NULL),
+(4, 3, 8, 10, 'out', NULL, '2019-09-16 07:37:01', '2019-09-16 07:37:01'),
+(5, 3, 8, 100, 'out', NULL, '2019-09-16 08:09:08', '2019-09-16 08:09:08'),
+(6, 3, 8, 100, 'out', NULL, '2019-09-16 08:10:02', '2019-09-16 08:10:02'),
+(7, 3, 8, 20, 'in', NULL, '2019-09-16 08:56:18', NULL),
+(8, 3, 8, 5, 'in', NULL, '2019-09-17 06:45:47', NULL),
+(9, 3, 8, 5, 'in', NULL, '2019-09-17 06:53:51', NULL),
+(10, 3, 8, 5, 'in', NULL, '2019-09-17 07:42:54', NULL),
+(11, 3, 8, 5, 'in', 17, '2019-09-17 07:44:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -11568,7 +11581,7 @@ ALTER TABLE `drug_stores`
 -- AUTO_INCREMENT for table `drug_store_details`
 --
 ALTER TABLE `drug_store_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -11580,7 +11593,7 @@ ALTER TABLE `files`
 -- AUTO_INCREMENT for table `foc`
 --
 ALTER TABLE `foc`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `f_a_qs`
@@ -11634,7 +11647,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=188;
 
 --
 -- AUTO_INCREMENT for table `packages`
@@ -11700,13 +11713,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `sale_details`
 --
 ALTER TABLE `sale_details`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -11754,7 +11767,7 @@ ALTER TABLE `store_payment_types`
 -- AUTO_INCREMENT for table `store_pharmacy_points`
 --
 ALTER TABLE `store_pharmacy_points`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `store_points_packages`

@@ -53,3 +53,4 @@ Route::delete('delete-multi-drugs', 'Api\\DrugController@deleteMultipleDrugs');
 
 
 Route::post('create-drug', 'Api\\DrugController@saveDrug');
+Route::post('update-drug', 'Api\\DrugController@updateDrugStore');
