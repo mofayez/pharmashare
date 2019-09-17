@@ -11,6 +11,13 @@
             </a>
         </li>
     @endif
+    @if(auth()->user()->role_id == 2)
+        <li class="nav-item">
+            <a class="nav-link @if($nav == 12) active show @endif" href="{{route('createPoints')}}">
+                {{__('store.points')}}
+            </a>
+        </li>
+    @endif
     @if(auth()->user()->role_id != 1)
         <li class="nav-item">
             <a class="nav-link @if($nav == 3) active show @endif" href="{{route('getEditLicensesView')}}">

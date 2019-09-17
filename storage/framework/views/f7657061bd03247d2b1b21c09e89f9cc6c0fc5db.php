@@ -1,10 +1,13 @@
 <?php $__env->startSection("styles"); ?>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'>
-
     <?php echo e(Html::style('assets/css/iziToast.min.css')); ?>
 
+    <style>
+        .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover {
+            background-color: #722ec2;
+        }
+    </style>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection("body"); ?>
@@ -16,8 +19,8 @@
     <?php echo $__env->make("includes.navbar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="wrapper">
-        <?php echo $__env->make("pages.points.all.templates.top_header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
-        <?php echo $__env->make("pages.points.all.templates.center_content", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.setting.createPoints.templates.top_header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.setting.createPoints.templates.center_content", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
 
     </body>
@@ -25,6 +28,8 @@
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection("scripts"); ?>
+
+    <?php echo e(Html::script("assets/js/emojionearea.min.js")); ?>
 
     <?php echo e(Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")); ?>
 
@@ -44,7 +49,7 @@
             "ordering": false,
             "responsive": false
         });
-        let counter = <?php echo e(count($foces)); ?>;
+        let counter = <?php echo e(count($foces ?? [])); ?>;
         $('#add_button').click(function (e) {
             e.preventDefault();
             table2.row.add([
@@ -66,6 +71,21 @@
             table2.row(tr).remove().draw();
         });
     </script>
+    <script>
 
+        $(document).ready(function () {
+            $('.loading-overlay').fadeOut();
+
+        });
+
+
+        <?php if(session()->has('success')): ?>
+        globalAddNotify('<?php echo e(session()->get('success')); ?>', 'success');
+        <?php endif; ?>
+
+        <?php if(session()->has('error')): ?>
+        globalAddNotify('<?php echo e(session()->get('error')); ?>', 'danger');
+        <?php endif; ?>
+    </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make("layouts.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

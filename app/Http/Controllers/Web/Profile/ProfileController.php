@@ -398,7 +398,6 @@ class ProfileController extends Controller
         $all_users = $this->user->all();
         $request->request->add(['store_id' => $user->id]);
         $favourites = $this->drug_ctrl->getStoreFavourites($request->all());
-//        return ;
         return view('pages.profile.get-all-favourites.index', compact('page_title', 'user', 'all_users', 'favourites'));
 
     }
@@ -413,9 +412,9 @@ class ProfileController extends Controller
         $all_users = $this->user->all();
         $request->request->add(['store_id' => $user->id]);
         $favourites = $this->drug_ctrl->getStoreFavourites($request->all());
-//        return $this->foc->allDrugStoreFoc($user->id);
-//        return ;
-        return view('pages.points.all.index', compact('page_title', 'user', 'all_users', 'favourites'));
+        $foces = $this->foc->allDrugStoreFocByStoreId($user->id)['data']['foc'] ?? [];
+
+        return view('pages.points.all.index', compact('page_title', 'user', 'all_users', 'favourites', 'foces'));
 
     }
 
@@ -424,7 +423,10 @@ class ProfileController extends Controller
         $user = auth()->user();
         $request->request->add(['user_id' => $user->id]);
         $response = $this->foc->createFocGeneral($request);
-        return $response;
+        if (!$response['status']) {
+            return back()->with('error', 'Rating With Error');
+        }
+        return back()->with('success', __('settings.add_success'));
     }
 
     public function submitFavourite(Request $request)

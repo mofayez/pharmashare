@@ -55,6 +55,9 @@ return [
     'points' => 'نقاط',
     'active' => 'نشط',
     'discount' => 'الخصم',
+    'purchase_coupon' => '  قسيمة شراء',
+    'replace_by' => 'يتم استبدالهم ب ',
+
     '' => '',
     '' => '',
     '' => '',

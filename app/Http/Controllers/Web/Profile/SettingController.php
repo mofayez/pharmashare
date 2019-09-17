@@ -6,6 +6,7 @@ use App\Http\Controllers\API\ComplaintController;
 use App\Http\Controllers\Api\DrugStoreController;
 use App\Http\Controllers\Api\NotificationController;
 use App\Http\Controllers\Api\PharmacyController;
+use App\Http\Controllers\Api\PointsController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Web\Admin\FrontController;
 use App\Http\Controllers\Web\UtilityController;
@@ -53,6 +54,7 @@ class SettingController extends Controller
     private $notification;
     private $complaints;
     private $settings;
+    private $points;
 
     /**
      * SettingController constructor.
@@ -68,6 +70,7 @@ class SettingController extends Controller
         $this->front = new FrontController();
         $this->complaints = new ComplaintController();
         $this->settings = new Settings();
+        $this->points = new PointsController();
 
     }
 
@@ -154,12 +157,12 @@ class SettingController extends Controller
 
 
         $response = (new NotificationController())->getLatestNotifications($role, auth()->user()->id);
-        
+
         if ($response['status']) {
             $notifications = $response['data']['notifications'];
-            if($role == 'admin'){
+            if ($role == 'admin') {
                 $this->notification->updateNotificationReadAtAdmin($notifications);
-            }else{
+            } else {
                 $this->notification->updateNotificationReadAt($notifications);
             }
         }
@@ -436,19 +439,20 @@ class SettingController extends Controller
         }
         return back()->with('success', __('settings.edit_success'));
     }
-    
+
     public function postEditLocations(Request $request)
-    { 
+    {
         $location = $request->location ?? '-';
-        $request->request->add(['location'=>$location]);
+        $request->request->add(['location' => $location]);
         $response = $this->user_crtl->registerUserLocation($request);
-        
+
         if (!$response['status']) {
             return back()->withInput()->withErrors($response['data']['validation_errors']);
         }
-         
+
         return back()->with('success', __('settings.edit_success'));
     }
+
     public function getComplaintsUs()
     {
         $page_title = "Complaints";
@@ -464,6 +468,29 @@ class SettingController extends Controller
         return view('pages.setting.getAllComplaints.index', compact('page_title', 'user', 'nav', 'complaints'));
 
     }
+
+    public function getCreatePoints()
+    {
+
+        $page_title = "Points";
+        $user = auth()->user();
+        $nav = 12;
+        $this->user->getUserImagePath($user);
+        return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav'));
+
+    }
+
+    public function handleCreatePoints(Request $request)
+    {
+
+        $page_title = "Points";
+        $user = auth()->user();
+        $request->request->add(['store_id' => $user->id]);
+        return $this->points->create($request);
+        return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav'));
+
+    }
+
 
     public function getCreateComplaintsUs()
     {
@@ -512,8 +539,8 @@ class SettingController extends Controller
 
         return back()->with('success', __('settings.edit_success'));
     }
-    
-    
+
+
     public function getDefaultSettings()
     {
 
@@ -521,26 +548,27 @@ class SettingController extends Controller
         $user = auth()->user();
         $nav = 11;
         $settings = $this->settings->all()->first();
-        
-        if(!$settings){
+
+        if (!$settings) {
             return back()->with('error', 'error');
         }
-        
-        return view('pages.setting.updateSettings.index', compact('page_title', 'user', 'nav','settings'));
+
+        return view('pages.setting.updateSettings.index', compact('page_title', 'user', 'nav', 'settings'));
 
     }
-    
-    public function handleDefaultSettings(Request $request) { 
+
+    public function handleDefaultSettings(Request $request)
+    {
         $settings = $this->settings->all()->first();
-        
-        if(!$settings){
+
+        if (!$settings) {
             return back()->with('error', 'error');
         }
-        
+
         $settings->update([
-            'max_transaction_number'=>$request->max_transaction_number
-            ]);
-            
+            'max_transaction_number' => $request->max_transaction_number
+        ]);
+
         return back()->with('success', __('settings.edit_success'));
     }
 }

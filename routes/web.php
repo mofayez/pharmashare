@@ -319,6 +319,8 @@ Route::group([
             Route::get('/store-blacklist', 'SettingController@getStoreBlacklist')->name('getStoreBlacklist');
             Route::post('/unblockPharmacy', 'SettingController@unblockPharmacy')->name('unblockPharmacy');
 
+            Route::get('/createPoints', 'SettingController@getCreatePoints')->name('createPoints');
+            Route::post('/handleCreatePoints', 'SettingController@handleCreatePoints')->name('handleCreatePoints');
             Route::get('/getCreateComplaintsUs', 'SettingController@getCreateComplaintsUs')->name('getCreateComplaintsUs');
             Route::post('/handelCreateComplaintsUs', 'SettingController@handelCreateComplaintsUs')->name('handelCreateComplaintsUs');
 

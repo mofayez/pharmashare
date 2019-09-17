@@ -2,9 +2,12 @@
 @section("styles")
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-    <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'>
-
     {{Html::style('assets/css/iziToast.min.css')}}
+    <style>
+        .nav-pills.nav-pills-primary .nav-item .nav-link.active, .nav-pills.nav-pills-primary .nav-item .nav-link.active:focus, .nav-pills.nav-pills-primary .nav-item .nav-link.active:hover {
+            background-color: #722ec2;
+        }
+    </style>
 @endsection
 
 @section("body")
@@ -16,8 +19,8 @@
     @include("includes.navbar")
 
     <div class="wrapper">
-        @include("pages.points.all.templates.top_header")
-        @include("pages.points.all.templates.center_content")
+        @include("pages.setting.createPoints.templates.top_header")
+        @include("pages.setting.createPoints.templates.center_content")
     </div>
 
     </body>
@@ -26,6 +29,7 @@
 
 @section("scripts")
 
+    {{Html::script("assets/js/emojionearea.min.js")}}
     {{Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")}}
     {{Html::script("assets/js/typeahead.bundle.js")}}
     {{Html::script("assets/js/iziToast.min.js")}}
@@ -41,7 +45,7 @@
             "ordering": false,
             "responsive": false
         });
-        let counter = {{count($foces)}};
+        let counter = {{count($foces ?? [])}};
         $('#add_button').click(function (e) {
             e.preventDefault();
             table2.row.add([
@@ -63,5 +67,20 @@
             table2.row(tr).remove().draw();
         });
     </script>
+    <script>
 
+        $(document).ready(function () {
+            $('.loading-overlay').fadeOut();
+
+        });
+
+
+        @if(session()->has('success'))
+        globalAddNotify('{{session()->get('success')}}', 'success');
+        @endif
+
+        @if(session()->has('error'))
+        globalAddNotify('{{session()->get('error')}}', 'danger');
+        @endif
+    </script>
 @endsection
