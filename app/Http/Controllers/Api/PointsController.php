@@ -29,8 +29,8 @@ class PointsController extends Controller
             'store_id' => 'required',
             'points.*' => 'required|numeric',
             'price.*' => 'required|numeric',
-            'points' => 'required|numeric',
-            'price' => 'required|numeric'
+            'points' => 'required|array',
+            'price' => 'required|array'
         ]);
 
         if ($validation->fails()) {
