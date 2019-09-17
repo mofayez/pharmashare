@@ -50,6 +50,7 @@
                                 <tr class="bg-secondary text-white">
                                     <th>{{__('pharmacy.store_name')}} </th>
                                     <th>{{__('pharmacy.total')}}   </th>
+                                    <th>{{__('store.points')}}   </th>
                                     <th>{{__('pharmacy.payment_type')}}   </th>
                                 </tr>
                                 </thead>
@@ -57,9 +58,11 @@
                                 @foreach($cart_before_save as $item)
                                     <tr>
                                         <td>{{$item['store']->firstname . " " . $item['store']->lastname}}
-                                            <button class="btn btn-danger" onclick="redeem('{{$item['store']->}}')">{{app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'}}</button>
+                                            <button class="btn btn-danger"
+                                                    onclick="redeemPoints('{{$item['store']->id}}','{{auth()->user()->id}}')">{{app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'}}</button>
                                         </td>
                                         <td>{{$item['total_store_cost']}}</td>
+                                        <td>{{$item['total_points_with_pharmacy']}}</td>
                                         @if(app()->getLocale() == 'ar')
                                             <td>{{$item['choosed_payment']->display_name_ar}}</td>
                                         @else
@@ -92,7 +95,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $total = 0 ?>
+                                <?php
+                                $total = 0;
+                                $total_discount = 0;
+
+                                ?>
                                 @foreach($cart_before_save as $trader)
                                     @foreach($trader['items'] as $item)
                                         <tr>
@@ -124,12 +131,32 @@
                                                     {{$item->cost}}
                                                 @endif
                                             </td>
-                                            <?php $total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount / 100))) : $item->cost;?>
+                                            <?php //$total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount / 100))) : $item->cost;?>
                                         </tr>
                                     @endforeach
+                                    <?php $total += $trader['total_store_cost'];?>
+                                    <?php $total_discount += $trader['total_store_discount'];?>
                                 @endforeach
                                 </tbody>
                                 <tfoot>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>
+                                        {{__('pharmacy.total')}}
+                                    </td>
+                                    <td class="bg-warning">
+                                        {{$total+$total_discount}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>
+                                        {{__('store.discount')}}
+                                    </td>
+                                    <td class="bg-warning">
+                                        {{$total_discount}}
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td colspan="3"></td>
                                     <td>

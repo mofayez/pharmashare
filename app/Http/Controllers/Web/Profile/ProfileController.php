@@ -120,9 +120,8 @@ class ProfileController extends Controller
         if ($response['status']) {
             $sale = $response['data']['sale'];
         }
-//        return $sale;
-        return view('pages.reports.sales.index', compact('page_title', 'user', 'all_users', 'sale'));
 
+        return view('pages.reports.sales.index', compact('page_title', 'user', 'all_users', 'sale'));
     }
 
     public function getAddProductView()

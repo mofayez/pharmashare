@@ -50,14 +50,20 @@
                                 <tr class="bg-secondary text-white">
                                     <th><?php echo e(__('pharmacy.store_name')); ?> </th>
                                     <th><?php echo e(__('pharmacy.total')); ?>   </th>
+                                    <th><?php echo e(__('store.points')); ?>   </th>
                                     <th><?php echo e(__('pharmacy.payment_type')); ?>   </th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <?php $__currentLoopData = $cart_before_save; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <tr>
-                                        <td><?php echo e($item['store']->firstname . " " . $item['store']->lastname); ?></td>
+                                        <td><?php echo e($item['store']->firstname . " " . $item['store']->lastname); ?>
+
+                                            <button class="btn btn-danger"
+                                                    onclick="redeemPoints('<?php echo e($item['store']->id); ?>','<?php echo e(auth()->user()->id); ?>')"><?php echo e(app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'); ?></button>
+                                        </td>
                                         <td><?php echo e($item['total_store_cost']); ?></td>
+                                        <td><?php echo e($item['total_points_with_pharmacy']); ?></td>
                                         <?php if(app()->getLocale() == 'ar'): ?>
                                             <td><?php echo e($item['choosed_payment']->display_name_ar); ?></td>
                                         <?php else: ?>
@@ -78,7 +84,7 @@
                 <fieldset>
                     <legend class="text_purple_gradient"><?php echo e(__('pharmacy.cart')); ?>   </legend>
                     <div class="row">
-                        <div class="col-md-12"  style="overflow: scroll;">
+                        <div class="col-md-12" style="overflow: scroll;">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -90,7 +96,11 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <?php $total = 0 ?>
+                                <?php
+                                $total = 0;
+                                $total_discount = 0;
+
+                                ?>
                                 <?php $__currentLoopData = $cart_before_save; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $trader): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                     <?php $__currentLoopData = $trader['items']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                         <tr>
@@ -124,12 +134,36 @@
 
                                                 <?php endif; ?>
                                             </td>
-                                            <?php $total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount/100))) : $item->cost;?>
+                                            <?php //$total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount / 100))) : $item->cost;?>
                                         </tr>
                                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                    <?php $total += $trader['total_store_cost'];?>
+                                    <?php $total_discount += $trader['total_store_discount'];?>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </tbody>
                                 <tfoot>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>
+                                        <?php echo e(__('pharmacy.total')); ?>
+
+                                    </td>
+                                    <td class="bg-warning">
+                                        <?php echo e($total+$total_discount); ?>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3"></td>
+                                    <td>
+                                        <?php echo e(__('store.discount')); ?>
+
+                                    </td>
+                                    <td class="bg-warning">
+                                        <?php echo e($total_discount); ?>
+
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td colspan="3"></td>
                                     <td>

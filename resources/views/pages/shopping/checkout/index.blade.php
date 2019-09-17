@@ -51,10 +51,10 @@
                             location.href = "{{route('getProductsView')}}";
                         }, 800);
                     } else {
-                        let message = [] ;
-                        $.each(response.data.un_permitted_items,function(index , item){ 
-                                           message += '<li> {{app()->getLocale() == 'ar' ? 'الحد الادني لقيمة الشراء من التاجر': 'The minimum purchase value of the trader'}}: '+item.min_order_price+'</li>';
-                                        })
+                        let message = [];
+                        $.each(response.data.un_permitted_items, function (index, item) {
+                            message += '<li> {{app()->getLocale() == 'ar' ? 'الحد الادني لقيمة الشراء من التاجر': 'The minimum purchase value of the trader'}}: ' + item.min_order_price + '</li>';
+                        })
                         swal({
                             type: 'error',
                             title: '{{__('settings.cost_unpermitted')}}',
@@ -71,6 +71,13 @@
                 }
             });
         });
+
+        function redeemPoints(store_id, pharmacy_id) {
+            console.log({
+                store_id: store_id,
+                pharmacy_id: pharmacy_id
+            })
+        }
 
         function addnotify() {
 
