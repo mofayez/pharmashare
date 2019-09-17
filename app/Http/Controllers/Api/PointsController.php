@@ -28,7 +28,9 @@ class PointsController extends Controller
         $validation = validator($request->all(), [
             'store_id' => 'required',
             'points.*' => 'required|numeric',
-            'price.*' => 'required|numeric'
+            'price.*' => 'required|numeric',
+            'points' => 'required|numeric',
+            'price' => 'required|numeric'
         ]);
 
         if ($validation->fails()) {
