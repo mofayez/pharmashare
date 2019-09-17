@@ -56,7 +56,9 @@
                                 <tbody>
                                 @foreach($cart_before_save as $item)
                                     <tr>
-                                        <td>{{$item['store']->firstname . " " . $item['store']->lastname}}</td>
+                                        <td>{{$item['store']->firstname . " " . $item['store']->lastname}}
+                                            <button class="btn btn-danger" onclick="redeem('{{$item['store']->}}')">{{app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'}}</button>
+                                        </td>
                                         <td>{{$item['total_store_cost']}}</td>
                                         @if(app()->getLocale() == 'ar')
                                             <td>{{$item['choosed_payment']->display_name_ar}}</td>
@@ -78,7 +80,7 @@
                 <fieldset>
                     <legend class="text_purple_gradient">{{__('pharmacy.cart')}}   </legend>
                     <div class="row">
-                        <div class="col-md-12"  style="overflow: scroll;">
+                        <div class="col-md-12" style="overflow: scroll;">
                             <table class="table table-bordered">
                                 <thead>
                                 <tr>
@@ -122,7 +124,7 @@
                                                     {{$item->cost}}
                                                 @endif
                                             </td>
-                                            <?php $total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount/100))) : $item->cost;?>
+                                            <?php $total += $discount ? ($item->cost - ($item->cost * ($discount->foc_discount / 100))) : $item->cost;?>
                                         </tr>
                                     @endforeach
                                 @endforeach

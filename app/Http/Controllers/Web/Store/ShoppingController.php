@@ -178,7 +178,7 @@ class ShoppingController extends Controller
 
         $cart_before_save = session()->get('cart_before_save') ?? [];
 
-        return $cart_before_save;
+//        return $cart_before_save;
         $allowed_ads = AdsControl::where('status', 1)->get()->pluck(['title'])->toArray();
         $first_ratio = [];
         $second_ratio = [];
@@ -187,7 +187,7 @@ class ShoppingController extends Controller
             $first_ratio = $response2['data']['first_ratio'];
             $second_ratio = $response2['data']['second_ratio'];
         }
-        return $cart_before_save;
+//        return $cart_before_save;
         return view('pages.shopping.checkout.index', compact(
             'page_title', 'user', 'all_users', 'cart_before_save',
             'allowed_ads', 'second_ratio', 'first_ratio'
