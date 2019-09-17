@@ -178,6 +178,7 @@ class ShoppingController extends Controller
 
         $cart_before_save = session()->get('cart_before_save') ?? [];
 
+        return $cart_before_save;
         $allowed_ads = AdsControl::where('status', 1)->get()->pluck(['title'])->toArray();
         $first_ratio = [];
         $second_ratio = [];
