@@ -44,6 +44,11 @@ class PointsController extends Controller
         return $this->focPointsPackage->savePointsPackages($request->all());
     }
 
+    public function allPointsPackagesByStoreId($store_id)
+    {
+        return $this->focPointsPackage->allPointsPackagesByStoreId($store_id);
+    }
+
     public function update(Request $request)
     {
 

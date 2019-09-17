@@ -45,6 +45,7 @@ Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
     Route::get('pharmacy-points', 'PointsController@getPharmacyPoints');
     Route::get('points-price', 'PointsController@getPointsPrice');
     Route::post('redeem-points', 'PointsController@redeemPoints');
+    Route::get('points/{store_id}', 'PointsController@allPointsPackagesByStoreId');
 });
 
 Route::get('drug-store/{id}', 'Api\\DrugController@findDrugStore');
