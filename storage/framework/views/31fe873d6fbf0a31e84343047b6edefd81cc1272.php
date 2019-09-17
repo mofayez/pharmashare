@@ -1,32 +1,34 @@
-@extends("layouts.master")
-@section("styles")
+<?php $__env->startSection("styles"); ?>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
-    {{Html::style('assets/css/iziToast.min.css')}}
-@endsection
+    <?php echo e(Html::style('assets/css/iziToast.min.css')); ?>
 
-@section("body")
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection("body"); ?>
 
     <body class="profile-page">
     <div class="loading-overlay">
         <div class="loading-overlay-icon"></div>
     </div>
-    @include("includes.navbar")
+    <?php echo $__env->make("includes.navbar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="wrapper">
-        @include("pages.shopping.cart.templates.top_header")
-        @include("pages.shopping.cart.templates.center_content")
-        @include("pages.shopping.cart.templates.all_discounts_modal")
+        <?php echo $__env->make("pages.shopping.cart.templates.top_header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.shopping.cart.templates.center_content", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.shopping.cart.templates.all_discounts_modal", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
 
     </body>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section("scripts")
+<?php $__env->startSection("scripts"); ?>
 
-    {{Html::script("assets/js/emojionearea.min.js")}}
-    {{Html::script("assets/js/iziToast.min.js")}}
+    <?php echo e(Html::script("assets/js/emojionearea.min.js")); ?>
+
+    <?php echo e(Html::script("assets/js/iziToast.min.js")); ?>
+
     <script>
 
         $(document).ready(function () {
@@ -97,7 +99,7 @@
             $('.loading-overlay').show();
             $.ajax({
                 method: 'post',
-                url: '{{route('submitCart')}}',
+                url: '<?php echo e(route('submitCart')); ?>',
                 data: form_data,
                 success: function (response) {
                     console.log(response);
@@ -105,7 +107,7 @@
                         $('.loading-overlay').fadeOut();
                         if (response.status) {
 
-                            location.href = "{{route('getShippingView')}}";
+                            location.href = "<?php echo e(route('getShippingView')); ?>";
                         }
                     }, 800);
                 },
@@ -117,15 +119,15 @@
             return true;
 
             swal({
-                title: '{{__('pharmacy.you_sure')}}',
-                text: '{{__('pharmacy.cart_submit_warning')}}',
+                title: '<?php echo e(__('pharmacy.you_sure')); ?>',
+                text: '<?php echo e(__('pharmacy.cart_submit_warning')); ?>',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
                 showLoaderOnConfirm: true,
-                confirmButtonText: '{{__('pharmacy.yes')}}',
-                cancelButtonText:  '{{__('pharmacy.no')}}',
+                confirmButtonText: '<?php echo e(__('pharmacy.yes')); ?>',
+                cancelButtonText:  '<?php echo e(__('pharmacy.no')); ?>',
             }).then((result) => {
                 if (result) {
                 }
@@ -137,9 +139,9 @@
             $('.loading-overlay').show();
             $.ajax({
                 method: 'post',
-                url: '{{route('emptyCart')}}',
+                url: '<?php echo e(route('emptyCart')); ?>',
                 data: {
-                    _token: "{{csrf_token()}}"
+                    _token: "<?php echo e(csrf_token()); ?>"
                 },
                 success: function (response) {
                     if (response.status) {
@@ -155,9 +157,9 @@
             $('.loading-overlay').show();
             $.ajax({
                 method: 'post',
-                url: '{{route('removeCartItem')}}',
+                url: '<?php echo e(route('removeCartItem')); ?>',
                 data: {
-                    _token: "{{csrf_token()}}",
+                    _token: "<?php echo e(csrf_token()); ?>",
                     drug_store_id: id
                 },
                 success: function (response) {
@@ -180,12 +182,14 @@
                     <tr>
                         <td></td>
                         <td>
-                            {{__('pharmacy.discount_calculate')}}
+                            <?php echo e(__('pharmacy.discount_calculate')); ?>
+
                     ${item.foc_quantity}
-                            {{__('pharmacy.or_more')}}
+                            <?php echo e(__('pharmacy.or_more')); ?>
+
                     <span class="text-danger">
                         + ${item.reward_points}
-                        {{__('store.points')}} </span>
+                        <?php echo e(__('store.points')); ?> </span>
                     </td>
                     <td>${item.foc_discount}
                             <i class="now-ui-icons media-2_sound-waves text-danger"> %</i>
@@ -197,4 +201,5 @@
         });
     </script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

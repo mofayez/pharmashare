@@ -53,7 +53,7 @@ return [
     'name_first' => ' Choose From Pharmashare List ',
     'points' => 'Points',
     'active' => 'Active',
-    '' => '',
+    'discount' => 'Discount',
     '' => '',
     '' => '',
     '' => '',

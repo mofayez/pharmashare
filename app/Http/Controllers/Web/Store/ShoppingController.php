@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web\Store;
 
 use App\Http\Controllers\Api\AdsController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\PointsController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Controller;
 use App\Models\AdsControl;
@@ -17,6 +18,7 @@ class ShoppingController extends Controller
     private $cart;
     private $sale;
     private $ads;
+    private $points;
 
     public function __construct()
     {
@@ -24,6 +26,7 @@ class ShoppingController extends Controller
         $this->cart = new CartController();
         $this->sale = new SaleController();
         $this->ads = new AdsController();
+        $this->points = new PointsController();
     }
 
     public function addToCart(Request $request)
@@ -67,7 +70,7 @@ class ShoppingController extends Controller
         return $response;
     }
 
-    public function viewCart()
+    public function viewCart(Request $request)
     {
         $page_title = "viewCart";
         $user = auth()->user();
@@ -89,6 +92,8 @@ class ShoppingController extends Controller
             $first_ratio = $response2['data']['first_ratio'];
             $second_ratio = $response2['data']['second_ratio'];
         }
+
+        $this->points->getPharmacyPoints($request);
 
         return view('pages.shopping.cart.index', compact('page_title', 'user', 'all_users', 'all_cart', 'allowed_ads', 'second_ratio', 'first_ratio'));
 

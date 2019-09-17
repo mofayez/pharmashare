@@ -105,7 +105,17 @@
                                     <span class="text-danger">{{$errors->first('trade_name')}}</span>
                                 @endif
                             </div>
-                            <div class="col-md-4 text-left"></div>
+                            <div class="col-md-4 text-left">
+                                <div class="form-group">
+                                    <label>{{__('store.product_category')}}  </label>
+                                    <input type="text" class="form-control"
+                                           autocomplete="off" name="category"
+                                           value="{{old('category')}}">
+                                </div>
+                                @if($errors->has('category'))
+                                    <span class="text-danger">{{$errors->first('category')}}</span>
+                                @endif
+                            </div>
                             <div class="col-md-3 text-left">
                                 <div class="form-group">
                                     <label>{{__('store.packet_size')}}   </label>

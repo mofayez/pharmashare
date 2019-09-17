@@ -166,7 +166,7 @@
                         @if(auth()->user()->role_id == 3)
                             <div class="dropdown  p-0">
                                 <a href="{{route('getCartView')}}" class="nav-link btn-round" class="dropdown-toggle" >
-                                    <div class="chat-count p-0">{{$basket_item_count}}</div>
+                                    <div id="cart-count" class="chat-count p-0">{{$basket_item_count}}</div>
                                     <i class="now-ui-icons shopping_basket"></i>
                                 </a>
                             </div>

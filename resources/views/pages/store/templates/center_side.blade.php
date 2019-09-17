@@ -21,6 +21,7 @@
                             <th>{{__('pharmacy.strength')}}</th>
                             <th>{{__('pharmacy.packet_size')}}</th>
                             <th>{{__('pharmacy.rate')}}</th>
+                            <th>{{__('pharmacy.product_category')}}</th>
                         </tr>
                         </thead>
                         <tbody>

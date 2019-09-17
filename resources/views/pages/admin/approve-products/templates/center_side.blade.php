@@ -49,7 +49,7 @@
                             <th>{{__('admin.manufacturer')}}</th>
                             <th>{{__('admin.strength')}}</th>
                             <th>{{__('admin.packet_size')}}</th>
-                            <th>{{app()->getLocale() == 'ar' ? 'التاجر' : 'store'}}</th> 
+                            <th>{{app()->getLocale() == 'ar' ? 'التاجر' : 'store'}}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -64,21 +64,23 @@
                                 <td>00{{$drug->id}}</td>
                                 <td>{{$drug->pharmashare_code}}</td>
                                 <td>{{$drug->trade_name}}</td>
-                                <td>{{$drug->form}}</td>
+                                <td>{{$drug->form ?? $drug->drugCategory->title ?? ''}}</td>
                                 <td>{{$drug->active_ingredient}}</td>
                                 <td>{{$drug->manufacturer}}</td>
                                 <td>{{$drug->strength}}</td>
                                 <td>{{$drug->pack_size}}</td>
-                                <td>{{$drug->store->firstname ?? '-'}}{{$drug->store->lastname ?? '-'}}</td> 
+                                <td>{{$drug->store->firstname ?? '-'}}{{$drug->store->lastname ?? '-'}}</td>
                                 <td>
                                     <div class="btn-group direction">
-                                        <button class="btn btn-info p-2 pl-3 pr-3" data-toggle="modal" data-target="#edit_drugs_modal" data-drug="{{$drug}}">
+                                        <button class="btn btn-info p-2 pl-3 pr-3" data-toggle="modal"
+                                                data-target="#edit_drugs_modal" data-drug="{{$drug}}">
                                             {{__('admin.edit')}}
                                         </button>
                                         <button class="btn btn-main p-2 pl-3 pr-3" onclick="approve('{{$drug->id}}')">
                                             <i class="now-ui-icons ui-1_check"></i>
                                         </button>
-                                        <button class="btn btn-danger p-2 pr-3 pl-3" onclick="reject('{{$drug->pharmashare_code}}')">
+                                        <button class="btn btn-danger p-2 pr-3 pl-3"
+                                                onclick="reject('{{$drug->pharmashare_code}}')">
                                             <i class="now-ui-icons ui-1_simple-remove"></i>
                                         </button>
                                     </div>
@@ -89,7 +91,7 @@
                     </table>
 
                 </div>
-                 <div class="col-md-12">
+                <div class="col-md-12">
                     {{$drugs->appends(request()->except('page'))->render('pagination::bootstrap-4')}}
                 </div>
             </div>
