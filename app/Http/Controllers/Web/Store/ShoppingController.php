@@ -196,6 +196,7 @@ class ShoppingController extends Controller
     public function submitCheckout(Request $request)
     {
         $request['pharmacy_id'] = auth()->user()->id;
+
         return $this->sale->placeOrder($request);
     }
 }

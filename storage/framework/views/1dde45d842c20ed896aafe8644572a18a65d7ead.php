@@ -479,6 +479,7 @@
                 $('input[name="active_ingredient"]').val(item.active_ingredient)
                 $('input[name="manufacturer"]').val(item.manufacturer)
                 $('input[name="strength"]').val(item.strength)
+                $('input[name="category"]').val(item.drug_category.title)
                 $('#pharmacy_ead').text(item.pharmacy_price_aed);
                 $('#public_ead').text(item.public_price_aed);
                 $('input[name="offered_price_or_bonus"]').val(item.public_price_aed);
