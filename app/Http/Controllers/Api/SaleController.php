@@ -436,6 +436,12 @@ class SaleController extends Controller
             ->whereSaleNumber($request->sale_number)
             ->first();
 
+        $sale->total_discount = $sale->details->sum(function ($sale_detail) {
+            return $sale_detail->discount;
+        });
+
+
+
         $this->user->getUserImagePath($sale->store);
 
         return return_msg(true, 'ok', compact('sale'));

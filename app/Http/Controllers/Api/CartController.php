@@ -250,7 +250,7 @@ class CartController extends Controller
 
             foreach ($cart_item['items'] as $inner_key => $item) {
 
-                $item_price = $this->calculateItemPrice($item);
+                $item_price = $item->offered_price_or_bonus * $item->quantity;
                 $cart_item['items'][$inner_key]['price'] = $item_price;
                 $total_store_cost += $item_price;
 
