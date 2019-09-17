@@ -52,7 +52,6 @@ class AppServiceProvider extends ServiceProvider
                 $view->with('favourites_item_count', count($favourites));
 
             }
-
             $view->with('basket_item_count', count(session()->get('cart_storage') ?? []));
         });
     }
