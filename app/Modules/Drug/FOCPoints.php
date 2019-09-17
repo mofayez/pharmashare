@@ -39,6 +39,15 @@ class FOCPoints
         return return_msg(true, 'ok');
     }
 
+
+    public function allPointsPackagesByStoreId($store_id)
+    {
+
+        $packages = $this->storePointsPackage->where('store_id', $store_id)->get();
+
+        return return_msg(true, 'ok', compact('packages'));
+    }
+
     public function preparePointsData($data)
     {
 
