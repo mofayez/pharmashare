@@ -12,8 +12,9 @@
     @media  only screen and (max-width: 600px) {
         .my-group .btn-main {
             max-width: 25% !important;
-        }   
+        }
     }
+
     .pagination {
         justify-content: center;
     }
@@ -27,15 +28,16 @@
         <div class="card">
             <div class="card card-blog card-plain card-body">
                 <div class="row">
-                    <div class="col-md-8"> 
-                            <div class="input-group my-group">
-                                <input type="text" class="form-control bg-white" name="query" autocomplete="off"
-                                       placeholder=" <?php echo e(__('store.search_place')); ?> " value=" <?php echo e(app('request')->get('query')); ?>">
-                                <button class="btn btn-default btn-main m-0 form-control border-0"
-                                        onclick="filter()">  <?php echo e(__('store.search')); ?>
+                    <div class="col-md-8">
+                        <div class="input-group my-group">
+                            <input type="text" class="form-control bg-white" name="query" autocomplete="off"
+                                   placeholder=" <?php echo e(__('store.search_place')); ?> "
+                                   value=" <?php echo e(app('request')->get('query')); ?>">
+                            <button class="btn btn-default btn-main m-0 form-control border-0"
+                                    onclick="filter()">  <?php echo e(__('store.search')); ?>
 
-                                </button>  
-                           </div>
+                            </button>
+                        </div>
                     </div>
                     <div class="col-md-4">
                         <input type="text" class="form-control text-center" id="datarange" dir="ltr">
@@ -127,6 +129,7 @@
                                 <th><?php echo e(app()->getLocale() =='ar' ? 'العنوان':'Location'); ?>  </th>
                                 <th><?php echo e(__('store.total')); ?>  </th>
                                 <th><?php echo e(__('store.date')); ?></th>
+                                <th><?php echo e(__('store.points')); ?></th>
                                 <th><?php echo e(__('store.status')); ?></th>
                                 <th style="width: 100px;"></th>
                             </tr>
@@ -140,6 +143,12 @@
                                     <td><?php echo e($order['pharmacy']->location->geo_location ?? ''); ?></td>
                                     <td><?php echo e($order->total_cost); ?></td>
                                     <td><?php echo e($order->created_at->format('Y-m-d')); ?></td>
+                                    <td>
+                                        <i class="fa fa-arrow-up text-success"></i> <?php echo e($order->reward_points['in'] ?? 0); ?>
+
+                                        |
+                                        <?php echo e($order->reward_points['out'] ?? 0); ?> <i class="fa fa-arrow-down text-danger"></i>
+                                    </td>
                                     <td>
                                         <?php if($order->status->title == 'order'): ?>
                                             <label class="badge badge-info">
@@ -212,7 +221,7 @@
                             </tbody>
                         </table>
                     </div>
-            
+
                     <div class="col-md-12  justify-content-center">
                         <?php echo e($orders->links('vendor.pagination.bootstrap-4')); ?>
 
