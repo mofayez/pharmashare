@@ -94,7 +94,7 @@ class ShoppingController extends Controller
         }
 
         $this->points->getPharmacyPoints($request);
-
+//        return $all_cart;
         return view('pages.shopping.cart.index', compact('page_title', 'user', 'all_users', 'all_cart', 'allowed_ads', 'second_ratio', 'first_ratio'));
 
     }

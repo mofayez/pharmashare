@@ -120,7 +120,7 @@ class ProfileController extends Controller
         if ($response['status']) {
             $sale = $response['data']['sale'];
         }
-
+//        return $sale;
         return view('pages.reports.sales.index', compact('page_title', 'user', 'all_users', 'sale'));
 
     }
@@ -413,6 +413,7 @@ class ProfileController extends Controller
         $all_users = $this->user->all();
         $request->request->add(['store_id' => $user->id]);
         $favourites = $this->drug_ctrl->getStoreFavourites($request->all());
+//        return $this->foc->allDrugStoreFoc($user->id);
 //        return ;
         return view('pages.points.all.index', compact('page_title', 'user', 'all_users', 'favourites'));
 
@@ -422,8 +423,8 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $request->request->add(['user_id' => $user->id]);
-        return back();
-        $response = $this->foc->createFOC($request);
+        $response = $this->foc->createFocGeneral($request);
+        return $response;
     }
 
     public function submitFavourite(Request $request)

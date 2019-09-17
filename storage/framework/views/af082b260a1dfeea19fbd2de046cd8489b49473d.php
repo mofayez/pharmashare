@@ -128,7 +128,7 @@
                                                        <?php if($item->available_quantity_in_packs == 0): ?>
                                                        value="0">
                                                 <?php else: ?>
-                                                    value="1">
+                                                    value="<?php echo e($item->quantity ?? 1); ?>">
                                                 <?php endif; ?>
                                                 <button type="button"
                                                         class="btn m-0 form-control border-0 p-0 decr-btn btn-default">

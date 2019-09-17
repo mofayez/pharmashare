@@ -125,7 +125,7 @@
                                                        @if($item->available_quantity_in_packs == 0)
                                                        value="0">
                                                 @else
-                                                    value="1">
+                                                    value="{{$item->quantity ?? 1}}">
                                                 @endif
                                                 <button type="button"
                                                         class="btn m-0 form-control border-0 p-0 decr-btn btn-default">

@@ -48,7 +48,8 @@
                 `<button type="button" class="btn btn-danger removerow">
                           <i class="fas fa-minus"></i>
                       </button>`,
-                `<input name="foc_quantity[${counter}]" class="form-control text-center" type="number" value="0">`,
+                `<input name="foc_on[${counter}]" class="form-control text-center" type="hidden" value="all">
+                <input name="foc_quantity[${counter}]" class="form-control text-center" type="number" value="0">`,
                 `<input name="foc_discount[${counter}]" class="form-control text-center" type="number" value="0">`,
                 `<input name="reward_points[${counter}]" class="form-control text-center" type="number" value="0">`,
                 `<select name="is_activated[${counter}]" class="form-control text-center"><option value="1">Yes</option><option value="0">No</option></select>`,
