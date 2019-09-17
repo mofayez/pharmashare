@@ -41,15 +41,13 @@
                                                 <thead>
                                                 <tr class="text-left">
                                                     <th></th>
-                                                    <th>{{__('store.amount_request')}}</th>
-                                                    <th>{{__('store.discount_calc')}}</th>
                                                     <th>{{__('store.points')}}</th>
-                                                    <th>{{__('store.active')}}</th>
                                                     <th></th>
+                                                    <th>{{__('store.purchase_coupon')}}</th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                @foreach([] as $k=>$foc)
+                                                @foreach($packages as $k=>$package)
                                                     <tr>
 
                                                         <td>
@@ -59,32 +57,20 @@
                                                         </td>
 
                                                         <td>
-                                                            <input name="foc_on[{{$k}}]" class="form-control text-center" type="hidden"
-                                                                   value="{{$foc->foc_on}}">
-                                                            <input name="foc_quantity[{{$k}}]" class="form-control text-center"
+                                                            <input name="points[{{$k}}]" class="form-control text-center"
                                                                    type="number"
-                                                                   value="{{$foc->foc_quantity}}">
+                                                                   value="{{$package->points}}">
 
                                                         </td>
+
+                                                        <td>{{__('store.replace_by')}}</td>
 
                                                         <td>
-                                                            <input name="foc_discount[{{$k}}]" class="form-control text-center"
+                                                            <input name="price[{{$k}}]" class="form-control text-center"
                                                                    type="number"
-                                                                   value="{{$foc->foc_discount}}">
+                                                                   value="{{$package->price}}">
                                                         </td>
 
-                                                        <td><input name="reward_points[{{$k}}]" class="form-control text-center"
-                                                                   type="number"
-                                                                   value="{{$foc->reward_points}}">
-                                                        </td>
-
-                                                        <td>
-                                                            <select name="is_activated[{{$k}}]" class="form-control text-center">
-                                                                <option @if($foc->is_activated) selected @endif value="1">Yes</option>
-                                                                <option @if(!$foc->is_activated) selected @endif value="0">No</option>
-                                                            </select>
-                                                        </td>
-                                                        <td></td>
                                                     </tr>
                                                 @endforeach
                                                 </tbody>

@@ -476,7 +476,8 @@ class SettingController extends Controller
         $user = auth()->user();
         $nav = 12;
         $this->user->getUserImagePath($user);
-        return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav'));
+        $packages = [];
+        return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav', 'packages'));
 
     }
 
@@ -486,8 +487,12 @@ class SettingController extends Controller
         $page_title = "Points";
         $user = auth()->user();
         $request->request->add(['store_id' => $user->id]);
-        return $this->points->create($request);
-        return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav'));
+        $response = $this->points->create($request);
+        if (!$response['status']) {
+            return back()->withInput()->withErrors($response['data']['validation_errors']);
+        }
+
+        return back()->with('success', __('settings.edit_success'));
 
     }
 

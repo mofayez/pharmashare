@@ -42,15 +42,13 @@
                                                 <thead>
                                                 <tr class="text-left">
                                                     <th></th>
-                                                    <th><?php echo e(__('store.amount_request')); ?></th>
-                                                    <th><?php echo e(__('store.discount_calc')); ?></th>
                                                     <th><?php echo e(__('store.points')); ?></th>
-                                                    <th><?php echo e(__('store.active')); ?></th>
                                                     <th></th>
+                                                    <th><?php echo e(__('store.purchase_coupon')); ?></th>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <?php $__currentLoopData = []; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php $__currentLoopData = $packages; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k=>$package): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                     <tr>
 
                                                         <td>
@@ -60,32 +58,20 @@
                                                         </td>
 
                                                         <td>
-                                                            <input name="foc_on[<?php echo e($k); ?>]" class="form-control text-center" type="hidden"
-                                                                   value="<?php echo e($foc->foc_on); ?>">
-                                                            <input name="foc_quantity[<?php echo e($k); ?>]" class="form-control text-center"
+                                                            <input name="points[<?php echo e($k); ?>]" class="form-control text-center"
                                                                    type="number"
-                                                                   value="<?php echo e($foc->foc_quantity); ?>">
+                                                                   value="<?php echo e($package->points); ?>">
 
                                                         </td>
+
+                                                        <td><?php echo e(__('store.replace_by')); ?></td>
 
                                                         <td>
-                                                            <input name="foc_discount[<?php echo e($k); ?>]" class="form-control text-center"
+                                                            <input name="price[<?php echo e($k); ?>]" class="form-control text-center"
                                                                    type="number"
-                                                                   value="<?php echo e($foc->foc_discount); ?>">
+                                                                   value="<?php echo e($package->price); ?>">
                                                         </td>
 
-                                                        <td><input name="reward_points[<?php echo e($k); ?>]" class="form-control text-center"
-                                                                   type="number"
-                                                                   value="<?php echo e($foc->reward_points); ?>">
-                                                        </td>
-
-                                                        <td>
-                                                            <select name="is_activated[<?php echo e($k); ?>]" class="form-control text-center">
-                                                                <option <?php if($foc->is_activated): ?> selected <?php endif; ?> value="1">Yes</option>
-                                                                <option <?php if(!$foc->is_activated): ?> selected <?php endif; ?> value="0">No</option>
-                                                            </select>
-                                                        </td>
-                                                        <td></td>
                                                     </tr>
                                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </tbody>
