@@ -13,6 +13,14 @@
             </a>
         </li>
     <?php endif; ?>
+    <?php if(auth()->user()->role_id == 2): ?>
+        <li class="nav-item">
+            <a class="nav-link <?php if($nav == 12): ?> active show <?php endif; ?>" href="<?php echo e(route('createPoints')); ?>">
+                <?php echo e(__('store.points')); ?>
+
+            </a>
+        </li>
+    <?php endif; ?>
     <?php if(auth()->user()->role_id != 1): ?>
         <li class="nav-item">
             <a class="nav-link <?php if($nav == 3): ?> active show <?php endif; ?>" href="<?php echo e(route('getEditLicensesView')); ?>">

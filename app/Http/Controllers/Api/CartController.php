@@ -246,22 +246,19 @@ class CartController extends Controller
             $cart_items[$key]['shipment'] = $choosed_payments[$store->id]['shipment'] ?? null;
 
             $total_store_cost = 0;
+            $total_store_discount = 0;
+
             foreach ($cart_item['items'] as $inner_key => $item) {
 
                 $item_price = $this->calculateItemPrice($item);
                 $cart_item['items'][$inner_key]['price'] = $item_price;
                 $total_store_cost += $item_price;
-            }
-            $cart_items[$key]['total_store_cost'] = $total_store_cost;
-        }
-
-        foreach ($cart_items as $cart_item) {
-
-            foreach ($cart_item['items'] ?? [] as $item) {
 
                 $item->foc_selected = $item->foc->where('foc_quantity', '<=', $item->quantity)->first();
-
+                $total_store_discount += $item->quantity - ($item->quantity * $item->foc_selected->foc_discount / 100);
             }
+            $cart_items[$key]['total_store_cost'] = $total_store_cost;
+            $cart_items[$key]['total_store_discount'] = $total_store_discount;
         }
 
         session()->put('cart_before_save', $cart_items);

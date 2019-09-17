@@ -235,6 +235,7 @@ class FOC
 
         $foc = $this->focModel
             ->whereUserId($store_id)
+            ->whereNull('drug_store_id')
             ->get();
 
 //        $foc->load(['drugStore.drug']);
