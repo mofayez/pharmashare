@@ -1,10 +1,10 @@
-@extends("layouts.master")
-@section("styles")
+<?php $__env->startSection("styles"); ?>
     <link href='https://fonts.googleapis.com/css?family=PT+Sans&subset=latin' rel='stylesheet' type='text/css'>
     <link rel='stylesheet' href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
     <link rel='stylesheet' href='https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css'>
 
-    {{Html::style('assets/css/iziToast.min.css')}}
+    <?php echo e(Html::style('assets/css/iziToast.min.css')); ?>
+
     <style>
         #myTable_wrapper {
             overflow-x: scroll;
@@ -102,44 +102,47 @@
             opacity: 1;
         }
     </style>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section("body")
+<?php $__env->startSection("body"); ?>
 
     <body class="profile-page">
     <div class="loading-overlay">
         <div class="loading-overlay-icon"></div>
     </div>
-    @include("includes.navbar")
+    <?php echo $__env->make("includes.navbar", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
 
     <div class="wrapper">
-        @include("pages.store.templates.top_header")
-        @include("pages.store.templates.center_content")
-        @include("pages.store.templates.showinfo_modal")
+        <?php echo $__env->make("pages.store.templates.top_header", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.store.templates.center_content", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+        <?php echo $__env->make("pages.store.templates.showinfo_modal", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
     </div>
 
     </body>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section("scripts")
+<?php $__env->startSection("scripts"); ?>
 
-    {{Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")}}
-    {{Html::script("assets/js/typeahead.bundle.js")}}
-    {{Html::script("assets/js/iziToast.min.js")}}
+    <?php echo e(Html::script("https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js")); ?>
+
+    <?php echo e(Html::script("assets/js/typeahead.bundle.js")); ?>
+
+    <?php echo e(Html::script("assets/js/iziToast.min.js")); ?>
+
     <script>
         $(".selectpicker").selectpicker();
     </script>
     <script>
         let added_to_cart = [];
-        @php
+        <?php
             $cart_items = session()->get('cart_storage') ?? [];
             foreach ($cart_items as $item){
-        @endphp
-        added_to_cart.push(parseInt('{{$item['product_id']}}'));
-        @php
+        ?>
+        added_to_cart.push(parseInt('<?php echo e($item['product_id']); ?>'));
+        <?php
             }
-        @endphp
+        ?>
         $(document).on('click', '.add-to-cart', function () {
             let $this = $(this);
             let id = $this.attr('data-item-id');
@@ -149,9 +152,9 @@
                 $this.button('reset');
                 $.ajax({
                     method: 'post',
-                    url: "{{route('addToCart')}}",
+                    url: "<?php echo e(route('addToCart')); ?>",
                     data: {
-                        _token: "{{csrf_token()}}",
+                        _token: "<?php echo e(csrf_token()); ?>",
                         drug_store_id: id
                     },
                     success: function (response) {
@@ -172,7 +175,7 @@
         function addnotify() {
 
             $.growl({
-                message: `<b>  {{__('pharmacy.add_to_cart')}}  </b>`
+                message: `<b>  <?php echo e(__('pharmacy.add_to_cart')); ?>  </b>`
             }, {
                 type: 'info',
                 allow_dismiss: !1,
@@ -202,7 +205,7 @@
             // Set the Options for "Bloodhound" suggestion engine
             var engine = new Bloodhound({
                 remote: {
-                    url: '{{route('getAutoCompleteDrugs')}}' + '?drug_name=%QUERY%',
+                    url: '<?php echo e(route('getAutoCompleteDrugs')); ?>' + '?drug_name=%QUERY%',
                     wildcard: '%QUERY%'
                 },
                 datumTokenizer: Bloodhound.tokenizers.whitespace('drug_name', 'name'),
@@ -228,7 +231,7 @@
                 // the key from the array we want to display (name,etc...)
                 templates: {
                     empty: [
-                        '<div class="list-group text-right search-results-dropdown"><div class="list-group-item"> {{__('pharmacy.no_data')}}</div></div>'
+                        '<div class="list-group text-right search-results-dropdown"><div class="list-group-item"> <?php echo e(__('pharmacy.no_data')); ?></div></div>'
                     ],
                     header: [
                         '<div class="list-group text-right search-results-dropdown">'
@@ -305,7 +308,7 @@
         let a = document.getElementById("sliderLocation");
         noUiSlider.create(a, {
             start: 1000,
-            direction: '{{app()->getLocale() == 'ar' ? 'rtl' : 'ltr'}}',
+            direction: '<?php echo e(app()->getLocale() == 'ar' ? 'rtl' : 'ltr'); ?>',
             connect: [!0, !1],
             range: {min: 0, max: 1000}
         }).on('update', function (data) {
@@ -318,7 +321,7 @@
         noUiSlider.create(o, {
             start: [0, 5000],
             connect: !0,
-            direction: '{{app()->getLocale() == 'ar' ? 'rtl' : 'ltr'}}',
+            direction: '<?php echo e(app()->getLocale() == 'ar' ? 'rtl' : 'ltr'); ?>',
             range: {min: 0, max: 5000}
         }).on('update', function (data, z) {
             $("#pricefrom").text(data[0]);
@@ -335,7 +338,7 @@
             $('.loading-overlay').show();
 
             let fetch_data = {
-                _token: "{{csrf_token()}}",
+                _token: "<?php echo e(csrf_token()); ?>",
                 drug_category_id: $('select[name="drug_category_id"]').val(),
                 min_price: $('input[name="min_price"]').val(),
                 max_price: $('input[name="max_price"]').val(),
@@ -352,7 +355,7 @@
 
             $.ajax({
                 method: "get",
-                url: "{{route('getDrugsWithFilterData')}}",
+                url: "<?php echo e(route('getDrugsWithFilterData')); ?>",
                 data: fetch_data,
                 success: function (response) {
                     console.log(response);
@@ -371,12 +374,12 @@
                                 </button>`,
                                 `<h6 class="m-0 p-0" style="text-align: left" data-tooltip="${item.store_remarks}">
                                     ${item.drug.trade_name}
-                                    <small class="btn-success ads-flash btn-simple p-1 mr-1 ml-1 ${item.isFeatured ? '' : 'd-none'}" style="font-size: 10px">{{__('pharmacy.ads')}}</small>
+                                    <small class="btn-success ads-flash btn-simple p-1 mr-1 ml-1 ${item.isFeatured ? '' : 'd-none'}" style="font-size: 10px"><?php echo e(__('pharmacy.ads')); ?></small>
                                 </h6>`,
                                 `<h6  class="m-0 p-0" style="text-align: left">
                                     ${item.offered_price_or_bonus ? item.offered_price_or_bonus : '0'}
                                     <span>dir</span>
-                                    <small class="btn-danger btn-simple p-1 mr-1 ml-1 ${item.FOC.length > 0 ? '' : 'd-none'}"  data-tooltip="${item.FOC.length > 0 ? ('when you buy amount: ' + item.FOC[0].foc_quantity + ' | discount will be: ' + item.FOC[0].foc_discount + ' + ( ' + item.FOC[0].reward_points + ' Points ) ') : ''}" style="font-size: 10px;top: 5px;position: relative;">   {{__('pharmacy.discount')}}    </small>
+                                    <small class="btn-danger btn-simple p-1 mr-1 ml-1 ${item.FOC.length > 0 ? '' : 'd-none'}"  data-tooltip="${item.FOC.length > 0 ? ('when you buy amount: ' + item.FOC[0].foc_quantity + ' | discount will be: ' + item.FOC[0].foc_discount + ' + ( ' + item.FOC[0].reward_points + ' Points ) ') : ''}" style="font-size: 10px;top: 5px;position: relative;">   <?php echo e(__('pharmacy.discount')); ?>    </small>
 
                                 </h6>`,
                                 `${item.drug.manufacturer}`,
@@ -408,4 +411,5 @@
             }
         });
     </script>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.master", array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

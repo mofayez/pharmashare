@@ -11,8 +11,8 @@
                              <thead>
                                 <tr>
                                     <th></th>
-                                    <th>{{__('store.amount')}}</th>
-                                    <th>{{__('store.discount')}}</th>
+                                    <th><?php echo e(__('store.amount')); ?></th>
+                                    <th><?php echo e(__('store.discount')); ?></th>
                                 </tr>
                              </thead>
                              <tbody id="discounts_table">

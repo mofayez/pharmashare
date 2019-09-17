@@ -549,7 +549,7 @@
                                                 </button>
                                             </td>
                                             <td>{{__('store.amount_request')}}</td>
-                                            <td>{{__('store.edit_product')}}</td>
+                                            <td>{{__('store.discount_calc')}}</td>
                                             <td>{{__('store.points')}}</td>
                                             <td>{{__('store.active')}}</td>
                                             <td></td>

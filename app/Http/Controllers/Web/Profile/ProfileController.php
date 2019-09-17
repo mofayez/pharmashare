@@ -100,6 +100,8 @@ class ProfileController extends Controller
 
             $second_ratio = $response2['data']['second_ratio'];
         }
+
+//        return $orders;
         return view('pages.profile.sales.index', compact('page_title', 'user', 'all_users', 'orders', 'allowed_ads', 'second_ratio', 'first_ratio'));
 
     }

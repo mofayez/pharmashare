@@ -556,7 +556,7 @@
                                                 </button>
                                             </td>
                                             <td><?php echo e(__('store.amount_request')); ?></td>
-                                            <td><?php echo e(__('store.edit_product')); ?></td>
+                                            <td><?php echo e(__('store.discount_calc')); ?></td>
                                             <td><?php echo e(__('store.points')); ?></td>
                                             <td><?php echo e(__('store.active')); ?></td>
                                             <td></td>
