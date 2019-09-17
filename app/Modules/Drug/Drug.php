@@ -123,6 +123,9 @@ class Drug
         if (!$drug) {
             return null;
         }
+//        dd($drug);
+
+        $drug->all_foc = $drug->all_foc();
 
         $this->categorizeDrugAmounts($drug);
 

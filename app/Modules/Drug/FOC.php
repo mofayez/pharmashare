@@ -50,7 +50,7 @@ class FOC
                 'reward_points' => $request_data['reward_points'][$key] ?? 0,
                 'user_id' => $request_data['user_id'] ?? null,
                 'foc_on' => $request_data['foc_on'][$key] ?? 'drug_store',
-                'is_activated' => $request_data['all-store-foc'][$key] ?? 0,
+                'is_activated' => $request_data['all-store-foc'][$key] ?? $request_data['is_activated'][$key] ?? 0,
             ];
         }
 

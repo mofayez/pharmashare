@@ -475,8 +475,10 @@ class SettingController extends Controller
         $page_title = "Points";
         $user = auth()->user();
         $nav = 12;
+        $packages = $this->points->allPointsPackagesByStoreId($user->id)['data']['packages'];
+//        return $response;
         $this->user->getUserImagePath($user);
-        $packages = [];
+//        $packages = [];
         return view('pages.setting.createPoints.index', compact('page_title', 'user', 'nav', 'packages'));
 
     }

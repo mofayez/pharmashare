@@ -566,7 +566,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        <?php $__currentLoopData = $drug_store->FOC; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <?php $__currentLoopData = $drug_store->all_foc; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $k => $foc): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
                                                 <td>
                                                     <button type="button" class="btn btn-danger removerow">

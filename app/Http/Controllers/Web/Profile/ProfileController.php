@@ -179,9 +179,7 @@ class ProfileController extends Controller
 
     public function deleteDrugStore(Request $request)
     {
-
         return $this->drug_ctrl->deleteDrugStore($request->id);
-
     }
 
     public function getAllProductsView(Request $request)

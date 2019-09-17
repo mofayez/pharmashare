@@ -110,6 +110,27 @@ class DrugStore extends Model
         return $foc;
     }
 
+    public function all_foc()
+    {
+
+
+        $foc = $this->foc()
+            ->orderBy('foc_quantity')
+            ->where('foc_on', 'drug_store')
+            ->get();
+
+
+        if (count($foc) === 0) {
+
+            return FOC::orderBy('foc_quantity')
+                ->where('user_id', $this->user_id)
+                ->where('foc_on', 'all')
+                ->get();
+        }
+
+        return $foc;
+    }
+
     public function foc()
     {
 

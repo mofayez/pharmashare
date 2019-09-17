@@ -559,7 +559,7 @@
                                         </tr>
                                         </thead>
                                         <tbody>
-                                        @foreach($drug_store->FOC as $k => $foc)
+                                        @foreach($drug_store->all_foc as $k => $foc)
                                             <tr>
                                                 <td>
                                                     <button type="button" class="btn btn-danger removerow">
