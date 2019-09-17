@@ -16,7 +16,7 @@ class SaleDetail extends Model
     /**
      * @var array $fillable
      */
-    protected $fillable = ['sale_id', 'drug_store_id', 'cost', 'quantity', 'foc_id'];
+    protected $fillable = ['sale_id', 'drug_store_id', 'cost', 'quantity', 'foc_id', 'discount'];
 
 
     public function sale()

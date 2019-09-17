@@ -120,6 +120,12 @@ class FOCController extends Controller
         return $this->foc->allDrugStoreFoc($drug_store_id);
     }
 
+    public function allDrugStoreFocByStoreId($store_id)
+    {
+
+        return $this->foc->allStoreFoc($store_id);
+    }
+
 
     public function deleteFOC($id)
     {
@@ -162,11 +168,13 @@ class FOCController extends Controller
             'user_id' => 'required',
             'reward_points.*' => 'required|numeric',
             'foc_on.*' => 'required|in:all,drug_store',
+            'is_activated.*' => 'required|in:0,1',
             'drug_store_id' => 'array|required_if:foc_on,drug_store',
             'foc_quantity' => 'array|required',
             'foc_discount' => 'array|required',
             'reward_points' => 'array|required',
             'foc_on' => 'array|required',
+            'is_activated' => 'array|required',
         ]);
     }
 
@@ -182,6 +190,7 @@ class FOCController extends Controller
             'user_id' => 'required',
             'reward_points' => 'required|numeric',
             'foc_on' => 'required|in:all,drug_store',
+            'is_activated' => 'required|in:0,1',
         ]);
     }
 

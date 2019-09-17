@@ -118,6 +118,8 @@ class Drug
             ->with(['storeUser.role', 'drug.drugCategory'])
             ->find($id);
 
+        $drug->all_foc = \App\Models\FOC::where('drug_store_id', $id)->get();
+
         if (!$drug) {
             return null;
         }

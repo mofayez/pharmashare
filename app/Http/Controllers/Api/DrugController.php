@@ -519,7 +519,8 @@ class DrugController extends Controller
                 $sheet->row(1, [
                     'Sl #', 'PharmaShare Code', 'Trade Name', 'Form', 'Pack Size', 'Active Ingredient',
                     'Strength', 'Manufacturer', 'Offered Price or Bonus', 'Minimum order Value or Quantity',
-                    'Available Quantity in Packs', 'Pharmacy Price Aed', 'Public Price Aed', 'Store Remarks', 'foc quantity', 'foc discount'
+                    'Available Quantity in Packs', 'Pharmacy Price Aed', 'Public Price Aed', 'Store Remarks',
+                    'foc quantity', 'foc discount', 'reward_points', 'foc_on', 'category'
                 ]);
 
                 // Set black background

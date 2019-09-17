@@ -234,6 +234,7 @@ class FOCPoints
         $pharmacy_id = $data['pharmacy_id'];
         $store_id = $data['store_id'];
 
+
         $total_in_points_with_pharmacy = StorePharmacyPoints::where('pharmacy_id', $pharmacy_id)
             ->where('store_id', $store_id)
             ->where('transaction', 'in')

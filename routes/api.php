@@ -31,6 +31,7 @@ Route::group(['prefix' => 'foc', 'namespace' => 'API'], function () {
     Route::post('activate-deactivate', 'FOCController@activateDeactivateFOC');
     Route::post('update', 'FOCController@updateFOC');
     Route::delete('delete/{id}', 'FOCController@deleteFOC');
+    Route::get('all-store-foc/{id}', 'FOCController@allDrugStoreFocByStoreId');
 });
 
 Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
@@ -46,6 +47,7 @@ Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
     Route::post('redeem-points', 'PointsController@redeemPoints');
 });
 
+Route::get('drug-store/{id}', 'Api\\DrugController@findDrugStore');
 
 Route::delete('delete-multi-drugs', 'Api\\DrugController@deleteMultipleDrugs');
 

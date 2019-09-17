@@ -219,7 +219,7 @@ class Pharmacy
                 'drug_store_id' => $item['id'],
                 'cost' => $item['price'],
                 'quantity' => $item['quantity'],
-                'foc_id' => $item['foc_selected']->id ?? null,
+                'discount' => $item['foc_selected']->foc_discount ?? null,
             ]);
 
             if (!$item['foc_selected']) continue;
