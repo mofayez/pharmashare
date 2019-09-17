@@ -255,6 +255,9 @@ class CartController extends Controller
                 $total_store_cost += $item_price;
 
                 $item->foc_selected = $item->foc->where('foc_quantity', '<=', $item->quantity)->first();
+                if (!$item->foc_selected) {
+                    continue;
+                }
                 $total_store_discount += $item->quantity - ($item->quantity * $item->foc_selected->foc_discount / 100);
             }
             $cart_items[$key]['total_store_cost'] = $total_store_cost;
