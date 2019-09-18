@@ -25,7 +25,7 @@ Route::get('default-admin-drug-sheet', 'Api\DrugController@generateDefaultAdminE
 Route::post('update-unapproved-drug', 'Api\DrugController@updateUnApprovedDrug')->name('api.updateUnApprovedDrug');
 
 
-Route::group(['prefix' => 'foc', 'namespace' => 'API'], function () {
+Route::group(['prefix' => 'foc', 'namespace' => 'Api'], function () {
 
     Route::post('create', 'FOCController@createFocGeneral');
     Route::post('activate-deactivate', 'FOCController@activateDeactivateFOC');
@@ -34,7 +34,7 @@ Route::group(['prefix' => 'foc', 'namespace' => 'API'], function () {
     Route::get('all-store-foc/{id}', 'FOCController@allDrugStoreFocByStoreId');
 });
 
-Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
+Route::group(['prefix' => 'points', 'namespace' => 'Api'], function () {
 
     Route::post('create', 'PointsController@create');
     Route::post('update', 'PointsController@update');
@@ -43,7 +43,7 @@ Route::group(['prefix' => 'points', 'namespace' => 'API'], function () {
 
 
     Route::get('pharmacy-points', 'PointsController@getPharmacyPoints');
-    Route::get('points-price', 'PointsController@getPointsPrice');
+    Route::get('points-price', 'PointsController@getPointsPrice')->name('getPointsPriceAPI');
     Route::post('redeem-points', 'PointsController@redeemPoints');
     Route::get('points/{store_id}', 'PointsController@allPointsPackagesByStoreId');
 });

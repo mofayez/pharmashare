@@ -187,7 +187,7 @@ class ShoppingController extends Controller
             $first_ratio = $response2['data']['first_ratio'];
             $second_ratio = $response2['data']['second_ratio'];
         }
-//        return $cart_before_save;
+        return $cart_before_save;
         return view('pages.shopping.checkout.index', compact(
             'page_title', 'user', 'all_users', 'cart_before_save',
             'allowed_ads', 'second_ratio', 'first_ratio'
@@ -200,5 +200,17 @@ class ShoppingController extends Controller
         $request['pharmacy_id'] = auth()->user()->id;
 
         return $this->sale->placeOrder($request);
+    }
+
+    public function submitRedeem(Request $request)
+    {
+        $request['pharmacy_id'] = auth()->user()->id;
+        $response = $this->points->redeemPoints($request);
+//        return $response;
+        if (!$response['status']) {
+
+            return back()->with('error', '');
+        }
+        return back()->with('success', '');
     }
 }

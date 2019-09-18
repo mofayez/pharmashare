@@ -59,8 +59,9 @@
                                     <tr>
                                         <td><?php echo e($item['store']->firstname . " " . $item['store']->lastname); ?>
 
-                                            <button class="btn btn-danger"
-                                                    onclick="redeemPoints('<?php echo e($item['store']->id); ?>','<?php echo e(auth()->user()->id); ?>')"><?php echo e(app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'); ?></button>
+                                            <button class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#all_packages_modal"
+                                                    onclick="redeemPoints('<?php echo e($item['store']->id); ?>','<?php echo e($item['total_points_with_pharmacy']); ?>')"><?php echo e(app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'); ?></button>
                                         </td>
                                         <td><?php echo e($item['total_store_cost']); ?></td>
                                         <td><?php echo e($item['total_points_with_pharmacy']); ?></td>
@@ -149,7 +150,7 @@
 
                                     </td>
                                     <td class="bg-warning">
-                                        <?php echo e($total+$total_discount); ?>
+                                        <?php echo e($total); ?>
 
                                     </td>
                                 </tr>
@@ -159,7 +160,7 @@
                                         <?php echo e(__('store.discount')); ?>
 
                                     </td>
-                                    <td class="bg-warning">
+                                    <td class="bg-danger text-white">
                                         <?php echo e($total_discount); ?>
 
                                     </td>
@@ -171,7 +172,7 @@
 
                                     </td>
                                     <td class="bg-warning">
-                                        <?php echo e($total); ?>
+                                        <?php echo e($total-$total_discount); ?>
 
                                     </td>
                                 </tr>

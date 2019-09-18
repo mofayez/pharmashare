@@ -58,8 +58,9 @@
                                 @foreach($cart_before_save as $item)
                                     <tr>
                                         <td>{{$item['store']->firstname . " " . $item['store']->lastname}}
-                                            <button class="btn btn-danger"
-                                                    onclick="redeemPoints('{{$item['store']->id}}','{{auth()->user()->id}}')">{{app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'}}</button>
+                                            <button class="btn btn-danger" data-toggle="modal"
+                                                    data-target="#all_packages_modal"
+                                                    onclick="redeemPoints('{{$item['store']->id}}','{{$item['total_points_with_pharmacy']}}')">{{app()->getLocale() == 'ar' ? 'خصومات' : 'redeem'}}</button>
                                         </td>
                                         <td>{{$item['total_store_cost']}}</td>
                                         <td>{{$item['total_points_with_pharmacy']}}</td>
@@ -145,7 +146,7 @@
                                         {{__('pharmacy.total')}}
                                     </td>
                                     <td class="bg-warning">
-                                        {{$total+$total_discount}}
+                                        {{$total}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -153,7 +154,7 @@
                                     <td>
                                         {{__('store.discount')}}
                                     </td>
-                                    <td class="bg-warning">
+                                    <td class="bg-danger text-white">
                                         {{$total_discount}}
                                     </td>
                                 </tr>
@@ -163,7 +164,7 @@
                                         {{__('pharmacy.total_plus')}}
                                     </td>
                                     <td class="bg-warning">
-                                        {{$total}}
+                                        {{$total-$total_discount}}
                                     </td>
                                 </tr>
                                 </tfoot>

@@ -224,6 +224,7 @@ Route::group([
             Route::get('/shipping', 'ShoppingController@viewShipping')->name('getShippingView');
             Route::post('/submitPayment', 'ShoppingController@submitPayment')->name('submitPayment');
             Route::get('/checkout', 'ShoppingController@viewCheckout')->name('getCheckoutView');
+            Route::post('/submitRedeem', 'ShoppingController@submitRedeem')->name('submitRedeem');
             Route::post('/submitCheckout', 'ShoppingController@submitCheckout')->name('submitCheckout');
 
         });

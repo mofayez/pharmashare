@@ -74,10 +74,28 @@
             });
         });
 
-        function redeemPoints(store_id, pharmacy_id) {
+        function redeemPoints(store_id, total_points_with_pharmacy) {
             console.log({
                 store_id: store_id,
-                pharmacy_id: pharmacy_id
+                total_points_with_pharmacy: total_points_with_pharmacy
+            })
+            $.ajax({
+                url: '<?php echo e(route("getPointsPriceAPI")); ?>',
+                type: 'GET',
+                data: {
+                    store_id: store_id,
+                    total_points_with_pharmacy: total_points_with_pharmacy
+                },
+                success: function (data) {
+                    $('#redeem_content').empty();
+                    $.each(data, function (index, item) {
+                        $('#redeem_content').append(`<li>
+                            <input type="hidden" name="store_id" value="${store_id}"/>
+                            <input id="__${index}" name="points_package_id" type="radio" ${index == 0 ? 'checked' : ''} value="${item.id}"/>
+                            <label for="__${index}"><?php echo e(__('store.points')); ?>  ${item.points} <?php echo e(__('store.replace_by')); ?> <?php echo e(__('store.purchase_coupon')); ?> ${item.price} Dir </label>
+                        </li>`);
+                    })
+                }
             })
         }
 

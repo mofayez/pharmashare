@@ -227,14 +227,18 @@ class FOCPoints
             ]);
         }
 
-        StorePharmacyPoints::create([
-            'store_id' => $data['store_id'],
-            'pharmacy_id' => $data['pharmacy_id'],
-            'total_points' => $package->points,
-            'transaction' => 'out'
-        ]);
+//        $price = $package->price;
+        
 
-        return return_msg(true, 'ok');
+//        session()->push()
+//        StorePharmacyPoints::create([
+//            'store_id' => $data['store_id'],
+//            'pharmacy_id' => $data['pharmacy_id'],
+//            'total_points' => $package->points,
+//            'transaction' => 'out'
+//        ]);
+
+        return return_msg(true, 'ok', compact('price'));
     }
 
     public function getPharmacyPoints(array $data)
