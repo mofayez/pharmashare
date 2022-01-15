@@ -18,7 +18,7 @@
     "dependencies": {
         "laravel-echo": "^1.4.0",
         "pusher-js": "^4.3.1",
-        "shelljs": "^0.8.3",
+        "shelljs": "^0.8.5",
         "socket.io-client": "^2.1.1"
     }
 }
