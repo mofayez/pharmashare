@@ -19,6 +19,6 @@
         "laravel-echo": "^1.4.0",
         "pusher-js": "^4.3.1",
         "shelljs": "^0.8.3",
-        "socket.io-client": "^2.1.1"
+        "socket.io-client": "^2.5.0"
     }
 }
